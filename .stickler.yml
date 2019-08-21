@@ -1,0 +1,11 @@
+linters:
+  rubocop:
+    display_cop_names: true
+    fixer: true
+  csslint: {  }
+files:
+  ignore:
+    - 'bower_components/*'
+    - 'node_modules/*'
+fixers:
+  enable: true
