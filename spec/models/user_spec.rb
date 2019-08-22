@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -11,13 +13,12 @@ RSpec.describe User, type: :model do
 
   context 'with invalid attributes' do
     it 'is invalid without an email' do
-      mos.email=''
+      mos.email = ''
       mos.valid?
-      # mos2 = build(:user, email: '')
       expect(mos.errors[:email]).to include("can't be blank")
     end
     it 'is invalid without password' do
-      mos.password=''
+      mos.password = ''
       mos.valid?
       expect(mos.errors[:password]).to include("can't be blank")
     end
