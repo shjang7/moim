@@ -47,7 +47,7 @@ $ rails server
 
 ## Contributors
 
-This is a collaborative project by us: [Simon Wathigo](https://github.com/wathigo) and [Suhyeon Jang](https://github.com/shjang7)
+This is a solo project by me: [Suhyeon Jang](https://github.com/shjang7)
 
 
 ## Contributing
