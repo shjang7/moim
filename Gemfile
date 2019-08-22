@@ -8,7 +8,6 @@ ruby '2.6.3'
 gem 'rails', '~> 5.2.3'
 
 gem 'bootstrap', '>= 4.3.1'
-gem 'bootstrap-sass', '3.4.1'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'carrierwave',             '1.2.2' # for image
 gem 'devise'
