@@ -1,7 +1,8 @@
+<% provide(:title, "Feedback") %>
 <h1>Feedback</h1>
 <p>
-  Give feedback about SocialClub app through
-  <a href="mailto:lucy.sh.jang@gmail.com?Subject=Feedback">
-    lucy.sh.jang@gmail.com
-  </a>
+  Give feedback about Moim app through
+  <%= link_to "lucy.sh.jang@gmail.com",
+    "mailto:lucy.sh.jang@gmail.com?Subject=Feedback",
+    data: { confirm: "Send email?" } %>
 </p>

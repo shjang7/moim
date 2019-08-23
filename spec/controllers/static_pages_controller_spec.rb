@@ -7,7 +7,8 @@ RSpec.describe StaticPagesController, type: :controller do
     it 'returns http success' do
       get :home
       expect(response).to have_http_status(:success)
-      # assert_select "title", "SocialClub"
+      # expect(page.body).to have_title('Moim')
+      # title = Moim
     end
   end
 
@@ -15,6 +16,7 @@ RSpec.describe StaticPagesController, type: :controller do
     it 'returns http success' do
       get :feedback
       expect(response).to have_http_status(:success)
+      # title = Feedback | Moim
     end
   end
 end

@@ -1,0 +1,75 @@
+@import "bootstrap";
+@import 'framework/color';
+@import 'framework/typography';
+
+.jumbotron {
+  background-color: $light-warm-green !important;
+}
+
+.main {
+  padding-top: 3rem;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center .h-title {
+  margin-bottom: 1rem;
+}
+
+header {
+  a {
+    color: #fff;
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+  ul {
+    margin: 0.8rem 0.8rem 0;
+  }
+}
+
+#logo {
+  float: left;
+  margin-right: 0.3rem;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 0.25rem;
+  font-weight: bold;
+}
+
+/* footer */
+footer {
+  margin-top: 1.5rem;
+  padding-top: 0.3rem;
+  border-top: $border-gray;
+  color: $mid-dark-gray;
+  small {
+    float: left;
+  }
+  a {
+    color: $mid-gray;
+    &:hover {
+      color: $dark-gray;
+    }
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 0.5rem;
+    }
+  }
+}

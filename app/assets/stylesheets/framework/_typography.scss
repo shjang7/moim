@@ -1,0 +1,27 @@
+/* typography */
+@import 'color';
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: -2px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2rem;
+  letter-spacing: -1px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: normal;
+  color: $mid-gray;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.7rem;
+}

@@ -1,10 +1,11 @@
-# SocialClub
+# Moim
 
 This is part of the Final Project in The Odin Project’s Ruby on Rails Curriculum. Find it at [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project).
+Moim is a Korean word meaning "gathering".
 
 ## deployment
 
-https://rails-social-club-suh.herokuapp.com
+https://rails-moim-suh.herokuapp.com
 
 ## Function description
 
@@ -52,7 +53,7 @@ This is a solo project by me: [Suhyeon Jang](https://github.com/shjang7)
 
 ## Contributing
 
-1. Fork it (https://github.com/shjang7/socialclub/fork)
+1. Fork it (https://github.com/shjang7/moim/fork)
 2. Create your feature branch (git checkout -b feature/[choose-a-name])
 3. Commit your changes (git commit -am 'what this commit will fix/add')
 4. Push to the branch (git push origin feature/[chosen-name])

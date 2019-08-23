@@ -1,3 +1,15 @@
-<% if current_user %>
-  <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-<% end %>
+<header class="navbar navbar-fixed-top navbar-inverse bg-success">
+  <div class="container">
+    <%= link_to "Moim", "#", id: "logo" %>
+    <nav class="nav navbar-nav navbar-right">
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Profile</a></li>
+        <li class="list-inline-item"><a href="#">Home</a></li>
+        <li class="list-inline-item"><a href="#">Find Friends</a></li>
+      <% if current_user %>
+        <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+      <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
