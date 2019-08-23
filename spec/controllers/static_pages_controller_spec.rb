@@ -7,7 +7,6 @@ RSpec.describe StaticPagesController, type: :controller do
     it 'returns http success' do
       get :home
       expect(response).to have_http_status(:success)
-      # title = Moim
     end
   end
 
@@ -15,7 +14,6 @@ RSpec.describe StaticPagesController, type: :controller do
     it 'returns http success' do
       get :feedback
       expect(response).to have_http_status(:success)
-      # title = Feedback | Moim
     end
   end
 end
