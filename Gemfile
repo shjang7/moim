@@ -49,14 +49,14 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'factory_bot_rails', require: false
-  gem 'rails-controller-testing',     '~> 1.0.2'
-  gem 'simplecov',                    '~> 0.15.1',              require: false
-  gem 'rspec-rails', '~> 3.8'
-  gem 'guard-rspec', require: false
-  gem 'paperclip'
   gem 'capybara', '~> 2.15.4'
+  gem 'factory_bot_rails', require: false
+  gem 'guard-rspec', require: false
   gem 'launchy', '~> 2.4.3'
+  gem 'paperclip'
+  gem 'rails-controller-testing', '~> 1.0.2'
+  gem 'rspec-rails', '~> 3.8'
+  gem 'simplecov', '~> 0.15.1', require: false
 end
 
 group :development do

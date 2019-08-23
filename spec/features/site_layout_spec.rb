@@ -4,37 +4,56 @@ require 'rails_helper'
 
 describe 'Layouts' do
   # fixtures :all
-  let(:app_name) { $app_name }
-  let(:owner) { double(name: 'Suhyeon Jang',
-                       email: 'lucy.sh.jang@gmail.com',
-                       github: 'https://github.com/shjang7') }
-  let(:title) { double(base: $app_name,
-                       feedback: 'Feedback',
-                       sign_up: 'Sign up',
-                       log_in: 'Log in',
-                       password_reset: 'Password reset') }
+  let(:app) do
+    double(name: $app_name)
+  end
+
+  let(:owner) do
+    double(name: 'Suhyeon Jang',
+           email: 'lucy.sh.jang@gmail.com',
+           github: 'https://github.com/shjang7')
+  end
+
+  let(:title) do
+    double(base: $app_name,
+           feedback: 'Feedback',
+           sign_up: 'Sign up',
+           log_in: 'Log in',
+           password_reset: 'Password reset')
+  end
 
   context 'for root path' do
     before do
       visit root_path
     end
     it 'displays correct title' do
-      expect(page.body).to have_title(app_name)
+      expect(page.body).to have_title(app.name)
     end
 
     it 'displays correct contents' do
-      expect(page.body).to have_css 'h1.h-title', text: app_name
+      expect(page.body).to have_css 'h1.h-title', text: app.name
+      expect(page).to have_link('Sign up', href: new_user_registration_path)
+    end
+  end
+
+  context 'for header path' do
+    before do
+      visit root_path
     end
 
     it 'redirects correct link' do
-      expect(page.body).to have_css 'a.btn', text: 'Sign up'
-      my_link = find(:css, "a:contains('Sign up')")
-      my_link.click
-      expect(page).to have_http_status(:success)
+      expect(page).to have_link(app.name, href: root_url)
     end
-    it 'displays correct link at footer' do
-      expect(page.body).to have_css 'a.github', text: owner.name
-      expect(page.body).to have_css 'a.feedback-link', text: 'Feedback'
+  end
+
+  context 'for footer path' do
+    before do
+      visit root_path
+    end
+
+    it 'redirects correct link' do
+      expect(page).to have_link(owner.name, href: owner.github)
+      expect(page).to have_link('Feedback', href: static_pages_feedback_path)
     end
   end
 
@@ -42,9 +61,11 @@ describe 'Layouts' do
     before do
       visit static_pages_feedback_path
     end
+
     it 'displays correct title' do
       expect(page.body).to have_title(full_title(title.feedback))
     end
+
     it 'displays correct contents' do
       expect(page.body).to have_css 'h1', text: 'Feedback' # changeable
       expect(page.body).to have_css 'a', text: owner.email

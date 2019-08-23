@@ -6,7 +6,6 @@ RSpec.describe Post, type: :model do
   describe '#create' do
     context 'with valid attributes' do
       it 'does not add a post' do
-        
       end
     end
   end
