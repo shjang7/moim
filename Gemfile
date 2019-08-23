@@ -53,6 +53,10 @@ group :development, :test do
   gem 'rails-controller-testing',     '~> 1.0.2'
   gem 'simplecov',                    '~> 0.15.1',              require: false
   gem 'rspec-rails', '~> 3.8'
+  gem 'guard-rspec', require: false
+  gem 'paperclip'
+  gem 'capybara', '~> 2.15.4'
+  gem 'launchy', '~> 2.4.3'
 end
 
 group :development do
@@ -69,13 +73,9 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper', '1.2.0'
   gem 'database_cleaner'
-  gem 'guard-rspec', require: false
   gem 'selenium-webdriver'
-  gem 'capybara', '~> 2.15.4'
-  gem 'launchy', '~> 2.4.3'
   gem 'shoulda',                      '~> 3.5'
   gem 'shoulda-callback-matchers',    '~> 1.1', '>= 1.1.3'
-  gem 'paperclip'
 end
 
 group :production do

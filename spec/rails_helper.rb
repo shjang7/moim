@@ -10,10 +10,12 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'database_cleaner'
+require 'devise'
 require 'shoulda/matchers'
 require 'paperclip/matchers'
 require 'factory_bot_rails'
 require 'faker'
+# require 'devise_helper'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -47,6 +49,8 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   # Add support for Paperclip's Shoulda matchers
   config.include Paperclip::Shoulda::Matchers
+  config.include Rails.application.routes.url_helpers
+  config.include ApplicationHelper
 
   config.formatter = :documentation
   # If you're not using ActiveRecord, or you'd prefer not to run each of your

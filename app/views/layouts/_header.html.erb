@@ -3,11 +3,21 @@
     <%= link_to "Moim", "#", id: "logo" %>
     <nav class="nav navbar-nav navbar-right">
       <ul class="list-inline">
-        <li class="list-inline-item"><a href="#">Profile</a></li>
-        <li class="list-inline-item"><a href="#">Home</a></li>
-        <li class="list-inline-item"><a href="#">Find Friends</a></li>
       <% if current_user %>
-        <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+        <li class="list-inline-item">
+          <%= link_to "Profile", "#" %>
+        </li>
+      <% end %>
+        <li class="list-inline-item">
+          <%= link_to "Home", root_path %>
+        </li>
+      <% if current_user %>
+        <li class="list-inline-item">
+          <%= link_to "Find Friends", "#" %>
+        </li>
+        <li>
+          <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+        </li>
       <% end %>
       </ul>
     </nav>
