@@ -2,6 +2,12 @@
 @import 'framework/color';
 @import 'framework/typography';
 
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
 .jumbotron {
   background-color: $light-warm-green !important;
 }
@@ -25,6 +31,8 @@ textarea {
 .center .h-title {
   margin-bottom: 1rem;
 }
+
+/* header */
 
 header {
   a {
@@ -72,4 +80,14 @@ footer {
       margin-left: 0.5rem;
     }
   }
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
 }

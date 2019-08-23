@@ -1,9 +1,11 @@
-
 <div class="center jumbotron">
   <h1 class="h-title">Moim</h1>
   <p>
     Welcome to Moim!
   </p>
 
-  <%= link_to "Sign up", new_user_registration_path, class: "btn btn-lg btn-success" %>
+  <%= link_to "Sign up", new_user_registration_url, class: "btn btn-lg btn-success" %>
+  <%= link_to "Log in", new_user_session_url, class: "btn btn-lg btn-success" %>
+  <%= link_to "Log in with facebook", new_user_session_url, class: "btn btn-lg btn-success" %>
+  <%# facebook wasn't yet connect, to see layout reason %>
 </div>

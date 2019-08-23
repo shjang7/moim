@@ -3,29 +3,49 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:mos) { create(:user) }
-
-  context 'with valid attributes' do
-    it 'is valid with an email and password' do
-      expect(mos).to be_valid
-    end
-  end
+  let(:jen) { create(:user) }
 
   context 'with invalid attributes' do
-    it 'is invalid without an email' do
-      mos.email = ''
-      mos.valid?
-      expect(mos.errors[:email]).to include("can't be blank")
+    it 'is invalid without first name' do
+      jen.first_name = ''
+      jen.valid?
+      expect(jen.errors[:first_name]).to include("can't be blank")
     end
+
     it 'is invalid without password' do
-      mos.password = ''
-      mos.valid?
-      expect(mos.errors[:password]).to include("can't be blank")
+      jen.last_name = ''
+      jen.valid?
+      expect(jen.errors[:last_name]).to include("can't be blank")
+    end
+
+    it 'is invalid without an email' do
+      jen.email = ''
+      jen.valid?
+      expect(jen.errors[:email]).to include("can't be blank")
+    end
+
+    it 'is invalid without password' do
+      jen.password = ''
+      jen.valid?
+      expect(jen.errors[:password]).to include("can't be blank")
     end
 
     it 'is invalid with duplicate email' do
-      jen = build(:user, email: mos.email)
-      expect(jen).to_not be_valid
+      mos = build(:user, email: jen.email)
+      expect(mos).to_not be_valid
+    end
+  end
+
+  context 'with valid attributes' do
+    it 'is valid with correct informations' do
+      expect(jen).to be_valid
+    end
+  end
+
+  context 'for first name and last name' do
+    it 'is same name after combining' do
+      combined_name = jen.first_name + ' ' + jen.last_name
+      expect(combined_name). to eq jen.name
     end
   end
 end

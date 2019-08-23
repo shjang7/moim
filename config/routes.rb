@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: 'static_pages#home'
-  get 'static_pages/feedback'
-  # root 'posts#index'
+  get   'static_pages/home'     => 'static_pages#home'
+  get   'static_pages/feedback' => 'static_pages#feedback'
+  # get   'users/:id/show'        => 'users#show'
   devise_for :users
+  resources :users, only: [:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'static_pages#home'
 end
