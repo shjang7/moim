@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 2019_08_24_124334) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
-    t.string "name"
     t.string "first_name"
     t.string "last_name"
     t.text "profile_pic"

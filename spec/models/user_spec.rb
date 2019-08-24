@@ -48,16 +48,25 @@ RSpec.describe User, type: :model do
 
   context 'with valid attributes' do
     it 'is valid with correct informations' do
-      jen = create(:user)
+      jen = build(:user)
       expect(jen).to be_valid
+    end
+
+    it 'is full name combining first and last name' do
+      jen = build(:user)
+      full_name = jen.first_name + ' ' + jen.last_name
+      expect(full_name). to eq jen.name
     end
   end
 
-  context 'for first name and last name' do
-    it 'is same name after combining' do
-      jen = create(:user)
-      combined_name = jen.first_name + ' ' + jen.last_name
-      expect(combined_name). to eq jen.name
+  context 'with associated writing posts' do
+    it 'should be destroyed along with user' do
+      # should has_many(:posts)?
+      @jen = create(:user)
+      @jen.writing_posts.create!(content: 'Lorem ipsum')
+      expect{
+        @jen.destroy
+      }.to change(Post, :count).by(-1)
     end
   end
 end
