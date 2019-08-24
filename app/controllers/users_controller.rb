@@ -4,6 +4,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @post = @user.writing_posts.build
-    @posts = @user.writing_posts.all
+    @posts = @user.writing_posts.paginate(page: params[:page])
   end
 end

@@ -4,20 +4,19 @@
     <%#= gravatar_for @user %>
     <h6 class="h-title"><%= @user.name.full %></h6>
   </section>
-  <section class="col-md-12">
-    <aside class="col-md-4">
+  <section class="col-md-12 row">
+    <aside class="col-md-3">
       friends(9)
     </aside>
-    <div class="col-md-8">
+    <div class="col-md-9">
       <%= render "shared/post_form" %>
       <% if @user.writing_posts.any? %>
         <h6>Posts</h6>
         <ol class="posts">
           <%= render @posts %>
         </ol>
-        <%#= will_paginate @posts %>
+        <%= will_paginate @posts %>
       <% end %>
     </div>
   </section>
 </div>
-  <%#= render "shared/post_show" %>
