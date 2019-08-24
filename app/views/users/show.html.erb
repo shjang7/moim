@@ -13,8 +13,8 @@
       <% if @user.posts.any? %>
         <h6>Posts</h6>
         <ol class="posts" %>
-          <li><%= @user.posts.first.content %> </li>
-          <%#= render posts_path %>
+          <%#= render @posts %>
+          <li><%= @user.posts.find(2).content %> </li>
           <%#= render @posts %>
         </ol>
         <%#= will_paginate @posts %>

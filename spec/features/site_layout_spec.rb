@@ -52,7 +52,7 @@ describe 'Layouts' do
 
     it 'redirects correct link' do
       expect(page).to have_link(admin.name, href: admin.github)
-      expect(page).to have_link('Feedback', href: static_pages_feedback_path)
+      expect(page).to have_link('Feedback', href: static_pages_feedback_url)
     end
   end
 

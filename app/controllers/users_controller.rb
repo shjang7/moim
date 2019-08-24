@@ -3,7 +3,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @post = @user.posts.build
-    @posts = @user.posts.all
+    @post = @user.writing_posts.build
+    @posts = @user.writing_posts.all
   end
 end
