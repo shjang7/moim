@@ -5,8 +5,7 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   describe '#create' do
     before do
-      @jen = create(:user)
-      @post = Post.new(content: 'Lorem ipsum', author_id: @jen.id)
+      @post = create(:post)
     end
 
     context 'with invalid attributes' do
@@ -15,8 +14,13 @@ RSpec.describe Post, type: :model do
         expect(@post).to_not be_valid
       end
 
-      it 'is invalid without user id' do
+      it 'is invalid without author id' do
         @post.author_id = nil
+        expect(@post).to_not be_valid
+      end
+
+      it 'is invalid without right content' do
+        @post.content = ' ' * 6
         expect(@post).to_not be_valid
       end
     end
