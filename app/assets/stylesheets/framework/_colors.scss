@@ -1,7 +1,20 @@
 $mid-gray: #777;
 $mid-dark-gray: #555;
 $dark-gray: #222;
-$mid-warm-green: #cff2ae;
+
 $light-warm-green: #dafeb2;
+$mid-warm-green: #cff2ae;
+$green: #06ad45;
+$dark-green: #0b8000;
+
+$mid-orange: #ef4321;
+
 $border-gray: 1px solid #eaeaea;
 $border-green: 1px solid $light-warm-green;
+
+a {
+  color: $green;
+  &:hover {
+    color: $dark-green;
+  }
+}

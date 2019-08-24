@@ -66,7 +66,7 @@ describe 'Layouts' do
     end
 
     it 'displays correct contents' do
-      expect(page.body).to have_css 'h1', text: 'Feedback'
+      expect(page.body).to have_css '.h-title', text: 'Feedback'
       expect(page.body).to have_css 'a', text: admin.email
     end
   end

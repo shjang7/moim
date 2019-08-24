@@ -89,6 +89,14 @@ footer {
   @include box_sizing;
 }
 
+#error_explanation {
+  color: $mid-orange;
+  ul {
+    color: $mid-orange;
+    margin: 0 0 1rem 0;
+  }
+}
+
 .profile_pic {
   width: 3rem;
   height: 3rem;
