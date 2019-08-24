@@ -1,2 +1,25 @@
-<h1 class="d-none">user profile</h1>
-<p><%= @user.first_name %> <%= @user.last_name %> <%= @user.email %></p>
+<% provide(:title, @user.name) %>
+<div class="row">
+  <section class="user-info col-md-12">
+    <%#= gravatar_for @user %>
+    <h1><%= @user.name %></h1>
+  </section>
+  <section class="col-md-12">
+    <aside class="col-md-4">
+      friends(9)
+    </aside>
+    <div class="col-md-8">
+      <%= render "shared/post_form" %>
+      <% if @user.posts.any? %>
+        <h6>Posts</h6>
+        <ol class="posts" %>
+          <li><%= @user.posts.first.content %> </li>
+          <%#= render posts_path %>
+          <%#= render @posts %>
+        </ol>
+        <%#= will_paginate @posts %>
+      <% end %>
+    </div>
+  </section>
+</div>
+  <%#= render "shared/post_show" %>

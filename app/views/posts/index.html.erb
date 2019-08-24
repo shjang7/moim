@@ -1,2 +1,3 @@
-Hi, it is post list
-<%= link_to 'home', static_pages_home_path %>
+<% if @posts.any? %>
+  <%#= render @post %>
+<% end %>

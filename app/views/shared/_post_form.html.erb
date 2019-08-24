@@ -1,0 +1,7 @@
+<%= form_for(@post) do |f| %>
+  <%= render "devise/shared/error_messages", resource: f.object %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "What's on your mind?" %>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-success" %>
+<% end %>

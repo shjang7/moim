@@ -1,0 +1,11 @@
+<%# @post = post %>
+<div class="post">
+  <%= image_tag("my_profile.jpeg", size: "100x100", alt: "profile picture") %>
+  <div class="d-inline-block">
+    <%# , class: ["strong", "highlight"] %>
+    <%= content_tag(:div, @post.user.name) %>
+    <div>
+      datetime
+    </div>
+  </div>
+</div>

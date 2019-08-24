@@ -13,8 +13,9 @@
   background-color: $light-warm-green !important;
 }
 
-.main {
-  padding-top: 3rem;
+.alert {
+  background-color: $light-warm-green !important;
+  border-color: $mid-warm-green !important;
 }
 
 section {
@@ -27,10 +28,6 @@ textarea {
 
 .center {
   text-align: center;
-}
-
-.center .h-title {
-  margin-bottom: 1rem;
 }
 
 /* header */
@@ -60,7 +57,6 @@ header {
 
 /* footer */
 footer {
-  margin-top: 1.5rem;
   padding-top: 0.3rem;
   border-top: $border-gray;
   color: $mid-dark-gray;
@@ -91,4 +87,13 @@ footer {
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
+
+.profile_pic {
+  width: 3rem;
+  height: 3rem;
+}
+
+textarea {
+  width: 100%;
 }
