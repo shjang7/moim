@@ -12,6 +12,12 @@ RSpec.describe User, type: :model do
       expect(jen.errors[:first_name]).to include("can't be blank")
     end
 
+    it 'is invalid without last name' do
+      jen.last_name = ''
+      jen.valid?
+      expect(jen.errors[:last_name]).to include("can't be blank")
+    end
+
     it 'is invalid without password' do
       jen.last_name = ''
       jen.valid?
@@ -28,6 +34,16 @@ RSpec.describe User, type: :model do
       jen.password = ''
       jen.valid?
       expect(jen.errors[:password]).to include("can't be blank")
+    end
+
+    it 'is invalid with long size first name' do
+      mos = build(:user, first_name: 'a' * 31)
+      expect(mos).to_not be_valid
+    end
+
+    it 'is invalid with long size last name' do
+      mos = build(:user, last_name: 'a' * 31)
+      expect(mos).to_not be_valid
     end
 
     it 'is invalid with duplicate email' do

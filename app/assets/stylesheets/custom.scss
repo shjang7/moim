@@ -1,6 +1,7 @@
 @import "bootstrap";
-@import 'framework/color';
-@import 'framework/typography';
+@import 'framework/colors';
+@import 'framework/typographies';
+@import 'framework/display';
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;

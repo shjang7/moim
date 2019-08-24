@@ -45,6 +45,7 @@ RSpec.configure do |config|
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include Capybara::DSL
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Warden::Test::Helpers
   config.include FactoryBot::Syntax::Methods
   # Add support for Paperclip's Shoulda matchers
   config.include Paperclip::Shoulda::Matchers
@@ -52,10 +53,10 @@ RSpec.configure do |config|
   config.include ApplicationHelper
 
   config.formatter = :documentation
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
   config.use_transactional_fixtures = false
+  # Filter lines from Rails gems in backtraces.
+  config.filter_rails_from_backtrace!
+  config.infer_spec_type_from_file_location!
   config.before(:suite) { DatabaseCleaner.clean_with(:truncation) }
   config.before(:each) { DatabaseCleaner.strategy = :transaction }
   config.before(:each, js: true) { DatabaseCleaner.strategy = :truncation }
@@ -63,8 +64,7 @@ RSpec.configure do |config|
   config.after(:each) { DatabaseCleaner.clean }
   config.before(:all) { DatabaseCleaner.start }
   config.after(:all) { DatabaseCleaner.clean }
-  config.infer_spec_type_from_file_location!
-
-  # Filter lines from Rails gems in backtraces.
-  config.filter_rails_from_backtrace!
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
 end

@@ -3,7 +3,6 @@
 Rails.application.routes.draw do
   get   'static_pages/home'     => 'static_pages#home'
   get   'static_pages/feedback' => 'static_pages#feedback'
-  # get   'users/:id/show'        => 'users#show'
   devise_for :users
   resources :users, only: [:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

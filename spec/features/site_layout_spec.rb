@@ -31,7 +31,7 @@ describe 'Layouts' do
 
     it 'displays correct contents' do
       # expect(page.body).to have_css 'h1.h-title', text: app.name
-      # expect(page).to have_link('Sign up', href: new_user_registration_path)
+      expect(page).to have_link('Sign up', href: new_user_registration_url)
     end
   end
 
