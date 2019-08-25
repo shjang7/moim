@@ -6,7 +6,7 @@ describe 'home layout' do
   let(:jen) { create(:user) }
   context 'index including pagination' do
     it 'shows pagination' do
-      log_in jen
+      # log_in jen
     end
   end
 end

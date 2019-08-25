@@ -63,9 +63,9 @@ RSpec.describe User, type: :model do
     it 'should be destroyed along with user' do
       @jen = create(:user)
       @jen.writing_posts.create!(content: 'Lorem ipsum')
-      expect{
+      expect do
         @jen.destroy
-      }.to change(Post, :count).by(-1)
+      end.to change(Post, :count).by(-1)
     end
   end
 end
