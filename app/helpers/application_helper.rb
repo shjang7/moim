@@ -3,6 +3,7 @@
 module ApplicationHelper
   # Returns the full title on a per-page basis
   $app_name = 'Moim'
+  $page = 10
 
   def full_title(page_title = '')
     base_title = $app_name

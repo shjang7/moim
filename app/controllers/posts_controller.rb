@@ -9,8 +9,9 @@ class PostsController < ApplicationController
       flash[:success] = 'Post created!'
       redirect_to root_url
     else
-      @feed_items = []
-      render static_pages_home_url
+      # @feed_items = []
+      flash[:alert] = "Can't write blank message"
+      redirect_back(fallback_location: root_url)
     end
   end
 

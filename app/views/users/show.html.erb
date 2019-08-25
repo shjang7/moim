@@ -1,12 +1,12 @@
 <% if @user %>
-<% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-3">
-    <%= render 'user_info' %>
-    <!-- future : friends list(take 9) -->
-  </aside>
-  <div class="col-md-9">
-    <%= render 'shared/post_write_and_view' %>
+  <% provide(:title, @user.name) %>
+  <div class="row">
+    <aside class="col-md-3">
+      <%= render 'user_info' %>
+      <!-- future : friends list(take 9) -->
+    </aside>
+    <div class="col-md-9">
+      <%= render 'shared/post_write_and_view' %>
+    </div>
   </div>
-</div>
 <% end %>

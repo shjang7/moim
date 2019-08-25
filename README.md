@@ -1,6 +1,7 @@
 # Moim
 
-This is part of the Final Project in The Odin Project’s Ruby on Rails Curriculum. Find it at [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project).
+This is part of the Final Project in The Odin Project’s Ruby on Rails Curriculum. <br />
+Find it at [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project).
 Moim is a Korean word meaning "gathering".
 
 ## deployment

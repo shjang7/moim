@@ -7,9 +7,9 @@ $mid-warm-green: #cff2ae;
 $green: #06ad45;
 $dark-green: #0b8000;
 
-$light-orange: #f5a861;
-$mid-light-orange: #f27b4e;
-$mid-orange: #ef4321;
+$light-orange: #f8aca1;
+$mid-orange: #f27b4e;
+$dark-orange: #ef4321;
 
 $border-gray: 1px solid #eaeaea;
 $border-green: 1px solid $light-warm-green;
@@ -34,5 +34,5 @@ a {
 
 .alert-alert {
   background-color: $light-orange !important;
-  border-color: $mid-light-orange !important;
+  border-color: $mid-orange !important;
 }
