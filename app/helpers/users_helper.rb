@@ -4,7 +4,7 @@ module UsersHelper
   # Returns the profile image for the given user.
   def profile_img_for(user)
     if user.profile_pic.nil?
-      profile_url = "cat-1.jpg"
+      profile_url = "cat-2.jpg"
     else
       profile_url = user.profile_pic.sub("_normal", "")
     end

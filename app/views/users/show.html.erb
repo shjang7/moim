@@ -1,24 +1,12 @@
-<% if @user.name %>
+<% if @user %>
 <% provide(:title, @user.name) %>
 <div class="row">
   <aside class="col-md-3">
-    <section class="user-info col-md-12">
-      <h6 class="h-title">
-        <%= profile_img_for @user %>
-        <%= @user.name.full %>
-      </h6>
-    </section>
-    friends(9)
+    <%= render 'user_info' %>
+    <!-- future : friends list(take 9) -->
   </aside>
-  <section class="col-md-9">
-    <%= render "shared/post_form" %>
-    <% if @posts.any? %>
-      <h6>Posts</h6>
-      <ol class="posts">
-        <%= render @posts %>
-      </ol>
-      <%= will_paginate @posts %>
-    <% end %>
-  </section>
+  <div class="col-md-9">
+    <%= render 'shared/post_write_and_view' %>
+  </div>
 </div>
 <% end %>

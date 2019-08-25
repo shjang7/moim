@@ -7,6 +7,8 @@ $mid-warm-green: #cff2ae;
 $green: #06ad45;
 $dark-green: #0b8000;
 
+$light-orange: #f5a861;
+$mid-light-orange: #f27b4e;
 $mid-orange: #ef4321;
 
 $border-gray: 1px solid #eaeaea;
@@ -25,7 +27,12 @@ a {
   background-color: $mid-warm-green !important;
 }
 
-.alert {
+.alert-success {
   background-color: $light-warm-green !important;
   border-color: $mid-warm-green !important;
+}
+
+.alert-alert {
+  background-color: $light-orange !important;
+  border-color: $mid-light-orange !important;
 }

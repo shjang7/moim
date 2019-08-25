@@ -11,12 +11,15 @@
     padding: 0.3rem 0;
     border-top: $border-gray;
   }
+}
+
+.post {
   .profile-pic {
     float: left;
   }
   .author {
-    margin-top: 2.2rem;
-    margin-left: 2rem;
+    margin: 2.5rem 2rem 0.2rem;
+    // margin-left: 2rem;
     display: block;
   }
   .timestamp {

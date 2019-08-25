@@ -1,5 +1,14 @@
 # frozen_string_literal: true
 
+unless User.find_by(first_name: "Example", last_name: "User")
+  User.create!(
+    name: "Example User",
+    email: "example@example.com",
+    password: "foobar",
+    profile_pic: "cat-1.jpg"
+  )
+end
+
 5.times do
   name = Faker::FunnyName.two_word_name
   User.create!(
