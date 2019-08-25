@@ -16,3 +16,11 @@
 //= require jquery3
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() {
+  $('.field').on( 'keyup', 'textarea', function (e){
+    $(this).css('height', 'auto' );
+    $(this).height( this.scrollHeight );
+  });
+  $('.field').find( 'textarea' ).keyup();
+});

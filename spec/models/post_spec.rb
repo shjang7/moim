@@ -29,6 +29,14 @@ RSpec.describe Post, type: :model do
       it 'is valid with correct informations' do
         expect(@post).to be_valid
       end
+
+      it 'sorts descending order' do
+        0.upto(5) do
+          create(:post,
+            created_at: Faker::Date.between(from: 50.days.ago, to: 1.day.ago))
+        end
+        expect(Post.first).to eq(@post)
+      end
     end
   end
 end

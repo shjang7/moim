@@ -1,13 +1,9 @@
-<li id="post-<%= post.id %>">
-  <section class="row">
-    <aside class="col-md-2">
-      <%= profile_img_for @user %>
-    </aside>
-    <div class="col-md-10 mt-5">
-      <%= link_to post.author.name.full, post.author, class: :author %>
-      <%= content_tag(:div, "Posted #{ time_ago_in_words(post.created_at) } ago.",
-        class: "timestamp") %>
-    </div>
+<li id="post-<%= post.id %>" class="post">
+  <section>
+    <%= profile_img_for @user %>
+    <%= link_to post.author.name.full, post.author, class: :author %>
+    <%= content_tag(:div, "Posted #{ time_ago_in_words(post.created_at) } ago.",
+      class: :timestamp) %>
   </section>
   <div class="content"><%= post.content %></div>
 </li>

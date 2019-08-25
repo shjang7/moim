@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-3.times do
+5.times do
   name = Faker::FunnyName.two_word_name
   User.create!(
     name: name,
@@ -10,11 +10,12 @@
   )
 end
 
-users = User.all
-users.each do |user|
-  2.times do
+users = User.order(:created_at)[-5..-1]
+users.each_with_index do |user, i|
+  i.times do
     user.writing_posts.create!(
-      content: Faker::Games::LeagueOfLegends.quote
+      content: Faker::Quotes::Shakespeare.hamlet_quote,
+      created_at: Faker::Date.between(from: 50.days.ago, to: Date.today)
     )
   end
 end
