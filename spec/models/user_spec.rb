@@ -52,7 +52,7 @@ RSpec.describe User, type: :model do
       expect(jen).to be_valid
     end
 
-    it 'is full name combining first and last name' do
+    it 'is same between full name and combining first and last name' do
       jen = build(:user)
       full_name = jen.first_name + ' ' + jen.last_name
       expect(full_name). to eq jen.name
@@ -61,7 +61,6 @@ RSpec.describe User, type: :model do
 
   context 'with associated writing posts' do
     it 'should be destroyed along with user' do
-      # should has_many(:posts)?
       @jen = create(:user)
       @jen.writing_posts.create!(content: 'Lorem ipsum')
       expect{

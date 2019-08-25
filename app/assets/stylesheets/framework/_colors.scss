@@ -12,9 +12,20 @@ $mid-orange: #ef4321;
 $border-gray: 1px solid #eaeaea;
 $border-green: 1px solid $light-warm-green;
 
+$transparent-white-mid: #ffffff8d;
+
 a {
   color: $green;
   &:hover {
     color: $dark-green;
   }
+}
+
+.jumbotron {
+  background-color: $mid-warm-green !important;
+}
+
+.alert {
+  background-color: $light-warm-green !important;
+  border-color: $mid-warm-green !important;
 }

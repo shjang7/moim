@@ -1,11 +1,14 @@
+<% if @user.name %>
 <% provide(:title, @user.name) %>
 <div class="row">
-  <section class="user-info col-md-12">
-    <%#= gravatar_for @user %>
-    <h6 class="h-title"><%= @user.name.full %></h6>
-  </section>
   <section class="col-md-12 row">
     <aside class="col-md-3">
+      <section class="user-info col-md-12">
+        <h6 class="h-title">
+          <%= profile_img_for @user %>
+          <%= @user.name.full %>
+        </h6>
+      </section>
       friends(9)
     </aside>
     <div class="col-md-9">
@@ -20,3 +23,4 @@
     </div>
   </section>
 </div>
+<% end %>

@@ -1,8 +1,9 @@
 <li id="post-<%= post.id %>">
-  <%#= link_to gravatar_for(post.author, size: 50), post.author %>
   <section class="row">
-    <aside class="col-md-4">image</aside>
-    <div class="col-md-8">
+    <aside class="col-md-2">
+      <%= profile_img_for @user %>
+    </aside>
+    <div class="col-md-10 mt-5">
       <%= link_to post.author.name.full, post.author, class: :author %>
       <%= content_tag(:div, "Posted #{ time_ago_in_words(post.created_at) } ago.",
         class: "timestamp") %>

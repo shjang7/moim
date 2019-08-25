@@ -9,13 +9,20 @@
   box-sizing:         border-box;
 }
 
-.jumbotron {
-  background-color: $light-warm-green !important;
+body {
+  background:
+    linear-gradient(0deg,$transparent-white-mid 0%, $light-warm-green 100%),
+    url('grass_bg.webp') center/cover repeat-x;
+  height: 100vh;
 }
 
-.alert {
-  background-color: $light-warm-green !important;
-  border-color: $mid-warm-green !important;
+.home .btn {
+  margin: 0.5rem;
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
 }
 
 section {
@@ -23,6 +30,7 @@ section {
 }
 
 textarea {
+  width: 100%;
   resize: vertical;
 }
 
@@ -95,13 +103,4 @@ footer {
     color: $mid-orange;
     margin: 0 0 1rem 0;
   }
-}
-
-.profile_pic {
-  width: 3rem;
-  height: 3rem;
-}
-
-textarea {
-  width: 100%;
 }

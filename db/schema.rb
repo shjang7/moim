@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_08_24_124334) do
     t.string "uid"
     t.string "first_name"
     t.string "last_name"
-    t.text "profile_pic"
+    t.string "profile_pic"
     t.string "token"
     t.string "secret"
     t.index ["email"], name: "index_users_on_email", unique: true
