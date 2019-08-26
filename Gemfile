@@ -50,10 +50,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'capybara', '~> 2.15.4'
   gem 'factory_bot_rails', require: false
   gem 'guard-rspec', require: false
-  gem 'launchy', '~> 2.4.3'
   gem 'paperclip'
   gem 'rails-controller-testing', '~> 1.0.2'
   gem 'rspec-rails', '~> 3.8'
@@ -66,15 +64,19 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper', '1.2.0'
+  gem 'capybara', '~> 2.15.4'
+  # gem 'selenium-webdriver'
+  # gem 'webdrivers'
   gem 'database_cleaner'
-  gem 'selenium-webdriver'
+  gem 'launchy', '~> 2.4.3'
+  gem 'poltergeist'
   gem 'shoulda',                      '~> 3.5'
   gem 'shoulda-callback-matchers',    '~> 1.1', '>= 1.1.3'
 end

@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
     @user = User.find_by_id(params[:id])
     if @user.nil?
       flash[:alert] = 'Access to wrong user'
-      redirect_to root_url
+      redirect_to root_path
       return
     end
     @post = @user.writing_posts.build

@@ -3,9 +3,7 @@
 require 'rails_helper'
 
 describe 'Layouts' do
-  let(:app) do
-    double(name: $app_name)
-  end
+  let(:app) { double(name: $app_name) }
 
   let(:admin) do
     double(name: 'Suhyeon Jang',
@@ -31,7 +29,7 @@ describe 'Layouts' do
 
     it 'displays correct contents' do
       # expect(page.body).to have_css 'h1.h-title', text: app.name
-      expect(page).to have_link('Sign up', href: new_user_registration_url)
+      expect(page).to have_link('Sign up', href: new_user_registration_path)
     end
   end
 
@@ -41,7 +39,7 @@ describe 'Layouts' do
     end
 
     it 'redirects correct link' do
-      expect(page).to have_link(app.name, href: root_url)
+      expect(page).to have_link(app.name, href: root_path)
     end
   end
 
@@ -52,7 +50,7 @@ describe 'Layouts' do
 
     it 'redirects correct link' do
       expect(page).to have_link(admin.name, href: admin.github)
-      expect(page).to have_link('Feedback', href: static_pages_feedback_url)
+      expect(page).to have_link('Feedback', href: static_pages_feedback_path)
     end
   end
 

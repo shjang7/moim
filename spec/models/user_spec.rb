@@ -3,6 +3,28 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  context 'with valid attributes' do
+    it 'is valid with correct informations' do
+      jen = User.new(
+        first_name: 'Jen',
+        last_name: 'Barber',
+        email: 'jen@example.com',
+        password: 'foobar'
+      )
+      expect(jen).to be_valid
+    end
+
+    it 'has a valid factory' do
+      expect(build(:user)).to be_valid
+    end
+
+    it 'returns a user\'s full name as a string' do
+      jen = build(:user)
+      full_name = "#{jen.first_name} #{jen.last_name}"
+      expect(jen.name). to eq full_name
+    end
+  end
+
   context 'with invalid attributes' do
     it 'is invalid without first name' do
       jen = build(:user, first_name: '')
@@ -46,26 +68,24 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context 'with valid attributes' do
-    it 'is valid with correct informations' do
-      jen = build(:user)
-      expect(jen).to be_valid
-    end
-
-    it 'is same between full name and combining first and last name' do
-      jen = build(:user)
-      full_name = jen.first_name + ' ' + jen.last_name
-      expect(full_name). to eq jen.name
-    end
-  end
-
   context 'with associated writing posts' do
-    it 'should be destroyed along with user' do
-      @jen = create(:user)
-      @jen.writing_posts.create!(content: 'Lorem ipsum')
+    let(:jen) { create(:user) }
+    before do
+      jen.writing_posts.create!(content: 'Lorem ipsum')
+    end
+
+    it 'should destroy post along with user' do
       expect do
-        @jen.destroy
+        jen.destroy
       end.to change(Post, :count).by(-1)
+    end
+
+    it 'can have many posts' do
+      expect do
+        5.times do
+          jen.writing_posts.create!(content: 'Lorem ipsum')
+        end
+      end.to change(jen.writing_posts, :count).by(5)
     end
   end
 end
