@@ -14,8 +14,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence: true, length: { maximum: 30 }
 
+  # future : after connection friendship
   # def feed
-  # after connection friendship
   # end
 
   def writing_posts?(post)
