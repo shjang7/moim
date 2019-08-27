@@ -1,6 +1,7 @@
 @import "bootstrap";
 @import 'framework/colors';
 @import 'framework/typographies';
+@import 'framework/components';
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -39,6 +40,10 @@ textarea {
 
 .center {
   text-align: center;
+}
+
+.right {
+  text-align: right;
 }
 
 /* header */

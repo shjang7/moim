@@ -3,4 +3,6 @@
     <%= profile_img_for @user %>
     <%= @user.name.full %>
   </h6>
+  <%= link_to "Edit info", edit_user_registration_path,
+    class: "btn btn-md btn-success w-100" %>
 </section>
