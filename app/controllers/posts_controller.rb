@@ -6,9 +6,11 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.writing_posts.build(post_params)
-    return unless @post.save
-
-    flash[:notice] = 'Post created!'
+    if @post.save
+      flash[:notice] = 'Post created!'
+    else
+      flash[:alert] = 'It is blank'
+    end
     redirect_back(fallback_location: root_path)
   end
 
@@ -29,7 +31,7 @@ class PostsController < ApplicationController
     match_post = current_user.writing_posts.find_by_id(params[:id])
     return if match_post
 
-    flash[:alert] = 'Wrong access'
+    flash[:alert] = 'Please access with right user'
     redirect_back(fallback_location: root_path)
   end
 end

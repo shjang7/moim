@@ -3,7 +3,9 @@
 Rails.application.routes.draw do
   get   'static_pages/home'     => 'static_pages#home'
   get   'static_pages/feedback' => 'static_pages#feedback'
-  devise_for :users
+  devise_for :users, :controllers  => {
+                        :registrations => 'users/registrations',
+                      }
   resources :profiles, only: [:show]
   resources :posts, only: %i[create destroy]
   root 'static_pages#home'

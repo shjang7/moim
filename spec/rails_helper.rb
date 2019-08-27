@@ -45,12 +45,11 @@ RSpec.configure do |config|
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include Capybara::DSL
   config.include Devise::Test::ControllerHelpers, type: :controller
-  config.include RequestSpecHelper # , type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include FactoryBot::Syntax::Methods
-  # Add support for Paperclip's Shoulda matchers
   config.include Paperclip::Shoulda::Matchers
   config.include Rails.application.routes.url_helpers
-  config.include ApplicationHelper
+  # config.include ApplicationHelper
 
   config.formatter = :documentation
   config.use_transactional_fixtures = false
