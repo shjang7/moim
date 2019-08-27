@@ -18,7 +18,7 @@ class User < ApplicationRecord
   # def feed
   # end
 
-  def writing_posts?(post)
-    writing_posts.include? post
+  def writing_post?(post)
+    self == post.author
   end
 end

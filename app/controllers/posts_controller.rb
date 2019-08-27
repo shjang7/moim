@@ -15,11 +15,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find_by_id(params[:id])
     @post.destroy
     flash[:notice] = 'Post deleted'
     redirect_back(fallback_location: root_path)
   end
-  # edit, update, destroy
 
   private
 

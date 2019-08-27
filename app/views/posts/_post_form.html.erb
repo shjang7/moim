@@ -1,4 +1,4 @@
-<% if @user == current_user %>
+<% if current_user == @user %>
   <%= form_for(@post) do |f| %>
     <%= render "devise/shared/error_messages", resource: f.object %>
     <div class="field write-post">

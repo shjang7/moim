@@ -5,7 +5,7 @@ RSpec.feature 'Posts', type: :feature do
   let(:moris) { create(:user, name: 'Moris Mos') }
   let(:post_params) { attributes_for(:post) }
 
-  scenario 'user writes a new post' do
+  scenario 'user writes a post and delete' do
     sign_in jen
     # try to write post at other's page
     visit profile_path(moris)
@@ -22,5 +22,9 @@ RSpec.feature 'Posts', type: :feature do
     expect(page.body).to have_css('.post .author', text: jen.name)
     expect(page.body).to have_css('.post .timestamp')
     expect(page.body).to have_css('.post .content', text: post_params[:content])
+    expect do
+      click_link 'Delete post'
+    end.to change(jen.writing_posts, :count).by(-1)
+    expect(page.body).to have_content('Post deleted')
   end
 end
