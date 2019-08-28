@@ -16,11 +16,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    flash[:notice] = if @post.destroy
-                       'Post deleted'
-                     else
-                       'Post cannot be deleted, send us feedback'
-                     end
+    if @post.destroy
+      flash[:notice] = 'Post deleted'
+    else
+      flash[:alert] = 'Post cannot be deleted, send us feedback'
+    end
     redirect_back(fallback_location: root_path)
   end
 
