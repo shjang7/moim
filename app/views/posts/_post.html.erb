@@ -6,7 +6,8 @@
   <div class="content">
     <%= post.content %>
   </div>
-  <% if current_user.writing_post?(post) %>
+  <% if current_user?(post.author) %>
+    <%#= link_to 'Edit post', post_path(post), method: :delete %>
     <%= link_to 'Delete post', post_path(post), method: :delete %>
   <% end %>
 </li>

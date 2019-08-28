@@ -5,7 +5,7 @@
       <ul class="list-inline">
       <% if user_signed_in? %>
         <li class="list-inline-item">
-          <%= link_to "Profile", user_path(@user) %>
+          <%= link_to "Profile", user_path(current_user) %>
         </li>
       <% end %>
         <li class="list-inline-item">

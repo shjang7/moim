@@ -17,8 +17,4 @@ class User < ApplicationRecord
   # future : after connection friendship
   # def feed
   # end
-
-  def writing_post?(post)
-    self == post.author
-  end
 end
