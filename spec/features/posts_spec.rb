@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.feature 'Posts', type: :feature do
@@ -8,13 +10,13 @@ RSpec.feature 'Posts', type: :feature do
   scenario 'user writes a post and delete' do
     sign_in jen
     # try to write post at other's page
-    visit profile_path(moris)
+    visit user_path(moris)
     expect(page.body).to_not have_content("What's on your mind?")
     # write at correct page
-    visit profile_path(jen)
+    visit user_path(jen)
     expect do
       fill_in "What's on your mind?", with: post_params[:content]
-      click_button "Submit"
+      click_button 'Submit'
     end.to change(jen.writing_posts, :count).by(1)
     expect(page.body).to have_content('Post created!')
     # user can see created post

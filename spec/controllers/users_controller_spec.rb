@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ProfilesController, type: :controller do
+RSpec.describe UsersController, type: :controller do
   describe 'GET #show' do
     let(:user) { create(:user) }
 

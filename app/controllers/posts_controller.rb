@@ -2,6 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[create]
+  before_action :find_post, only: %i[destroy]
   before_action :correct_user, only: %i[destroy]
 
   def create
@@ -15,9 +16,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find_by_id(params[:id])
-    @post.destroy
-    flash[:notice] = 'Post deleted'
+    flash[:notice] = if @post.destroy
+                       'Post deleted'
+                     else
+                       'Post cannot be deleted, send us feedback'
+                     end
     redirect_back(fallback_location: root_path)
   end
 
@@ -27,9 +30,12 @@ class PostsController < ApplicationController
     params.require(:post).permit(:content)
   end
 
+  def find_post
+    @post = Post.find_by_id(params[:id])
+  end
+
   def correct_user
-    match_post = current_user.writing_posts.find_by_id(params[:id])
-    return if match_post
+    return if current_user.writing_posts.find_by_id(params[:id])
 
     flash[:alert] = 'Please access with right user'
     redirect_back(fallback_location: root_path)

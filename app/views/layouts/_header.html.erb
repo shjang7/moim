@@ -1,18 +1,17 @@
-<% @user = current_user %>
 <header class="navbar navbar-fixed-top navbar-inverse bg-success">
   <div class="container">
     <%= link_to "Moim", root_path, id: "logo" %>
     <nav class="nav navbar-nav navbar-right">
       <ul class="list-inline">
-      <% if @user %>
+      <% if user_signed_in? %>
         <li class="list-inline-item">
-          <%= link_to "Profile", profile_path(@user) %>
+          <%= link_to "Profile", user_path(@user) %>
         </li>
       <% end %>
         <li class="list-inline-item">
           <%= link_to "Home", root_path %>
         </li>
-      <% if @user %>
+      <% if user_signed_in? %>
         <li class="list-inline-item">
           <%= link_to "Find Friends", "#" %>
         </li>

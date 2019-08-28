@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "EditProfiles", type: :feature do
+RSpec.feature 'EditUsers', type: :feature do
   let(:user) { create(:user, name: 'Jen Barber') }
   let(:update) { create(:user, name: 'Moris Mos') }
   before { sign_in user }
 
   scenario 'user update info with valid info' do
-    visit profile_path(user)
+    visit user_path(user)
     click_link 'Edit info'
     fill_in 'Name', with: update.name
     fill_in 'Password', with: update.password
@@ -22,13 +24,13 @@ RSpec.feature "EditProfiles", type: :feature do
     fill_in 'Password', with: update.password
     click_button 'Log in'
     expect(page.body).to have_content('Signed in successfully.')
-    visit profile_path(user)
+    visit user_path(user)
     # name is updated
     expect(page.body).to have_content(update.name)
   end
 
   scenario 'user edit info with invalid info' do
-    visit profile_path(user)
+    visit user_path(user)
     click_link 'Edit info'
     # try with exist user's email
     fill_in 'Email', with: update.email
@@ -38,11 +40,11 @@ RSpec.feature "EditProfiles", type: :feature do
   end
 
   scenario 'user delete' do
-    visit profile_path(user)
+    visit user_path(user)
     click_link 'Edit info'
-    expect {
+    expect do
       click_button 'Cancel my account'
-    }.to change(User, :count).by(-1)
+    end.to change(User, :count).by(-1)
     expect(page.body).to have_content('Your account has been successfully cancelled.')
   end
 end

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "SignUps", type: :feature do
+RSpec.feature 'SignUps', type: :feature do
   # let(:user) { build(:user) }
   let(:valid_attributes) { attributes_for(:user) }
 
@@ -11,14 +13,14 @@ RSpec.feature "SignUps", type: :feature do
   scenario 'user successfully signs up' do
     visit root_path
     click_link 'Sign up'
-    expect {
+    expect do
       fill_in 'Name', with: valid_attributes[:name]
       fill_in 'Email', with: valid_attributes[:email]
       fill_in 'Password', with: valid_attributes[:password]
       fill_in 'Password confirmation', with: valid_attributes[:password]
       click_button 'Sign up'
-    }.to change(User, :count).by(1)
+    end.to change(User, :count).by(1)
     expect(page.body).to have_css('.alert-notice',
-      text: 'Welcome! You have signed up successfully.')
+                                  text: 'Welcome! You have signed up successfully.')
   end
 end
