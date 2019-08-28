@@ -1,20 +1,36 @@
 @import 'framework/colors';
 
-#new_user,
-#edit_user,
-#new_session {
-  .field {
-    text-align: center;
-    width: 50%;
-    margin-left: 25%;
-    padding: 0.3rem;
-    &+.actions {
+.user_form {
+  & > * {
+    @media (min-width: 576px) { /* small */
       text-align: center;
-      padding: 0.3rem;
+      width: 50%;
+      margin-left: 25%;
     }
+    padding: 0.3rem;
   }
 }
 
 #edit_user .field {
   border-bottom: $border-gray;
+}
+
+.page-item {
+  .page-link {
+    color: $green;
+    background: none;
+    &:hover {
+      color: $dark-green;
+      background-color: $light-warm-green;
+      border-color: $light-warm-green;
+    }
+  }
+  &.active .page-link {
+    background-color: $green;
+    border-color: $green;
+  }
+  &.disabled .page-link {
+    color: white;
+    background-color: $mid-light-gray;
+  }
 }

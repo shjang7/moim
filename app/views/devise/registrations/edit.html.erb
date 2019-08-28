@@ -1,7 +1,8 @@
 <% provide(:title, "Edit info") %>
 <h2 class="h-title">Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name),
+  html: { method: :put, class: :user_form }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">

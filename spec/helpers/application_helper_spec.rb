@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ApplicationHelper, type: :helper do
   describe '#full_title' do
     let(:page_title) { Faker::App.name }
-    let(:base_title) { $app_name }
+    let(:base_title) { 'Moim' }
 
     it 'returns base title' do
       expect(full_title).to eq base_title

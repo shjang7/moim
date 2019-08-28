@@ -8,14 +8,14 @@ ruby '2.6.3'
 gem 'rails', '~> 5.2.3'
 
 gem 'bootstrap', '>= 4.3.1'
-gem 'bootstrap-will_paginate', '1.0.0'
-gem 'carrierwave',             '1.2.2' # for image
+gem 'carrierwave', '1.2.2' # for image
 gem 'devise'
 gem 'faker', '2.1.0'
 gem 'jquery-rails'
 gem 'name_of_person'
 gem 'omniauth-facebook'
 gem 'will_paginate', '3.1.7'
+gem 'will_paginate-bootstrap4'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server

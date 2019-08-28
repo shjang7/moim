@@ -1,3 +1,5 @@
+$light-gray: #ccc;
+$mid-light-gray: #aaa;
 $mid-gray: #777;
 $mid-dark-gray: #555;
 $dark-gray: #222;
@@ -6,8 +8,7 @@ $border-gray: 1px solid #eaeaea;
 $light-grass: #9efe649a;
 $mid-grass: #92f24f9a;
 
-$light-warm-green: #dafeb2;
-$mid-warm-green: #cff2ae;
+$light-warm-green: #cff2ae;
 $green: #06ad45;
 $dark-green: #0b8000;
 
@@ -16,7 +17,6 @@ $mid-pink: #f36a5f;
 
 $mid-orange: #f27b4e;
 $dark-orange: #ef4321;
-
 
 $transparent-white-mid: #ffffff8d;
 
@@ -28,7 +28,7 @@ a {
 }
 
 .jumbotron {
-  background-color: $mid-warm-green !important;
+  background-color: $light-warm-green !important;
 }
 
 .alert-notice {
