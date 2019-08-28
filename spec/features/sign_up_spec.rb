@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.feature 'SignUps', type: :feature do
-  # let(:user) { build(:user) }
   let(:valid_attributes) { attributes_for(:user) }
 
   before do
