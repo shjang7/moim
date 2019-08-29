@@ -1,5 +1,7 @@
-<% if user_signed_in? %>
-  <%= render 'shared/post_write_and_view' %>
-<% else %>
-  <%= render 'introduction' %>
-<% end %>
+<div class="home" >
+  <% if user_signed_in? %>
+    <%= render "post_write_and_view" %>
+  <% else %>
+    <%= render "introduction" %>
+  <% end %>
+</div>

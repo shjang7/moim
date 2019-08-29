@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     if @post.save
       flash[:notice] = 'Post created!'
     else
-      flash[:alert] = 'It is blank'
+      flash[:alert] = @post.errors.full_messages[0]
     end
     redirect_back(fallback_location: root_path)
   end

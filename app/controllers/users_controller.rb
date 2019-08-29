@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    @users = User.all_except(current_user).paginate(page: params[:page])
+  end
+
   private
 
   def find_user

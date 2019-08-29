@@ -1,7 +1,7 @@
 @import "bootstrap";
-@import 'framework/colors';
-@import 'framework/typographies';
-@import 'framework/components';
+@import "framework/colors";
+@import "framework/typographies";
+@import "framework/components";
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -16,7 +16,7 @@ body {
   height: 100vh;
 }
 
-.home .btn {
+.introduction .btn {
   margin: 0.5rem;
 }
 
@@ -80,14 +80,14 @@ header {
 footer {
   padding-top: 0.3rem;
   border-top: $border-gray;
-  color: $mid-dark-gray;
+  color: $dark-gray;
   small {
     float: left;
   }
   a {
-    color: $mid-gray;
+    color: $mid-dark-gray;
     &:hover {
-      color: $dark-gray;
+      color: $high-dark-gray;
     }
   }
   ul {
@@ -114,6 +114,5 @@ footer {
   color: $dark-orange;
   ul {
     color: $dark-orange;
-    // margin: 0 0 1rem 0;
   }
 }

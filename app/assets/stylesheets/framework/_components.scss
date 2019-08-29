@@ -1,4 +1,4 @@
-@import 'framework/colors';
+@import "framework/colors";
 
 .user_form {
   & > * {
@@ -12,13 +12,14 @@
 }
 
 #edit_user .field {
-  border-bottom: $border-gray;
+  @include border-bottom-gray;
 }
 
+// pagination
 .page-item {
   .page-link {
     color: $green;
-    background: none;
+    background: $light-grass;
     &:hover {
       color: $dark-green;
       background-color: $light-warm-green;

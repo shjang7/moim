@@ -3,7 +3,11 @@ $mid-light-gray: #aaa;
 $mid-gray: #777;
 $mid-dark-gray: #555;
 $dark-gray: #222;
+$high-dark-gray: #111;
 $border-gray: 1px solid #eaeaea;
+@mixin border-bottom-gray {
+  border-bottom: $border-gray;
+}
 
 $light-grass: #9efe649a;
 $mid-grass: #92f24f9a;

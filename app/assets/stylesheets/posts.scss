@@ -1,10 +1,9 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import 'framework/colors';
+@import "framework/colors";
 
 .posts {
-  // background-color: pink;
   list-style: none;
   padding: 0;
   li {
@@ -19,11 +18,10 @@
   }
   .author {
     margin: 2.5rem 2rem 0.2rem;
-    // margin-left: 2rem;
     display: block;
   }
   .timestamp {
-    color: $mid-gray;
+    color: $mid-dark-gray;
     margin-left: 2rem;
     display: block;
   }

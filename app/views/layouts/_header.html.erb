@@ -13,7 +13,7 @@
         </li>
       <% if user_signed_in? %>
         <li class="list-inline-item">
-          <%= link_to "Find Friends", "#" %>
+          <%= link_to "Find Friends", users_path %>
         </li>
         <li class="list-inline-item">
           <%= link_to 'Log out', destroy_user_session_path, method: :delete %>

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'EditUsers', type: :feature do
+RSpec.feature 'EditUser', type: :feature do
   let(:user) { create(:user, name: 'Jen Barber') }
   let(:update) { create(:user, name: 'Moris Mos') }
   before { sign_in user }
