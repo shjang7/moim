@@ -15,6 +15,6 @@ RSpec.feature 'SignUps', type: :feature do
       fill_in 'Password confirmation', with: valid_attributes[:password]
       click_button 'Sign up'
     end.to change(User, :count).by(1)
-    expect(page.body).to have_content I18n.t("devise.registrations.signed_up")
+    expect(page.body).to have_content I18n.t('devise.registrations.signed_up')
   end
 end

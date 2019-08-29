@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "FriendsRequests", type: :feature do
+RSpec.feature 'FriendsRequests', type: :feature do
   let(:jen) { create(:user, name: 'Jen Barber') }
 
   before do
@@ -10,7 +12,7 @@ RSpec.feature "FriendsRequests", type: :feature do
 
   scenario 'user request friends' do
     visit users_path
-    expect(page.body).to have_content I18n.t("devise.failure.unauthenticated")
+    expect(page.body).to have_content I18n.t('devise.failure.unauthenticated')
     sign_in jen
     visit users_path
     expect(page.body).to_not have_content(jen.name)

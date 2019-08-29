@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context 'with invalid attributes' do
+  context 'with invalid attributes for blank' do
     it 'is invalid without first name' do
       user = build(:user, first_name: '')
       expect(user).to_not be_valid
@@ -50,7 +50,9 @@ RSpec.describe User, type: :model do
       user = build(:user, password: '')
       expect(user).to_not be_valid
     end
+  end
 
+  context 'with invalid attributes for wrong info' do
     it 'is invalid with long size first name' do
       user = build(:user, first_name: 'a' * 31)
       expect(user).to_not be_valid
