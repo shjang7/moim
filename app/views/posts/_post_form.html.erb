@@ -7,3 +7,13 @@
     <%= f.submit "Submit", class: "btn btn-success w-100" %>
   <% end %>
 <% end %>
+
+<script>
+$(document).click(function() {
+  $('.write-post').on( 'keyup', 'textarea', function (e){
+    $(this).css('height', 'auto' );
+    $(this).height( this.scrollHeight );
+  });
+  $('.write-post').find( 'textarea' ).keyup();
+});
+</script>

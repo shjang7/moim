@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create]
+  before_action :authenticate_user!, only: %i[create index]
   before_action :find_post, only: %i[destroy]
   before_action :correct_user, only: %i[destroy]
 
@@ -22,6 +22,12 @@ class PostsController < ApplicationController
       flash[:alert] = 'Post cannot be deleted, send us feedback'
     end
     redirect_back(fallback_location: root_path)
+  end
+
+  def index
+    @post = current_user.writing_posts.build
+    @posts = Post.paginate(page: params[:page]) # for now, future : feed list
+    # @feed_items = current_user.feed.paginate(page: params[:page])
   end
 
   private

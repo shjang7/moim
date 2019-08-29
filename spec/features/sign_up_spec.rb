@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'SignUps', type: :feature do
+RSpec.feature 'SignUp', type: :feature do
   let(:title) { double(sign_up: full_title('Sign up')) }
   let(:valid_attributes) { attributes_for(:user) }
 
