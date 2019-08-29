@@ -5,10 +5,6 @@ require 'rails_helper'
 RSpec.feature 'SignUps', type: :feature do
   let(:valid_attributes) { attributes_for(:user) }
 
-  before do
-    ActiveJob::Base.queue_adapter = :test
-  end
-
   scenario 'user successfully signs up' do
     visit root_path
     click_link 'Sign up'
@@ -19,7 +15,6 @@ RSpec.feature 'SignUps', type: :feature do
       fill_in 'Password confirmation', with: valid_attributes[:password]
       click_button 'Sign up'
     end.to change(User, :count).by(1)
-    expect(page.body).to have_css('.alert-notice',
-                                  text: 'Welcome! You have signed up successfully.')
+    expect(page.body).to have_content I18n.t("devise.registrations.signed_up")
   end
 end

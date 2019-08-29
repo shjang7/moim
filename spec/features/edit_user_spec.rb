@@ -15,7 +15,7 @@ RSpec.feature 'EditUser', type: :feature do
     fill_in 'Password confirm', with: update.password
     fill_in 'Current password', with: user.password
     click_button 'Update'
-    expect(page.body).to have_content('Your account has been updated successfully.')
+    expect(page.body).to have_content I18n.t("devise.registrations.updated")
     expect(current_path).to eq root_path
     click_link 'Log out'
     # Log in with updated password
@@ -23,7 +23,7 @@ RSpec.feature 'EditUser', type: :feature do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: update.password
     click_button 'Log in'
-    expect(page.body).to have_content('Signed in successfully.')
+    expect(page.body).to have_content I18n.t("devise.sessions.signed_in")
     visit user_path(user)
     # name is updated
     expect(page.body).to have_content(update.name)
@@ -45,6 +45,6 @@ RSpec.feature 'EditUser', type: :feature do
     expect do
       click_button 'Cancel my account'
     end.to change(User, :count).by(-1)
-    expect(page.body).to have_content('Your account has been successfully cancelled.')
+    expect(page.body).to have_content I18n.t("devise.registrations.destroyed")
   end
 end

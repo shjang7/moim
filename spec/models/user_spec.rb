@@ -19,73 +19,85 @@ RSpec.describe User, type: :model do
     end
 
     it 'returns a user\'s full name as a string' do
-      jen = build(:user)
-      full_name = "#{jen.first_name} #{jen.last_name}"
-      expect(jen.name). to eq full_name
+      user = build(:user)
+      full_name = "#{user.first_name} #{user.last_name}"
+      expect(user.name). to eq full_name
     end
   end
 
   context 'with invalid attributes' do
     it 'is invalid without first name' do
-      jen = build(:user, first_name: '')
-      expect(jen).to_not be_valid
+      user = build(:user, first_name: '')
+      expect(user).to_not be_valid
     end
 
     it 'is invalid without last name' do
-      jen = build(:user, last_name: '')
-      expect(jen).to_not be_valid
+      user = build(:user, last_name: '')
+      expect(user).to_not be_valid
     end
 
     it 'is invalid without password' do
-      jen = build(:user, password: '')
-      expect(jen).to_not be_valid
+      user = build(:user, password: '')
+      expect(user).to_not be_valid
     end
 
     it 'is invalid without an email' do
-      jen = build(:user, email: '')
-      expect(jen).to_not be_valid
+      user = build(:user, email: '')
+      expect(user).to_not be_valid
     end
 
     it 'is invalid without password' do
-      jen = build(:user, password: '')
-      expect(jen).to_not be_valid
+      user = build(:user, password: '')
+      expect(user).to_not be_valid
     end
 
     it 'is invalid with long size first name' do
-      jen = build(:user, first_name: 'a' * 31)
-      expect(jen).to_not be_valid
+      user = build(:user, first_name: 'a' * 31)
+      expect(user).to_not be_valid
     end
 
     it 'is invalid with long size last name' do
-      jen = build(:user, last_name: 'a' * 31)
-      expect(jen).to_not be_valid
+      user = build(:user, last_name: 'a' * 31)
+      expect(user).to_not be_valid
     end
 
     it 'is invalid with duplicate email' do
       mos = create(:user)
-      jen = build(:user, email: mos.email)
-      expect(jen).to_not be_valid
+      user = build(:user, email: mos.email)
+      expect(user).to_not be_valid
+    end
+
+    it 'is invalid with short password' do
+      user = build(:user, password: 'a' * 5)
+      expect(user).to_not be_valid
+    end
+
+    it 'is invalid with long password' do
+      user = build(:user, last_name: 'a' * 129)
+      expect(user).to_not be_valid
     end
   end
 
   context 'with associated writing posts' do
-    let(:jen) { create(:user) }
+    let(:user) { create(:user) }
+    let(:lorem) { 'Lorem ipsum' }
+
     before do
-      jen.writing_posts.create!(content: 'Lorem ipsum')
+      user.writing_posts.create!(content: lorem)
     end
 
     it 'should destroy post along with user' do
       expect do
-        jen.destroy
+        user.destroy
       end.to change(Post, :count).by(-1)
     end
 
     it 'can have many posts' do
       expect do
         5.times do
-          jen.writing_posts.create!(content: 'Lorem ipsum')
+          user.writing_posts.create!(content: lorem)
         end
-      end.to change(jen.writing_posts, :count).by(5)
+      end.to change(user.writing_posts, :count).by(5)
     end
   end
 end

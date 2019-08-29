@@ -24,4 +24,19 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'GET #index' do
+    let(:user) { create(:user) }
+
+    it 'returns no success when not logged in' do
+      get :index
+      expect(response).to_not have_http_status(:success)
+    end
+
+    it 'returns success when logged in' do
+      sign_in user
+      get :index
+      expect(response).to have_http_status(:success)
+    end
+  end
 end

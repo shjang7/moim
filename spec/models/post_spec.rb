@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:jen) { create(:user) }
+  let(:user) { create(:user) }
   let(:lorem) { 'Lorem ipsum' }
 
   context 'with valid attributes' do
@@ -16,7 +16,7 @@ RSpec.describe Post, type: :model do
     end
 
     it 'is valid with correct informations' do
-      post = Post.new(content: lorem, author_id: jen.id)
+      post = Post.new(content: lorem, author_id: user.id)
       expect(post).to be_valid
     end
 
