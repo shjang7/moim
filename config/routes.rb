@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get   'feedback' => 'static_pages#feedback'
+  get 'feedback' => 'static_pages#feedback'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   },
