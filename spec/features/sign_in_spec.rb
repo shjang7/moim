@@ -2,15 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.feature 'SignIns', type: :feature do
+RSpec.feature 'SignIn', type: :feature do
   let(:user) { create(:user) }
 
   scenario 'user log in and log out' do
     visit root_path
-    expect(page.body).to_not have_content('Profile')
-    expect(page.body).to have_content('Home')
-    expect(page.body).to_not have_content('Find Friends')
-    expect(page.body).to_not have_content('Log out')
+    expect(page.body).to have_link('Log in', href: new_user_session_path)
     # Log in
     click_link 'Log in'
     fill_in 'Email', with: user.email
@@ -19,11 +16,6 @@ RSpec.feature 'SignIns', type: :feature do
     # alert message
     expect(page.body).to have_content I18n.t('devise.sessions.signed_in')
     expect(current_path).to eq root_path
-    # header changed
-    expect(page.body).to have_content('Profile')
-    expect(page.body).to have_content('Home')
-    expect(page.body).to have_content('Find Friends')
-    expect(page.body).to have_content('Log out')
     # Post list partial
     expect(page.body).to have_content('Posts')
     # Access user profile

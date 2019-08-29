@@ -50,6 +50,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Paperclip::Shoulda::Matchers
   config.include Rails.application.routes.url_helpers
+  config.include ApplicationHelper
   # config.include ApplicationHelper
 
   config.formatter = :documentation
