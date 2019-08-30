@@ -1,22 +1,23 @@
 <header class="navbar navbar-fixed-top navbar-inverse bg-success">
   <div class="container">
-    <%= link_to "Moim", root_path, id: "logo" %>
+    <%= link_to I18n.t('customs.app.name'), root_path, id: "logo" %>
     <nav class="nav navbar-nav navbar-right">
       <ul class="list-inline">
       <% if user_signed_in? %>
         <li class="list-inline-item">
-          <%= link_to "Profile", user_path(current_user) %>
+          <%= link_to I18n.t('customs.navbars.profile'), user_path(current_user) %>
         </li>
       <% end %>
         <li class="list-inline-item">
-          <%= link_to "Home", root_path %>
+          <%= link_to I18n.t('customs.navbars.home'), root_path %>
         </li>
       <% if user_signed_in? %>
         <li class="list-inline-item">
-          <%= link_to "Find Friends", users_path %>
+          <%= link_to I18n.t('customs.navbars.find_friends'), users_path %>
         </li>
         <li class="list-inline-item">
-          <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+          <%= link_to I18n.t('customs.navbars.logout'), destroy_user_session_path,
+            method: :delete %>
         </li>
       <% end %>
       </ul>

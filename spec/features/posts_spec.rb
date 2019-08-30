@@ -11,14 +11,14 @@ RSpec.feature 'Posts', type: :feature do
     sign_in jen
     # try to write post at other's page
     visit user_path(moris)
-    expect(page.body).to_not have_content("What's on your mind?")
+    expect(page.body).to_not have_content I18n.t('customs.posts.placeholder')
     # write at correct page
     visit user_path(jen)
     expect do
-      fill_in "What's on your mind?", with: post_params[:content]
+      fill_in I18n.t('customs.posts.placeholder'), with: post_params[:content]
       click_button 'Submit'
     end.to change(jen.writing_posts, :count).by(1)
-    expect(page.body).to have_content('Post created!')
+    expect(page.body).to have_content I18n.t('customs.posts.create')
     # user can see created post
     expect(page.body).to have_css('.post .profile-pic')
     expect(page.body).to have_css('.post .author', text: jen.name)
@@ -27,6 +27,6 @@ RSpec.feature 'Posts', type: :feature do
     expect do
       click_link 'Delete post'
     end.to change(jen.writing_posts, :count).by(-1)
-    expect(page.body).to have_content('Post deleted')
+    # expect(page.body).to have_content I18n.t('customs.posts.destroy.success')
   end
 end

@@ -1,5 +1,5 @@
-<% provide(:title, 'Find Friends') %>
-<h6 class="mt-4 h-title">Find Friends</h6>
+<% provide(:title, I18n.t('customs.titles.users_index')) %>
+<h6 class="mt-4 h-title"><%= I18n.t('customs.titles.users_index') %></h6>
 <ol class="users">
   <%= render @users %>
 </ol>

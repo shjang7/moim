@@ -1,15 +1,15 @@
 <footer class="footer">
   <small>
     The <span class="text-uppercase">moim</span> app project by
-    <%= link_to "Suhyeon Jang", "https://github.com/shjang7",
-      data: { confirm: "Move to Github profile?"},
+    <%= link_to I18n.t('customs.author.name'), I18n.t('customs.author.github'),
+      data: { confirm: I18n.t('customs.ask.github') },
       class: "github" %>
   </small>
   <nav>
     <ul class="nav navbar-nav navbar-right list-inline">
       <li class="list-inline-item">
         <%= link_to "Feedback", feedback_path,
-          data: { confirm: "Move to Feedback?"},
+          data: { confirm: I18n.t('customs.ask.feedback') },
           class: "feedback-link" %>
       </li>
     </ul>

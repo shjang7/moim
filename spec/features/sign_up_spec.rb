@@ -3,14 +3,14 @@
 require 'rails_helper'
 
 RSpec.feature 'SignUp', type: :feature do
-  let(:title) { double(sign_up: full_title('Sign up')) }
+  let(:title) { full_title(I18n.t('customs.titles.signup')) }
   let(:valid_attributes) { attributes_for(:user) }
 
   scenario 'user successfully signs up' do
     visit root_path
     expect(page).to have_link('Sign up', href: new_user_registration_path)
     click_link 'Sign up'
-    expect(page.body).to have_title(title.sign_up)
+    expect(page.body).to have_title(title)
     expect do
       fill_in 'Name', with: valid_attributes[:name]
       fill_in 'Email', with: valid_attributes[:email]

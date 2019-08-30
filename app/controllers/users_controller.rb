@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       @post = @user.writing_posts.build
       @posts = @user.writing_posts.paginate(page: params[:page])
     else
-      flash[:alert] = 'Access to wrong user'
+      flash[:alert] = I18n.t('customs.users.show.failure')
       redirect_to root_path
     end
   end
