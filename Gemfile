@@ -8,14 +8,14 @@ ruby '2.6.3'
 gem 'rails', '~> 5.2.3'
 
 gem 'bootstrap', '>= 4.3.1'
-gem 'bootstrap-will_paginate', '1.0.0'
-gem 'carrierwave',             '1.2.2' # for image
+gem 'carrierwave', '1.2.2' # for image
 gem 'devise'
-gem 'factory_bot_rails', require: false
 gem 'faker', '2.1.0'
 gem 'jquery-rails'
+gem 'name_of_person'
 gem 'omniauth-facebook'
 gem 'will_paginate', '3.1.7'
+gem 'will_paginate-bootstrap4'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -50,7 +50,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails', require: false
+  gem 'guard-rspec', require: false
+  gem 'paperclip'
+  gem 'rails-controller-testing', '~> 1.0.2'
   gem 'rspec-rails', '~> 3.8'
+  gem 'simplecov', '~> 0.15.1', require: false
 end
 
 group :development do
@@ -59,15 +64,21 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'capybara', '~> 2.15.4'
+  # gem 'selenium-webdriver'
+  # gem 'webdrivers'
+  gem 'database_cleaner'
+  gem 'launchy', '~> 2.4.3'
+  gem 'poltergeist'
+  gem 'shoulda',                      '~> 3.5'
+  gem 'shoulda-callback-matchers',    '~> 1.1', '>= 1.1.3'
 end
 
 group :production do

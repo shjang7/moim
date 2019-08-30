@@ -12,6 +12,8 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+# Ignore all removed files.
+/remove/*
 
 # Ignore uploaded files in development
 /storage/*

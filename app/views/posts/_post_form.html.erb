@@ -1,0 +1,17 @@
+<%= form_for(@post, html: { class: "w-100" }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: f.object %>
+  <div class="field write-post">
+    <%= f.text_area :content, placeholder: "What's on your mind?" %>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-success w-100" %>
+<% end %>
+
+<script>
+$(document).click(function() {
+  $('.write-post').on( 'keyup', 'textarea', function (e){
+    $(this).css('height', 'auto' );
+    $(this).height( this.scrollHeight );
+  });
+  $('.write-post').find( 'textarea' ).keyup();
+});
+</script>

@@ -1,0 +1,12 @@
+<% @user ||= user %>
+<li id="user-<%= @user.id %>" class="user friend-candidate
+  d-sm-flex justify-content-start align-items-center">
+  <%= profile_img_for @user %>
+  <div class="user-info">
+    <%= link_to @user.name.full, user_path(@user), class: "user-name" %>
+    <%= link_to @user.name.full, user_path(@user), class: "user-name" %>
+  </div>
+  <%= link_to "Request friend", "#",
+    data: { confirm: "This is not implemented yet, please click cancel"},
+    class: "friendship-request btn btn-md btn-light" %>
+</li>

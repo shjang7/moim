@@ -1,0 +1,54 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "framework/colors";
+
+.users {
+  list-style: none;
+  li {
+    padding: 1rem 0;
+    border-top: $border-gray;
+  }
+}
+
+.friend-candidate {
+  .friendship-request {
+    padding: 0.3rem;
+  }
+}
+
+.profile-info {
+  .profile-pic {
+    display: block;
+  }
+  .btn {
+    height: 100%;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (min-width: 576px) { /* small */
+  .friend-candidate {
+    .user-info{
+      width: 50%;
+      & > * {
+        width: 100%;
+      }
+    }
+    .friendship-request {
+      width: 10rem;
+    }
+  }
+}
+
+@media (min-width: 768px) { /* midium */
+  .profile-info {
+    .profile-pic {
+      float: left;
+    }
+    .btn {
+      width: 80%;
+      margin-left: 10%;
+    }
+  }
+}

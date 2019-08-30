@@ -1,0 +1,12 @@
+<li id="post-<%= post.id %>" class="post">
+  <%= profile_img_for post.author %>
+  <%= link_to post.author.name.full, user_path(post.author), class: :author %>
+  <%= content_tag(:div, "Posted #{ time_ago_in_words(post.created_at) } ago.",
+    class: :timestamp) %>
+  <div class="content">
+    <%= post.content %>
+  </div>
+  <% if current_user?(post.author) %>
+    <%= link_to 'Delete post', post_path(post), method: :delete %>
+  <% end %>
+</li>
