@@ -101,13 +101,5 @@ RSpec.describe User, type: :model do
         user.destroy
       end.to change(Comment, :count).by(-1)
     end
-
-    # it 'can have many posts' do
-    #   expect do
-    #     5.times do
-    #       user.writing_posts.create!(content: lorem)
-    #     end
-    #   end.to change(user.writing_posts, :count).by(5)
-    # end
   end
 end

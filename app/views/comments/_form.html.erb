@@ -2,7 +2,6 @@
   <%= render "devise/shared/error_messages", resource: f.object %>
   <%= f.hidden_field :post_id, :value => @post.id %>
   <%= content_tag(:div, profile_img_for(current_user), class: "col-md-1 d-flex justify-content-end") %>
-  <%#= profile_img_for current_user %>
 <div class="field col-md-10">
   <%= f.text_area :content, placeholder: I18n.t('customs.comments.placeholder') %>
 </div>
