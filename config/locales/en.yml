@@ -61,9 +61,11 @@ en:
       github: "Move to Github profile?"
       feedback: "Move to Feedback?"
       email: "Send email?"
+      post_delete: "Are you sure to delete this item?"
     posts:
       placeholder: "What's on your mind?"
-      create: "Post created!"
+      create: "Post was created!"
+      update: "Post was updated"
       destroy:
         success: "Post deleted"
         failure: "Post cannot be deleted, send us feedback"

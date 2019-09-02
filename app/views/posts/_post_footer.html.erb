@@ -1,14 +1,13 @@
 <% @post = post %>
 <% if current_user?(@post.author) %>
-  <%= link_to 'Delete post', post_path(@post), method: :delete %>
+  <%= link_to 'Edit', edit_post_path(@post) %>
+  <%= link_to 'Delete', post_path(@post), method: :delete,
+    data: { confirm: I18n.t('customs.ask.post_delete') } %>
 <% end %>
 <ul class="list-inline post-footer">
   <li class="list-inline-item likers-update">
-  <% if @post.liker?(current_user) %>
-    <%= render 'posts/unlike' %>
-  <% else %>
-    <%= render 'posts/like' %>
-  <% end %>
+    <%= render 'posts/unlike' if @post.liker?(current_user) %>
+    <%= render 'posts/like' unless @post.liker?(current_user) %>
   </li>
   <li class="list-inline-item post-like-count">
     <%= content_tag(:div, @post.likers.count) %>

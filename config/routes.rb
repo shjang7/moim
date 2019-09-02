@@ -7,11 +7,7 @@ Rails.application.routes.draw do
                      },
                      skip: [:password]
   resources :users, only: %i[show index]
-  resources :posts, only: %i[create destroy] do
-    member do
-      get 'likers_of' => 'post#likers'
-    end
-  end
+  resources :posts, only: %i[new edit create update destroy]
   resources :post_like_brokers, only: [:create, :destroy]
   authenticated :user do
     root 'posts#index'

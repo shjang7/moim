@@ -2,17 +2,33 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[create index]
-  before_action :find_post, only: %i[destroy]
+  before_action :prepare_write, only: %i[new index]
+  before_action :find_post, only: %i[edit update destroy]
   before_action :correct_user, only: %i[destroy]
+
+  def new
+  end
 
   def create
     @post = current_user.writing_posts.build(post_params)
     if @post.save
       flash[:notice] = I18n.t('customs.posts.create')
+      redirect_to root_path
     else
-      flash[:alert] = @post.errors.full_messages[0]
+      render :new
     end
-    redirect_back(fallback_location: root_path)
+  end
+
+  def edit
+  end
+
+  def update
+    if @post.update(post_params)
+      flash[:notice] = I18n.t('customs.posts.update')
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -34,6 +50,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content)
+  end
+
+  def prepare_write
+    @post = current_user.writing_posts.build
   end
 
   def find_post
