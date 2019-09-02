@@ -3,7 +3,7 @@
   <%= link_to comment.user.name.full, user_path(comment.user), class: :user %>
   <%= content_tag(:div, comment.content, class: :content) %>
 <% if current_user?(comment.user) %>
-  <div class="comment-updates">
+  <div class="comment-updates right">
     <%= link_to I18n.t('customs.buttons.delete'), comment_path(comment), method: :delete,
       data: { confirm: I18n.t('customs.ask.delete') } %>
   </div>
