@@ -1,0 +1,27 @@
+// Place all the styles related to the Comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "framework/colors";
+
+.comments {
+  list-style: none;
+  > li {
+    padding: 0.2rem;
+    height: 5rem;
+    border-top: $border-gray;
+  }
+  .profile-pic {
+    float: left;
+    width: 4rem;
+    height: 4rem;
+    margin: 0.2rem;
+    border-radius: 50%;
+  }
+  .user {
+    float: left;
+    margin: 1rem;
+  }
+  .content {
+    margin-top: 1rem;
+  }
+}

@@ -25,7 +25,7 @@ RSpec.feature 'Posts', type: :feature do
     expect(page.body).to have_css('.post .timestamp')
     expect(page.body).to have_css('.post .content', text: post_params[:content])
     expect do
-      click_link 'Delete post'
+      click_link I18n.t('customs.buttons.delete')
     end.to change(jen.writing_posts, :count).by(-1)
     expect(page.body).to have_content I18n.t('customs.posts.destroy.success')
   end

@@ -6,36 +6,55 @@
 .posts {
   list-style: none;
   padding: 0;
-  li {
-    padding: 0.3rem 0;
+  > li {
+    padding: 1rem;
     border-top: $border-gray;
   }
 }
 
+.float-left {
+  float: left;
+}
+
+
 .post {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   .profile-pic {
     float: left;
+    width: 4rem;
+    height: 4rem;
+    margin: 0.2rem;
+    border-radius: 50%;
   }
   .author {
-    margin: 2.5rem 2rem 0.2rem;
+    margin: 2.5rem 2rem 0.2rem 6rem;
     display: block;
   }
   .timestamp {
     color: $mid-dark-gray;
-    margin-left: 2rem;
+    margin-left: 6rem;
     display: block;
   }
+  .post-updates {
+    @media (min-width: 768px) { /* midium */
+      padding-top: 4rem;
+    }
+    a {
+      margin-left: 2rem;
+    }
+  }
   .content {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     display: block;
     img {
       display: block;
       margin: 0.2rem 0;
     }
   }
-}
-
-.post-footer {
-  li {
-    border-top: none;
+  .post-footer {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 }

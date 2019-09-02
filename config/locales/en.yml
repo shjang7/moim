@@ -57,6 +57,8 @@ en:
       request_friend: "Request friend"
       edit_user_info: "Edit info"
       submit: "Submit"
+      delete: "Delete"
+      edit: "Edit"
     ask:
       github: "Move to Github profile?"
       feedback: "Move to Feedback?"

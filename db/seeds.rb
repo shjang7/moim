@@ -38,4 +38,17 @@ end
 # user = users.first
 post = Post.first
 likers = users[-3..-1]
-likers.each { |liker| liker.like_post(post) }
+likers.each { |liker| post.liker_add liker }
+
+# Comment create
+posts = Post.all
+# users = User.order(:created_at)[-5..-1]
+posts.each_with_index do |post, i|
+  i.times do
+    post.comments.create!(
+      content: Faker::Quotes::Shakespeare.hamlet_quote,
+      user_id: users.sample.id,
+      created_at: Faker::Date.between(from: 50.days.ago, to: Date.today)
+    )
+  end
+end

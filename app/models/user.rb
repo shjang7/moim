@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :writing_posts, class_name: 'Post',
                            foreign_key: 'author_id',
                            dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :post_like_brokers, dependent: :destroy
   has_many :liked_posts, through:   :post_like_brokers, source: :post
   scope :all_except, ->(user) { where.not(id: user) }
@@ -17,17 +18,6 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence: true, length: { maximum: 30 }
 
-  # def like_post(post)
-  #   liked_posts << post
-  # end
-  #
-  # def unlike_post(post)
-  #   liked_posts.delete post
-  # end
-  #
-  # def like_post?(post)
-  #   liked_posts.include? post
-  # end
   # future : after connection friendship
   # def feed
   # end
