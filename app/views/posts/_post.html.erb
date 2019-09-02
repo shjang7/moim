@@ -1,11 +1,14 @@
 <% @post = post %>
 <li id="post-<%= @post.id %>" class="post">
   <%= render 'posts/post_header' %>
-  <%= content_tag(:div, post.content, class: :content) %>
-  <%= render 'posts/post_footer' %>
+  <%= content_tag(:div, @post.content, class: :content) %>
+  <div class="post-footer mx-3">
+    <%= render 'posts/post_footer' %>
+  </div>
 </li>
 <div>
-  <ol class="comments">
+  <%= render "comments/form" %>
+  <ol class="comments mx-4">
     <%= render @post.comments %>
   </ol>
 </div>

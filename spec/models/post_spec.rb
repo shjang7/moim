@@ -58,12 +58,12 @@ RSpec.describe Post, type: :model do
     let(:post) { create(:post) }
 
     it 'should like and unlike posts' do
-      expect(post.liker? user).to_not eq true
+      expect(post.liker?(user)).to_not eq true
       post.liker_add(user)
-      expect(post.liker? user).to eq true
-      expect(user.liked_posts.include? post).to eq true
+      expect(post.liker?(user)).to eq true
+      expect(user.liked_posts.include?(post)).to eq true
       post.liker_remove(user)
-      expect(post.liker? user).to_not eq true
+      expect(post.liker?(user)).to_not eq true
     end
   end
 end

@@ -28,13 +28,15 @@ textarea {
   width: 100%;
   resize: none;
   overflow-y: hidden;
-  padding: 1.1rem;
-  line-height: 1.6;
 }
 
 .h-title {
   text-align: center;
   color: $mid-gray;
+}
+
+.float-left {
+  float: left;
 }
 
 .center {

@@ -63,14 +63,20 @@ en:
       github: "Move to Github profile?"
       feedback: "Move to Feedback?"
       email: "Send email?"
-      post_delete: "Are you sure to delete this item?"
+      delete: "Are you sure to delete this item?"
     posts:
       placeholder: "What's on your mind?"
-      create: "Post was created!"
-      update: "Post was updated"
+      create: "Post created!"
+      update: "Post updated"
       destroy:
         success: "Post deleted"
         failure: "Post cannot be deleted, send us feedback"
+    comments:
+      placeholder: "Write a comment..."
+      create: "Comment created!"
+      destroy:
+        success: "Comment deleted"
+        failure: "Comment cannot be deleted, send us feedback"
     users:
       show:
         failure: "Access to wrong user"

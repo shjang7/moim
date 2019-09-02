@@ -3,12 +3,13 @@
 Rails.application.routes.draw do
   get 'feedback' => 'static_pages#feedback'
   devise_for :users, controllers: {
-                     registrations: 'users/registrations'
-                     },
+    registrations: 'users/registrations'
+  },
                      skip: [:password]
   resources :users, only: %i[show index]
   resources :posts, only: %i[new edit create update destroy]
-  resources :post_like_brokers, only: [:create, :destroy]
+  resources :comments, only: %i[create destroy]
+  resources :post_like_brokers, only: %i[create destroy]
   authenticated :user do
     root 'posts#index'
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePostLikeBrokers < ActiveRecord::Migration[5.2]
   def change
     create_table :post_like_brokers do |t|

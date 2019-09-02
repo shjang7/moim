@@ -1,0 +1,20 @@
+<%= form_for(@comment, html: { class: "w-100 row write-comment no-gutters" }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: f.object %>
+  <%= f.hidden_field :post_id, :value => @post.id %>
+  <%= content_tag(:div, profile_img_for(current_user), class: "col-md-1 d-flex justify-content-end") %>
+  <%#= profile_img_for current_user %>
+<div class="field col-md-10">
+  <%= f.text_area :content, placeholder: I18n.t('customs.comments.placeholder') %>
+</div>
+  <%= f.submit I18n.t('customs.buttons.submit'), class: "btn btn-success col-md-1" %>
+<% end %>
+
+<script>
+$(document).click(function() {
+  $('.write-comment').on( 'keyup', 'textarea', function (e){
+    $(this).css('height', 'auto' );
+    $(this).height( this.scrollHeight );
+  });
+  $('.write-comment').find( 'textarea' ).keyup();
+});
+</script>

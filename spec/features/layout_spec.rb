@@ -43,6 +43,6 @@ RSpec.feature 'Layouts', type: :feature do
     visit feedback_path
     expect(page.body).to have_title(title.feedback)
     expect(page.body).to have_link(I18n.t('customs.author.email'),
-      href: "mailto:#{I18n.t('customs.author.email')}?Subject=Feedback")
+                                   href: "mailto:#{I18n.t('customs.author.email')}?Subject=Feedback")
   end
 end

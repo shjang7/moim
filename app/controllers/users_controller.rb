@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     if @user
       @post = @user.writing_posts.build
       @posts = @user.writing_posts.paginate(page: params[:page])
+      @comment = current_user.comments.build
     else
       flash[:alert] = I18n.t('customs.users.show.failure')
       redirect_to root_path

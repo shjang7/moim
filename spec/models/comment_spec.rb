@@ -1,11 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   let(:user) { create(:user) }
   let(:post) { create(:post) }
-  let(:comment) { Comment.new(content: 'Lorem ipsum',
-                              post_id: post.id,
-                              user_id: user.id) }
+  let(:comment) do
+    Comment.new(content: 'Lorem ipsum',
+                post_id: post.id,
+                user_id: user.id)
+  end
   let(:comments) { Comment.all }
   before(:all) do
     post_for_all = create(:post)
@@ -39,7 +43,7 @@ RSpec.describe Comment, type: :model do
     end
 
     it 'content should be present' do
-      comment.content = " " * 6
+      comment.content = ' ' * 6
       expect(comment).to_not be_valid
     end
 

@@ -1,14 +1,12 @@
-<div class="post-footer">
-  <ul class="list-inline float-left">
-    <li class="list-inline-item post-likers-update">
-      <%= render 'posts/unlike' if @post.liker?(current_user) %>
-      <%= render 'posts/like' unless @post.liker?(current_user) %>
-    </li>
-    <li class="list-inline-item post-like-count">
-      <%= content_tag(:div, @post.likers.count) %>
-    </li>
-  </ul>
-  <div class="post-comment-count right">
-    <%= content_tag(:div, "Comments #{@post.comments.count}") %>
-  </div>
+<ul class="list-inline float-left">
+  <li class="list-inline-item post-likers-update">
+    <%= render 'posts/unlike' if @post.liker?(current_user) %>
+    <%= render 'posts/like' unless @post.liker?(current_user) %>
+  </li>
+  <li class="list-inline-item post-like-count pt-3">
+    <%= content_tag(:div, @post.likers.count) %>
+  </li>
+</ul>
+<div class="post-comment-count right pt-3">
+  <%= content_tag(:div, "Comments #{@post.comments.count}") %>
 </div>

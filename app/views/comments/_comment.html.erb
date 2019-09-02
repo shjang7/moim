@@ -1,13 +1,11 @@
-<% @comment ||= comment %>
-<li id="comment-<%= @comment.id %>">
-  <%= profile_img_for @comment.user %>
-  <%= link_to @comment.user.name.full, user_path(@comment.user), class: :user %>
-  <%= content_tag(:div, @comment.content, class: :content) %>
-<% if current_user?(@comment.user) %>
+<li id="comment-<%= comment.id %>">
+  <%= profile_img_for comment.user %>
+  <%= link_to comment.user.name.full, user_path(comment.user), class: :user %>
+  <%= content_tag(:div, comment.content, class: :content) %>
+<% if current_user?(comment.user) %>
   <div class="comment-updates">
-    <%#= link_to I18n.t('customs.buttons.edit'), edit_comment_path(@comment) %>
-    <%#= link_to I18n.t('customs.buttons.delete'), comment_path(@comment), method: :delete,
-      data: { confirm: I18n.t('customs.ask.comment_delete') } %>
+    <%= link_to I18n.t('customs.buttons.delete'), comment_path(comment), method: :delete,
+      data: { confirm: I18n.t('customs.ask.delete') } %>
   </div>
 <% end %>
 </li>

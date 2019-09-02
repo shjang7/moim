@@ -9,7 +9,7 @@
   <div class="col-md-4 post-updates right">
     <%= link_to I18n.t('customs.buttons.edit'), edit_post_path(@post) %>
     <%= link_to I18n.t('customs.buttons.delete'), post_path(@post), method: :delete,
-      data: { confirm: I18n.t('customs.ask.post_delete') } %>
+      data: { confirm: I18n.t('customs.ask.delete') } %>
   </div>
 <% end %>
 </div>

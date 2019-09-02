@@ -3,23 +3,24 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "framework/colors";
 
+.write-post {
+  textarea{
+    padding: 1.1rem;
+    line-height: 1.6;
+  }
+}
+
 .posts {
   list-style: none;
   padding: 0;
   > li {
     padding: 1rem;
-    border-top: $border-gray;
+    border-top: $double-border-gray;
   }
 }
 
-.float-left {
-  float: left;
-}
-
-
 .post {
   margin-top: 1rem;
-  margin-bottom: 1rem;
   .profile-pic {
     float: left;
     width: 4rem;
@@ -52,9 +53,5 @@
       display: block;
       margin: 0.2rem 0;
     }
-  }
-  .post-footer {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
   }
 }

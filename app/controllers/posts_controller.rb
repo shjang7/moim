@@ -6,8 +6,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: %i[edit update destroy]
   before_action :correct_user, only: %i[destroy]
 
-  def new
-  end
+  def new; end
 
   def create
     @post = current_user.writing_posts.build(post_params)
@@ -19,8 +18,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @post.update(post_params)
@@ -44,6 +42,7 @@ class PostsController < ApplicationController
     @post = current_user.writing_posts.build
     @posts = Post.paginate(page: params[:page]) # for now, future : feed list
     # @feed_items = current_user.feed.paginate(page: params[:page])
+    @comment = current_user.comments.build
   end
 
   private
