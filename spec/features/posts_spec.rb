@@ -27,6 +27,6 @@ RSpec.feature 'Posts', type: :feature do
     expect do
       click_link 'Delete post'
     end.to change(jen.writing_posts, :count).by(-1)
-    # expect(page.body).to have_content I18n.t('customs.posts.destroy.success')
+    expect(page.body).to have_content I18n.t('customs.posts.destroy.success')
   end
 end

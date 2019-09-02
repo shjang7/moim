@@ -1,4 +1,4 @@
-class PostLike < ApplicationRecord
+class PostLikeBroker < ApplicationRecord
   belongs_to :user, class_name: 'User'
   belongs_to :post, class_name: 'Post'
   validates :user_id, presence: true

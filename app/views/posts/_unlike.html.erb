@@ -1,0 +1,4 @@
+<%= form_for(@post.post_like_brokers.find_by(user_id: current_user.id),
+             html: { method: :delete }) do |f| %>
+  <%= f.submit "Like", class: "btn btn-like" %>
+<% end %>

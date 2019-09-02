@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe PostLike, type: :model do
+RSpec.describe PostLikeBroker, type: :model do
   context 'with valid attributes' do
     let(:user) { create(:user) }
     let(:post) { create(:post) }
-    let(:like) { PostLike.new(user_id: user.id, post_id: post.id) }
+    let(:like) { PostLikeBroker.new(user_id: user.id, post_id: post.id) }
 
     it 'is valid' do
       expect(like).to be_valid

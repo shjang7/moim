@@ -22,6 +22,7 @@ avatars = ['cat-1.webp', 'cat-2.webp', 'cat-3.webp',
   )
 end
 
+# Post create
 users = User.order(:created_at)[-5..-1]
 users.each_with_index do |user, i|
   i.times do
@@ -31,3 +32,10 @@ users.each_with_index do |user, i|
     )
   end
 end
+
+# Post Like
+# users = User.order(:created_at)[-5..-1]
+# user = users.first
+post = Post.first
+likers = users[-3..-1]
+likers.each { |liker| liker.like_post(post) }

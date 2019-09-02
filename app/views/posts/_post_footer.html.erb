@@ -1,0 +1,16 @@
+<% @post = post %>
+<% if current_user?(@post.author) %>
+  <%= link_to 'Delete post', post_path(@post), method: :delete %>
+<% end %>
+<ul class="list-inline post-footer">
+  <li class="list-inline-item likers-update">
+  <% if @post.liker?(current_user) %>
+    <%= render 'posts/unlike' %>
+  <% else %>
+    <%= render 'posts/like' %>
+  <% end %>
+  </li>
+  <li class="list-inline-item post-like-count">
+    <%= content_tag(:div, @post.likers.count) %>
+  </li>
+</ul>

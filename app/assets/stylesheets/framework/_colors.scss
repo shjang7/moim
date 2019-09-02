@@ -31,6 +31,24 @@ a {
   }
 }
 
+.btn-like {
+  border: 1px solid #fff;
+  background-color: $green;
+  &,
+  &:hover {
+    color: #fff;
+  }
+}
+
+.btn-unlike {
+  border: 1px solid $green;
+  // background-color: #fff;
+  &,
+  &:hover {
+    color: $green;
+  }
+}
+
 .jumbotron {
   background-color: $light-warm-green !important;
 }

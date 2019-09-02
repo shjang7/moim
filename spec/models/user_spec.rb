@@ -102,19 +102,4 @@ RSpec.describe User, type: :model do
       end.to change(user.writing_posts, :count).by(5)
     end
   end
-
-  context 'with associated post likes' do
-    let(:jen) { create(:user) }
-    let(:roy) { create(:user) }
-    let(:post) { create(:post) }
-
-    it 'should like and unlike posts' do
-      expect(jen.like_post?(post)).to_not eq true
-      jen.like_post_add(post)
-      expect(jen.like_post?(post)).to eq true
-      expect(post.likers.include? jen).to eq true
-      jen.like_post_remove(post)
-      expect(jen.like_post?(post)).to_not eq true
-    end
-  end
 end

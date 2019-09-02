@@ -4,7 +4,5 @@
   <%= content_tag(:div, "Posted #{ time_ago_in_words(post.created_at) } ago.",
     class: :timestamp) %>
   <%= content_tag(:div, post.content, class: :content) %>
-  <% if current_user?(post.author) %>
-    <%= link_to 'Delete post', post_path(post), method: :delete %>
-  <% end %>
+  <%= render 'posts/post_footer', post: post %>
 </li>
