@@ -1,11 +1,11 @@
 <li id="user-<%= user.id %>" class="user friend-candidate
-  d-sm-flex justify-content-start align-items-center">
-  <%= profile_img_for user %>
-  <div class="user-info">
+  d-md-flex align-items-center">
+  <%= content_tag(:div, profile_img_for(user)) %>
+  <div class="user-info w-100 mx-3">
     <%= link_to user.name.full, user_path(user), class: "user-name" %>
-    <%= content_tag(:div, "(friends count: 9, temp)", class: "friends") %>
+    <%= content_tag(:div, "Friends: #{user.friends.count}", class: "friends") %>
   </div>
-  <%= link_to I18n.t('customs.buttons.request_friend'), "#",
-    data: { confirm: "This is not implemented yet, please click cancel"},
-    class: "friendship-request btn btn-md btn-light" %>
+  <div class="ml-auto flex-shrink-1">
+    <%= render 'friendships/request_buttons', user: user %>
+  </div>
 </li>

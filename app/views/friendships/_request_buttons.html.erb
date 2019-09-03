@@ -1,0 +1,6 @@
+<% friend ||= user %>
+<% if !friend.friend?(current_user) %>
+  <%= render 'friendships/friend', friend: friend %>
+<% else %>
+  <%= render 'friendships/unfriend', friend: friend %>
+<% end %>

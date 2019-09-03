@@ -35,3 +35,43 @@
     background-color: $mid-light-gray;
   }
 }
+
+
+@mixin profile-pic($size) {
+  width: $size*1rem;
+  height: $size*1rem;
+  margin: 0.2rem;
+  border-radius: 50%;
+}
+
+.post .profile-pic {
+  @include profile-pic(4);
+  float: left;
+}
+
+.profile-info .profile-pic {
+  @include profile-pic(5.5);
+  display: block;
+  @media (min-width: 768px) { /* midium */
+    float: left;
+  }
+}
+
+.friends-info .profile-pic {
+  @include profile-pic(3);
+  float: left;
+}
+
+.write-comment .profile-pic {
+  @include profile-pic(3);
+  float: left;
+}
+
+.comment .profile-pic {
+  @include profile-pic(3);
+  float: left;
+}
+
+.users .profile-pic {
+  @include profile-pic(4);
+}

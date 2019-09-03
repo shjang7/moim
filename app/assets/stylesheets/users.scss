@@ -11,47 +11,16 @@
   }
 }
 
-.friend-candidate {
-  .friendship-request {
+.profile-info {
+  .btn {
+    margin: 0.3rem;
+    height: 100%;
     padding: 0.3rem;
   }
 }
 
-.profile-info {
-  .profile-pic {
-    width: 80px;
-    height: 80px;
-    margin: 0.2rem;
-    display: block;
-  }
-  .btn {
-    height: 100%;
-    margin-bottom: 2rem;
-  }
-}
-
-@media (min-width: 576px) { /* small */
-  .friend-candidate {
-    .user-info{
-      width: 50%;
-      & > * {
-        width: 100%;
-      }
-    }
-    .friendship-request {
-      width: 10rem;
-    }
-  }
-}
-
 @media (min-width: 768px) { /* midium */
-  .profile-info {
-    .profile-pic {
-      float: left;
-    }
-    .btn {
-      width: 80%;
-      margin-left: 10%;
-    }
+  .profile-info .btn {
+    min-width: 80%;
   }
 }

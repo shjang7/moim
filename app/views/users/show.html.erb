@@ -2,7 +2,7 @@
 <div class="row">
   <aside class="col-md-3">
     <%= render "profile_info" %>
-    <%= content_tag(:div, "(friends count: 9, temp)", class: "friends") %>
+    <%= render "friends_info" %>
   </aside>
   <div class="col-md-9">
     <% if current_user? @user %>

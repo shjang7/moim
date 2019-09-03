@@ -16,6 +16,13 @@ body {
   height: 100vh;
 }
 
+.list-style-none {
+  padding: 0;
+  li {
+    list-style: none;
+  }
+}
+
 .home .btn {
   margin: 0.5rem;
 }

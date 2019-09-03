@@ -21,15 +21,8 @@
 
 .post {
   margin-top: 1rem;
-  .profile-pic {
-    float: left;
-    width: 4rem;
-    height: 4rem;
-    margin: 0.2rem;
-    border-radius: 50%;
-  }
   .author {
-    margin: 2.5rem 2rem 0.2rem 6rem;
+    margin: 1.2rem 2rem 0.2rem 6rem;
     display: block;
   }
   .timestamp {
@@ -38,9 +31,7 @@
     display: block;
   }
   .post-updates {
-    @media (min-width: 768px) { /* midium */
-      padding-top: 4rem;
-    }
+    padding-top: 3rem;
     a {
       margin-left: 2rem;
     }

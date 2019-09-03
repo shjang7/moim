@@ -1,15 +1,13 @@
 <section class="profile-info
-  d-flex justify-content-around d-md-block">
-  <h6 class="h-title">
+  d-sm-flex justify-content-around d-md-block">
     <%= profile_img_for @user %>
+  <h6 class="h-title mt-3 ml-3 float-left">
     <%= @user.name.full %>
   </h6>
   <% if current_user? @user %>
-    <%= link_to I18n.t('customs.buttons.edit_user_info'), edit_user_registration_path,
-      class: "btn btn-md btn-success" %>
-  <% elsif !@user.friend?(current_user) %>
-    <%= render 'friendships/friend' %>
-  <% elsif @user.friend?(current_user) %>
-    <%= render 'friendships/unfriend' %>
+    <%= link_to I18n.t('customs.buttons.edit_user_info'),
+      edit_user_registration_path, class: "btn btn-md btn-success" %>
+  <% else %>
+    <%= render 'friendships/request_buttons', user: @user %>
   <% end %>
 </section>
