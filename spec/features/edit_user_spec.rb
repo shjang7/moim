@@ -36,7 +36,7 @@ RSpec.feature 'EditUser', type: :feature do
     fill_in 'Email', with: update.email
     fill_in 'Current password', with: user.password
     click_button 'Update'
-    expect(page.body).to have_content('Email has already been taken')
+    expect(page.body).to have_content I18n.t('customs.failure.already_taken_email')
   end
 
   scenario 'user delete' do

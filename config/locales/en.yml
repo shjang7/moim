@@ -31,3 +31,55 @@
 
 en:
   hello: "Hello world"
+  customs:
+    app:
+      name: "Moim"
+      front_message: "Meet your friends"
+    author:
+      name: "Suhyeon Jang"
+      github: "https://github.com/shjang7"
+      email: "lucy.sh.jang@gmail.com"
+    titles:
+      signup: "Sign up"
+      edit_user_info: "Edit info"
+      login: "Log in"
+      feedback: "Feedback"
+      users_index: "Find Friends"
+    navbars:
+      profile: "Profile"
+      home: "Home"
+      find_friends: "Find Friends"
+      logout: "Log out"
+    buttons:
+      signup: "Sign up"
+      login: "Log in"
+      facebook_login: "Log in with facebook"
+      request_friend: "Request friend"
+      edit_user_info: "Edit info"
+      submit: "Submit"
+      delete: "Delete"
+      edit: "Edit"
+    ask:
+      github: "Move to Github profile?"
+      feedback: "Move to Feedback?"
+      email: "Send email?"
+      delete: "Are you sure to delete this item?"
+    posts:
+      placeholder: "What's on your mind?"
+      create: "Post created!"
+      update: "Post updated"
+      destroy:
+        success: "Post deleted"
+        failure: "Post cannot be deleted, send us feedback"
+    comments:
+      placeholder: "Write a comment..."
+      create: "Comment created!"
+      destroy:
+        success: "Comment deleted"
+        failure: "Comment cannot be deleted, send us feedback"
+    users:
+      show:
+        failure: "Access to wrong user"
+    failure:
+      already_taken_email: "Email has already been taken"
+      correct_user: "Please access with right user"

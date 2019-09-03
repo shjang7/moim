@@ -1,9 +1,12 @@
 <div class="h-title jumbotron home">
-  <h1>Moim</h1>
-  <h2>Meet your friends</h2>
+  <h1><%= I18n.t('customs.app.name') %></h1>
+  <h2><%= I18n.t('customs.app.front_message') %></h2>
 
-  <%= link_to "Sign up", new_user_registration_path, class: "btn btn-lg btn-success" %>
-  <%= link_to "Log in", new_user_session_path, class: "btn btn-lg btn-success" %>
-  <%= link_to "Log in with facebook", new_user_session_path, class: "btn btn-lg btn-success" %>
+  <%= link_to I18n.t('customs.buttons.signup'), new_user_registration_path,
+    class: "btn btn-lg btn-success" %>
+  <%= link_to I18n.t('customs.buttons.login'), new_user_session_path,
+    class: "btn btn-lg btn-success" %>
+  <%= link_to I18n.t('customs.buttons.facebook_login'), new_user_session_path,
+    class: "btn btn-lg btn-success" %>
   <%# facebook for future implementation %>
 </div>

@@ -1,12 +1,14 @@
-<li id="post-<%= post.id %>" class="post">
-  <%= profile_img_for post.author %>
-  <%= link_to post.author.name.full, user_path(post.author), class: :author %>
-  <%= content_tag(:div, "Posted #{ time_ago_in_words(post.created_at) } ago.",
-    class: :timestamp) %>
-  <div class="content">
-    <%= post.content %>
+<% @post = post %>
+<li id="post-<%= @post.id %>" class="post">
+  <%= render 'posts/post_header' %>
+  <%= content_tag(:div, @post.content, class: :content) %>
+  <div class="post-footer mx-3">
+    <%= render 'posts/post_footer' %>
   </div>
-  <% if current_user?(post.author) %>
-    <%= link_to 'Delete post', post_path(post), method: :delete %>
-  <% end %>
 </li>
+<div>
+  <%= render "comments/form" %>
+  <ol class="comments mx-4">
+    <%= render @post.comments %>
+  </ol>
+</div>

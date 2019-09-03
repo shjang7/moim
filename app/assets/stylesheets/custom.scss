@@ -20,12 +20,6 @@ body {
   margin: 0.5rem;
 }
 
-.profile-pic {
-  width: 80px;
-  height: 80px;
-  margin: 0.2rem;
-}
-
 section {
   overflow: auto;
 }
@@ -34,13 +28,15 @@ textarea {
   width: 100%;
   resize: none;
   overflow-y: hidden;
-  padding: 1.1rem;
-  line-height: 1.6;
 }
 
 .h-title {
   text-align: center;
   color: $mid-gray;
+}
+
+.float-left {
+  float: left;
 }
 
 .center {

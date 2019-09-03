@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-8">
+    <%= profile_img_for @post.author %>
+    <%= link_to @post.author.name.full, user_path(@post.author), class: :author %>
+    <%= content_tag(:div, "Posted #{ time_ago_in_words(@post.created_at) } ago.",
+      class: :timestamp) %>
+  </div>
+<% if current_user?(@post.author) %>
+  <div class="col-md-4 post-updates right">
+    <%= link_to I18n.t('customs.buttons.edit'), edit_post_path(@post) %>
+    <%= link_to I18n.t('customs.buttons.delete'), post_path(@post), method: :delete,
+      data: { confirm: I18n.t('customs.ask.delete') } %>
+  </div>
+<% end %>
+</div>

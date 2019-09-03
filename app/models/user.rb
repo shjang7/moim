@@ -4,6 +4,9 @@ class User < ApplicationRecord
   has_many :writing_posts, class_name: 'Post',
                            foreign_key: 'author_id',
                            dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :post_like_brokers, dependent: :destroy
+  has_many :liked_posts, through: :post_like_brokers, source: :post
   scope :all_except, ->(user) { where.not(id: user) }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

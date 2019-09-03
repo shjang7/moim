@@ -6,9 +6,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   },
                      skip: [:password]
-  resources :users, only: %i[show]
-  resources :users, only: %i[index]
-  resources :posts, only: %i[create destroy]
+  resources :users, only: %i[show index]
+  resources :posts, only: %i[new edit create update destroy]
+  resources :comments, only: %i[create destroy]
+  resources :post_like_brokers, only: %i[create destroy]
   authenticated :user do
     root 'posts#index'
   end

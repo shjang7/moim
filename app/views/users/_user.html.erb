@@ -5,7 +5,7 @@
     <%= link_to user.name.full, user_path(user), class: "user-name" %>
     <%= content_tag(:div, "(friends count: 9, temp)", class: "friends") %>
   </div>
-  <%= link_to "Request friend", "#",
+  <%= link_to I18n.t('customs.buttons.request_friend'), "#",
     data: { confirm: "This is not implemented yet, please click cancel"},
     class: "friendship-request btn btn-md btn-light" %>
 </li>

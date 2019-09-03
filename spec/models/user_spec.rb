@@ -86,6 +86,8 @@ RSpec.describe User, type: :model do
 
     before do
       user.writing_posts.create!(content: lorem)
+      user.comments.create!(content: lorem,
+                            post_id: create(:post).id)
     end
 
     it 'should destroy post along with user' do
@@ -94,12 +96,10 @@ RSpec.describe User, type: :model do
       end.to change(Post, :count).by(-1)
     end
 
-    it 'can have many posts' do
+    it 'should destroy comment along with user' do
       expect do
-        5.times do
-          user.writing_posts.create!(content: lorem)
-        end
-      end.to change(user.writing_posts, :count).by(5)
+        user.destroy
+      end.to change(Comment, :count).by(-1)
     end
   end
 end

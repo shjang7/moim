@@ -5,6 +5,7 @@ $mid-dark-gray: #555;
 $dark-gray: #222;
 $high-dark-gray: #111;
 $border-gray: 1px solid #eaeaea;
+$double-border-gray: 8px double #eaeaea;
 @mixin border-bottom-gray {
   border-bottom: $border-gray;
 }
@@ -14,6 +15,7 @@ $mid-grass: #92f24f9a;
 
 $light-warm-green: #cff2ae;
 $green: #06ad45;
+$mid-dark-green: #099000;
 $dark-green: #0b8000;
 
 $light-pink: #f8aca1;
@@ -25,9 +27,26 @@ $dark-orange: #ef4321;
 $transparent-white-mid: #ffffff8d;
 
 a {
-  color: $green;
+  color: $mid-dark-green;
   &:hover {
     color: $dark-green;
+  }
+}
+
+.btn-like {
+  border: 1px solid #fff;
+  background-color: $mid-dark-green;
+  &,
+  &:hover {
+    color: #fff;
+  }
+}
+
+.btn-unlike {
+  border: 1px solid $mid-dark-green;
+  &,
+  &:hover {
+    color: $mid-dark-green;
   }
 }
 

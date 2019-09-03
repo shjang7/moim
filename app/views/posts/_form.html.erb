@@ -1,9 +1,9 @@
 <%= form_for(@post, html: { class: "w-100" }) do |f| %>
   <%= render "devise/shared/error_messages", resource: f.object %>
   <div class="field write-post">
-    <%= f.text_area :content, placeholder: "What's on your mind?" %>
+    <%= f.text_area :content, placeholder: I18n.t('customs.posts.placeholder') %>
   </div>
-  <%= f.submit "Submit", class: "btn btn-success w-100" %>
+  <%= f.submit I18n.t('customs.buttons.submit'), class: "btn btn-success w-100" %>
 <% end %>
 
 <script>

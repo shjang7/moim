@@ -1,8 +1,8 @@
-<% provide(:title, "Feedback") %>
-<h2 class="h-title">Feedback</h2>
+<% provide(:title, I18n.t('customs.titles.feedback')) %>
+<h2 class="h-title"><% I18n.t('customs.titles.feedback') %></h2>
 <p>
-  Give feedback about Moim app through
-  <%= link_to "lucy.sh.jang@gmail.com",
-    "mailto:lucy.sh.jang@gmail.com?Subject=Feedback",
-    data: { confirm: "Send email?" } %>
+  Give feedback about <%= I18n.t('customs.app.name') %> app through
+  <%= link_to I18n.t('customs.author.email'),
+    "mailto:#{ I18n.t('customs.author.email') }?Subject=Feedback",
+    data: { confirm: I18n.t('customs.ask.email') } %>
 </p>
