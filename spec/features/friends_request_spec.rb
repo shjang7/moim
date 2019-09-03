@@ -23,7 +23,7 @@ RSpec.feature 'FriendsRequests', type: :feature do
     expect do
       click_button 'Request friend'
     end.to change(Friendship, :count).by(1)
-    expect(page.body).to have_content(I18n.t('customs.resources.create', resource: 'Friendship' ) )
+    expect(page.body).to have_content(I18n.t('customs.resources.create', resource: 'Friendship'))
     expect(page.body).to_not have_button('Request friend')
   end
 end

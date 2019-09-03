@@ -1,11 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Friendship, type: :model do
   let(:jen) { create(:user, name: 'Jen Barber') }
   let(:roy) { create(:user, name: 'Roy Trenneman') }
-  let(:friendship) { Friendship.new(user_id: jen.id,
-                                    friend_id: roy.id,
-                                    confirmed: true) }
+  let(:friendship) do
+    Friendship.new(user_id: jen.id,
+                   friend_id: roy.id,
+                   confirmed: true)
+  end
 
   context 'with valid attributes' do
     it 'is valid' do

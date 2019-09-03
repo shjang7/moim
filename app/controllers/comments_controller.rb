@@ -30,6 +30,6 @@ class CommentsController < ApplicationController
   end
 
   def resource_name
-    { resource: "Comment" }
+    { resource: 'Comment' }
   end
 end

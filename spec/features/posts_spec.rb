@@ -6,7 +6,7 @@ RSpec.feature 'Posts', type: :feature do
   let(:jen) { create(:user, name: 'Jen Barber') }
   let(:moris) { create(:user, name: 'Moris Mos') }
   let(:post_params) { attributes_for(:post) }
-  let(:resource_name) { { resource: "Post" } }
+  let(:resource_name) { { resource: 'Post' } }
 
   scenario 'user writes a post and delete' do
     sign_in jen
