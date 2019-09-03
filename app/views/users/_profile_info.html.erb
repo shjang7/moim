@@ -7,9 +7,9 @@
   <% if current_user? @user %>
     <%= link_to I18n.t('customs.buttons.edit_user_info'), edit_user_registration_path,
       class: "btn btn-md btn-success" %>
-  <% else %>  <%# elsif !friend? user %>
-    <%= link_to I18n.t('customs.buttons.request_friend'), "#",
-      data: { confirm: "This is not implemented yet, please click cancel"},
-      class: "friendship-request btn btn-md btn-success" %>
+  <% elsif !@user.friend?(current_user) %>
+    <%= render 'friendships/friend' %>
+  <% elsif @user.friend?(current_user) %>
+    <%= render 'friendships/unfriend' %>
   <% end %>
 </section>

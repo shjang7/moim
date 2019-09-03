@@ -6,6 +6,7 @@ RSpec.feature 'Posts', type: :feature do
   let(:jen) { create(:user, name: 'Jen Barber') }
   let(:moris) { create(:user, name: 'Moris Mos') }
   let(:post_params) { attributes_for(:post) }
+  let(:resource_name) { { resource: "Post" } }
 
   scenario 'user writes a post and delete' do
     sign_in jen
@@ -18,7 +19,7 @@ RSpec.feature 'Posts', type: :feature do
       fill_in I18n.t('customs.posts.placeholder'), with: post_params[:content]
       click_button 'Submit'
     end.to change(jen.writing_posts, :count).by(1)
-    expect(page.body).to have_content I18n.t('customs.posts.create')
+    expect(page.body).to have_content I18n.t('customs.resources.create', resource_name)
     # user can see created post
     expect(page.body).to have_css('.post .profile-pic')
     expect(page.body).to have_css('.post .author', text: jen.name)
@@ -27,6 +28,6 @@ RSpec.feature 'Posts', type: :feature do
     expect do
       click_link I18n.t('customs.buttons.delete')
     end.to change(jen.writing_posts, :count).by(-1)
-    expect(page.body).to have_content I18n.t('customs.posts.destroy.success')
+    expect(page.body).to have_content I18n.t('customs.resources.destroy.success', resource_name)
   end
 end

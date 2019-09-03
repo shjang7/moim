@@ -64,19 +64,18 @@ en:
       feedback: "Move to Feedback?"
       email: "Send email?"
       delete: "Are you sure to delete this item?"
+      friendship: "Do you want to send a friend request?"
+      unfriend: "Do you want to close friendship?"
+    resources:
+      create: "%{resource} created!"
+      update: "%{resource} updated"
+      destroy:
+        success: "%{resource} deleted"
+        failure: "%{resource} cannot be deleted, send us feedback"
     posts:
       placeholder: "What's on your mind?"
-      create: "Post created!"
-      update: "Post updated"
-      destroy:
-        success: "Post deleted"
-        failure: "Post cannot be deleted, send us feedback"
     comments:
       placeholder: "Write a comment..."
-      create: "Comment created!"
-      destroy:
-        success: "Comment deleted"
-        failure: "Comment cannot be deleted, send us feedback"
     users:
       show:
         failure: "Access to wrong user"
