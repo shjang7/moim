@@ -33,7 +33,7 @@ RSpec.feature 'Posts', type: :feature do
       click_button 'Submit'
     end.to change(@jen.writing_posts, :count).by(1)
     expect(page.body).to have_content I18n.t('customs.resources.create',
-      resource_name)
+                                             resource_name)
     # user can see created post
     expect(page.body).to have_css('.post .profile-pic')
     expect(page.body).to have_css('.post .author', text: @jen.name)
@@ -43,6 +43,6 @@ RSpec.feature 'Posts', type: :feature do
       click_link I18n.t('customs.buttons.delete')
     end.to change(@jen.writing_posts, :count).by(-1)
     expect(page.body).to have_content I18n.t('customs.resources.destroy.success',
-      resource_name)
+                                             resource_name)
   end
 end

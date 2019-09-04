@@ -24,7 +24,7 @@ RSpec.feature 'FriendsRequests', type: :feature do
     expect(page.body).to_not have_button I18n.t('customs.buttons.request_friend')
     expect(page.body).to have_css('.pending-friends', text: @roy.name)
     expect(page.body).to have_css('.pending-friends',
-      text: I18n.t('customs.buttons.pending_friend'))
+                                  text: I18n.t('customs.buttons.pending_friend'))
     expect(page.body).to_not have_css('.find-friends', text: @roy.name)
     sign_out @jen
     # accept friendship
@@ -34,8 +34,8 @@ RSpec.feature 'FriendsRequests', type: :feature do
     expect(page.body).to have_css('.friend-requests', text: @jen.name)
     expect(page.body).to have_button I18n.t('customs.buttons.accept_friend')
     click_button I18n.t('customs.buttons.accept_friend')
-    expect(Friendship.find_by(friend_id: @roy.id, user_id: @jen.id).confirmed).
-      to eq true
+    expect(Friendship.find_by(friend_id: @roy.id, user_id: @jen.id).confirmed)
+      .to eq true
     expect(page.body).to have_content I18n.t('customs.friendships.accept')
     expect(page.body).to_not have_css('.friend-requests', text: @jen.name)
     # delete friendship
