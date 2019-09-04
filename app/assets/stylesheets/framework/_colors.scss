@@ -33,7 +33,7 @@ a {
   }
 }
 
-.btn-like {
+.btn-selectable {
   border: 1px solid #fff;
   background-color: $mid-dark-green;
   &,
@@ -42,7 +42,7 @@ a {
   }
 }
 
-.btn-unlike {
+.btn-unselectable {
   border: 1px solid $mid-dark-green;
   &,
   &:hover {

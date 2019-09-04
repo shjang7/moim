@@ -4,8 +4,14 @@ class FriendshipsController < ApplicationController
   before_action :authenticate_user!, only: %i[create destroy]
 
   def create
-    @friendship = current_user.friendships.build(friend_id: params[:friend_id],
-                                                 confirmed: true)
+    friend = User.find(params[:friend_id])
+    if params[:type] == "accept"
+      @friendship = current_user.confirm_friend(friend)
+      @friendship.confirmed = true
+    elsif params[:type] == "request"
+      @friendship = current_user.friendships.build(friend_id: friend.id,
+                                                   confirmed: false)
+    end
     if @friendship.save
       flash[:notice] = I18n.t('customs.resources.create', resource_name)
     else

@@ -1,12 +1,12 @@
-<ul class="list-style-none d-flex">
+<ul class="list-style-none d-flex align-items-center">
   <li>
     <%= render 'posts/unlike' if @post.liker?(current_user) %>
     <%= render 'posts/like' unless @post.liker?(current_user) %>
   </li>
-  <li class="pt-3 ml-3">
+  <li class="ml-3">
     <%= content_tag(:div, @post.likers.count) %>
   </li>
-  <li class="pt-3 ml-auto">
+  <li class="ml-auto">
     <%= content_tag(:div, "Comments #{@post.comments.count}") %>
   </li>
 </ul>

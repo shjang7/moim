@@ -16,7 +16,9 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all_except(current_user).paginate(page: params[:page])
+    @pending_friends = current_user.pending_friends
+    @friend_requests = current_user.friend_requests
+    @find_friends = User.all_except(current_user.find_friends).paginate(page: params[:page])
   end
 
   private

@@ -14,10 +14,11 @@ avatars = ['cat-1.webp', 'cat-2.webp', 'cat-3.webp',
 
 5.times do |i|
   name = Faker::FunnyName.two_word_name
+  next if User.find_by(email: "example-#{i}@example.com")
   User.create!(
     name: name,
-    email: Faker::Internet.email(name: name),
-    password: Faker::Alphanumeric.alphanumeric(number: 6),
+    email: "example-#{i}@example.com",
+    password: 'foobar',
     profile_pic: avatars[i]
   )
 end

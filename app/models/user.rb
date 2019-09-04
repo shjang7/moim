@@ -28,6 +28,14 @@ class User < ApplicationRecord
     friends_group.compact
   end
 
+  def find_friends
+    excepts = friends.map { |friend| friend }
+    excepts += pending_friends.map { |friend| friend }
+    excepts += friend_requests.map { |friend| friend }
+    excepts += [self]
+    excepts.compact
+  end
+
   # Users who have yet to confirme friend requests
   def pending_friends
     friendships.map { |friendship| friendship.friend unless friendship.confirmed }.compact
@@ -40,8 +48,8 @@ class User < ApplicationRecord
 
   def confirm_friend(user)
     friendship = inverse_friendships.find { |friendship| friendship.user == user }
-    friendship.confirmed = true
-    friendship.save
+    # friendship.confirmed = true
+    # friendship.save
   end
 
   def friend?(user)

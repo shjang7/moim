@@ -1,6 +1,12 @@
 <% friend ||= user %>
 <% if !friend.friend?(current_user) %>
-  <%= render 'friendships/friend', friend: friend %>
+  <% if current_user.friend_requests.include? friend %>
+    <%= render 'friendships/accept_friend', friend: friend %>
+  <% elsif current_user.pending_friends.include? friend %>
+    <%= content_tag(:div, "Request pending", class: "btn btn-success disabled") %>
+  <% else %>
+    <%= render 'friendships/request_friend', friend: friend %>
+  <% end %>
 <% else %>
-  <%= render 'friendships/unfriend', friend: friend %>
+  <%= render 'friendships/unfriend', user: user %>
 <% end %>

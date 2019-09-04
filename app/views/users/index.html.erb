@@ -1,6 +1,16 @@
 <% provide(:title, I18n.t('customs.titles.users_index')) %>
-<h6 class="mt-4 h-title"><%= I18n.t('customs.titles.users_index') %></h6>
-<ol class="users list-style-none">
-  <%= render @users %>
+<section class="users list-style-none">
+<h6 class="mt-4 h-title"><%= I18n.t('customs.titles.pending_friends') %></h6>
+<ol class="pending-friends">
+  <%= render @pending_friends, message: "" %>
 </ol>
-<%= will_paginate @users %>
+<h6 class="mt-4 h-title"><%= I18n.t('customs.titles.friend_requests') %></h6>
+<ol class="friend-requests">
+  <%= render @friend_requests, message: "Accept" %>
+</ol>
+<h6 class="mt-4 h-title"><%= I18n.t('customs.titles.users_index') %></h6>
+<ol class="find-friends">
+  <%= render @find_friends, message: "Request" %>
+</ol>
+<%= will_paginate @find_friends %>
+</section>

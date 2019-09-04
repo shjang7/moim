@@ -45,6 +45,8 @@ en:
       login: "Log in"
       feedback: "Feedback"
       users_index: "Find Friends"
+      pending_friends: "Pending Friends"
+      friend_requests: "Friend Requests"
     navbars:
       profile: "Profile"
       home: "Home"
@@ -55,6 +57,7 @@ en:
       login: "Log in"
       facebook_login: "Log in with facebook"
       request_friend: "Request friend"
+      accept_friend: "Accept friend"
       edit_user_info: "Edit info"
       submit: "Submit"
       delete: "Delete"

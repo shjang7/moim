@@ -6,6 +6,6 @@
     <%= content_tag(:div, "Friends: #{user.friends.count}", class: "friends") %>
   </div>
   <div class="ml-auto flex-shrink-1">
-    <%= render 'friendships/request_buttons', user: user %>
+    <%= render 'friendships/request_buttons', user: user, message: message %>
   </div>
 </li>
