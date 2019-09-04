@@ -10,9 +10,9 @@
   </ol>
   <h6 class="mt-4 h-title"><%= I18n.t('customs.titles.find_friends') %></h6>
   <ol class="find-friends">
-    <%= render @find_friends, message: "Request" %>
+    <%= render @without_friends, message: "Request" %>
   </ol>
-  <%= will_paginate @find_friends %>
+  <%= will_paginate @without_friends %>
   <h6 class="mt-4 h-title"><%= current_user.name %>'s Friends</h6>
   <ol class="friends" id="friend-list">
     <%= render current_user.friends, message: ""  %>

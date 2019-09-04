@@ -28,12 +28,12 @@ class User < ApplicationRecord
     friends_group.compact
   end
 
-  def find_friends
-    excepts = [self]
-    excepts += friends.map { |friend| friend }
-    excepts += pending_friends.map { |friend| friend }
-    excepts += friend_requests.map { |friend| friend }
-    excepts.compact
+  def user_with_any_friends
+    list = [self]
+    list += friends.map { |friend| friend }
+    list += pending_friends.map { |friend| friend }
+    list += friend_requests.map { |friend| friend }
+    list.compact
   end
 
   # Users who have yet to confirme friend requests
@@ -56,7 +56,11 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
-  # future : after connection friendship
-  # def feed
-  # end
+  def feed
+    friends_ids = "SELECT friend_id FROM friendships
+                     WHERE  user_id = :user_id"
+    Post.where("author_id IN (#{friends_ids}) OR author_id = :user_id",
+                    friends_ids: friends_ids, user_id: id)
+
+  end
 end

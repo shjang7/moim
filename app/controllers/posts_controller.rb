@@ -40,9 +40,8 @@ class PostsController < ApplicationController
 
   def index
     @post = current_user.writing_posts.build
-    @posts = Post.paginate(page: params[:page]) # for now, future : feed list
-    # @feed_items = current_user.feed.paginate(page: params[:page])
     @comment = current_user.comments.build
+    @posts = current_user.feed.paginate(page: params[:page])
   end
 
   private

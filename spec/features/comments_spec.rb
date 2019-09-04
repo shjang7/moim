@@ -3,13 +3,17 @@
 require 'rails_helper'
 
 RSpec.feature 'Comments', type: :feature do
-  let(:user) { create(:user) }
-  let(:written_post) { create(:post) }
   let(:comment) { 'Lorem ipsum for comment' }
 
+  before(:all) do
+    @jen = create(:user, name: 'Jen Barber')
+    @roy = create(:user, name: 'Roy Trenneman')
+    Friendship.create!(user_id: @jen.id, friend_id: @roy.id, confirmed: true)
+    @written_post = create(:post, author_id: @roy.id)
+  end
+
   scenario 'user writes a comment and delete' do
-    sign_in user
-    written_post
+    sign_in @jen
     visit root_path
     # create
     expect do
