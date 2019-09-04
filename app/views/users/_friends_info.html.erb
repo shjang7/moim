@@ -1,7 +1,7 @@
-<section class="friends-info m-3">
-  <%= content_tag(:div, "Friends: #{@user.friends.count}", class: "friends") %>
+<section class="friends-info p-3">
+  <%= content_tag(:h6, "Friends: #{@user.friends.count}", class: "friends") %>
   <% @user.friends.take(9).each do |friend| %>
     <%= link_to profile_img_for(friend), user_path(friend), class: "friends" %>
   <% end %>
-  <%#= link_to "More", users_path(@user.friends) %>
+  <%= link_to "More", users_path(anchor: 'friend-list') %>
 </section>

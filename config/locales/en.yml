@@ -44,7 +44,8 @@ en:
       edit_user_info: "Edit info"
       login: "Log in"
       feedback: "Feedback"
-      users_index: "Find Friends"
+      users_index: "Friends"
+      find_friends: "Find Friends"
       pending_friends: "Pending Friends"
       friend_requests: "Friend Requests"
     navbars:
@@ -58,6 +59,8 @@ en:
       facebook_login: "Log in with facebook"
       request_friend: "Request friend"
       accept_friend: "Accept friend"
+      pending_friend: "Request pending"
+      delete_friend: "Unfriend"
       edit_user_info: "Edit info"
       submit: "Submit"
       delete: "Delete"
@@ -79,6 +82,9 @@ en:
       placeholder: "What's on your mind?"
     comments:
       placeholder: "Write a comment..."
+    friendships:
+      request: "Friend requested!"
+      accept: "Friend accepted!"
     users:
       show:
         failure: "Access to wrong user"

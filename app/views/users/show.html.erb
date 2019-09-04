@@ -5,9 +5,7 @@
     <%= render "friends_info" %>
   </aside>
   <div class="col-md-9">
-    <% if current_user? @user %>
-      <%= render "posts/form" %>
-    <% end %>
+    <%= render "posts/form" if current_user? @user %>
     <%= render "post_list" %>
   </div>
 </div>

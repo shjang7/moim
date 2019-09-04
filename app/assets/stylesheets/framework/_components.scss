@@ -15,7 +15,12 @@
   @include border-bottom-gray;
 }
 
-// pagination
+.pagination {
+  li {
+    border: none !important;
+  }
+}
+
 .page-item {
   .page-link {
     color: $green;
@@ -58,7 +63,7 @@
 }
 
 .friends-info .profile-pic {
-  @include profile-pic(3);
+  @include profile-pic(4);
   float: left;
 }
 

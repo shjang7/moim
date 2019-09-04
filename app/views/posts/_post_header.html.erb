@@ -1,5 +1,5 @@
 <div class="d-sm-flex">
-  <div class="">
+  <div>
     <%= profile_img_for @post.author %>
     <%= link_to @post.author.name.full, user_path(@post.author), class: :author %>
     <%= content_tag(:div, "Posted #{ time_ago_in_words(@post.created_at) } ago.",

@@ -1,5 +1,5 @@
 <%= form_for(current_user.friendships.build) do |f| %>
   <div><%= hidden_field_tag :friend_id, friend.id %></div>
   <div><%= hidden_field_tag :type, "accept" %></div>
-  <%= f.submit "Accept friend", class: "btn btn-selectable" %>
+  <%= f.submit I18n.t('customs.buttons.accept_friend'), class: "btn btn-selectable" %>
 <% end %>

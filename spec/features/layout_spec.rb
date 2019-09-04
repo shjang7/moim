@@ -16,24 +16,32 @@ RSpec.feature 'Layouts', type: :feature do
     visit root_path
     expect(page.body).to have_title(title.base)
     # non signed user can only access signup/login button from home
-    expect(page.body).to have_content(I18n.t('customs.buttons.signup'))
-    expect(page.body).to have_content(I18n.t('customs.buttons.login'))
+    expect(page.body).to have_link(I18n.t('customs.buttons.signup'),
+                                   href: new_user_registration_path)
+    expect(page.body).to have_link(I18n.t('customs.buttons.login'),
+                                   href: new_user_session_path)
     expect(page.body).to have_content(I18n.t('customs.buttons.facebook_login'))
-    expect(page.body).to have_css('header', text: I18n.t('customs.navbars.home'))
+    expect(page.body).to have_link(I18n.t('customs.navbars.home'), href: root_path)
     # non signed in user cannot access any other features
-    expect(page.body).to_not have_css('header', text: I18n.t('customs.navbars.profile'))
-    expect(page.body).to_not have_css('header', text: I18n.t('customs.navbars.find_friends'))
-    expect(page.body).to_not have_css('header', text: I18n.t('customs.navbars.logout'))
-    # visit log in path
+    expect(page.body).to_not have_link(I18n.t('customs.navbars.profile'),
+                                       href: user_path(user))
+    expect(page.body).to_not have_link(I18n.t('customs.navbars.find_friends'),
+                                       href: users_path)
+    expect(page.body).to_not have_link(I18n.t('customs.navbars.logout'),
+                                       href: destroy_user_session_path)
     visit new_user_session_path
     expect(page.body).to have_title(title.login)
     sign_in user
     # header changed
     visit root_path
-    expect(page.body).to have_css('header', text: I18n.t('customs.navbars.profile'))
-    expect(page.body).to have_css('header', text: I18n.t('customs.navbars.home'))
-    expect(page.body).to have_css('header', text: I18n.t('customs.navbars.find_friends'))
-    expect(page.body).to have_css('header', text: I18n.t('customs.navbars.logout'))
+    expect(page.body).to have_link(I18n.t('customs.navbars.profile'),
+                                   href: user_path(user))
+    expect(page.body).to have_link(I18n.t('customs.navbars.home'),
+                                   href: root_path)
+    expect(page.body).to have_link(I18n.t('customs.navbars.find_friends'),
+                                   href: users_path)
+    expect(page.body).to have_link(I18n.t('customs.navbars.logout'),
+                                   href: destroy_user_session_path)
     # profile
     visit user_path(user)
     expect(page.body).to have_title(title.user_name)

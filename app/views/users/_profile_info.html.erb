@@ -8,6 +8,6 @@
     <%= link_to I18n.t('customs.buttons.edit_user_info'),
       edit_user_registration_path, class: "btn btn-md btn-success" %>
   <% else %>
-    <%= render 'friendships/request_buttons', user: @user %>
+    <%= render 'friendships/request_buttons', friend: @user %>
   <% end %>
 </section>
