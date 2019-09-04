@@ -60,7 +60,6 @@ class User < ApplicationRecord
     friends_ids = "SELECT friend_id FROM friendships
                      WHERE  user_id = :user_id"
     Post.where("author_id IN (#{friends_ids}) OR author_id = :user_id",
-                    friends_ids: friends_ids, user_id: id)
-
+               friends_ids: friends_ids, user_id: id)
   end
 end
