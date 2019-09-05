@@ -9,9 +9,8 @@
   <body>
     <%= render "layouts/header" %>
     <div class="container">
-      <% flash.each do |message_type, message| %>
-        <%= content_tag(:div, message, class: "alert alert-#{message_type} mt-3") %>
-      <% end %>
+      <%= render 'layouts/flash' %>
+      <%#= render 'flash', flash: flash, message: message, message_type: message_type %>
       <div class="main my-4"><%= yield %></div>
       <%= render "layouts/footer" %>
       <%= debug(params) if Rails.env.development? %>

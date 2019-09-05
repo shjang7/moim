@@ -45,9 +45,10 @@ en:
       login: "Log in"
       feedback: "Feedback"
       users_index: "Friends"
-      find_friends: "Find Friends"
       pending_friends: "Pending Friends"
       friend_requests: "Friend Requests"
+      find_friends: "Find Friends"
+      current_friends: "%{name} friends"
     navbars:
       profile: "Profile"
       home: "Home"

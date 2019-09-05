@@ -1,20 +1,13 @@
 <% provide(:title, I18n.t('customs.titles.users_index')) %>
 <section class="users list-style-none">
-  <h6 class="mt-4 h-title"><%= I18n.t('customs.titles.pending_friends') %></h6>
-  <ol class="pending-friends">
-    <%= render @pending_friends, message: "" %>
-  </ol>
-  <h6 class="mt-4 h-title"><%= I18n.t('customs.titles.friend_requests') %></h6>
-  <ol class="friend-requests">
-    <%= render @friend_requests, message: "Accept" %>
-  </ol>
-  <h6 class="mt-4 h-title"><%= I18n.t('customs.titles.find_friends') %></h6>
-  <ol class="find-friends">
-    <%= render @without_friends, message: "Request" %>
-  </ol>
-  <%= will_paginate @without_friends %>
-  <h6 class="mt-4 h-title"><%= current_user.name %>'s Friends</h6>
-  <ol class="friends" id="friend-list">
-    <%= render current_user.friends, message: ""  %>
-  </ol>
+  <% @friends.each do |friend_type, friend_group| %>
+    <h6 class="mt-4 h-title">
+      <%= I18n.t("customs.titles.#{friend_type}",
+        name: current_user.name.possessive) %>
+    </h6>
+    <ol class=<%= friend_type %>>
+      <%= render friend_group %>
+    </ol>
+    <%= will_paginate friend_group %>
+  <% end %>
 </section>

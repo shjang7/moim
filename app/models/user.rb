@@ -10,7 +10,6 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :inverse_friendships, class_name: 'Friendship',
                                  foreign_key: 'friend_id'
-  # has_many :friends, through: :friendships, source: :friend
   scope :all_except, ->(user) { where.not(id: user) }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -23,27 +22,43 @@ class User < ApplicationRecord
   validates :last_name, presence: true, length: { maximum: 30 }
 
   def friends
-    friends_group = friendships.map { |friendship| friendship.friend if friendship.confirmed }
-    friends_group += inverse_friendships.map { |friendship| friendship.user if friendship.confirmed }
-    friends_group.compact
+    friend_ids = "SELECT friend_id FROM friendships
+                      WHERE user_id = :user_id AND confirmed = true
+                  UNION ALL
+                  SELECT user_id FROM friendships
+                      WHERE friend_id = :user_id AND confirmed = true
+                  "
+    User.where("id IN (#{friend_ids})",
+                      friend_ids: friend_ids, user_id: id)
   end
 
-  def user_with_any_friends
-    list = [self]
-    list += friends.map { |friend| friend }
-    list += pending_friends.map { |friend| friend }
-    list += friend_requests.map { |friend| friend }
-    list.compact
+  def user_without_relate
+    related_ids = "SELECT id FROM users
+                       WHERE id = :user_id
+                   UNION ALL
+                   SELECT friend_id FROM friendships
+                       WHERE user_id = :user_id
+                   UNION ALL
+                   SELECT user_id FROM friendships
+                       WHERE friend_id = :user_id
+                   "
+    User.where.not("id IN (#{related_ids})", related_ids: related_ids, user_id: id )
   end
 
   # Users who have yet to confirme friend requests
   def pending_friends
-    friendships.map { |friendship| friendship.friend unless friendship.confirmed }.compact
+    friend_ids = "SELECT friend_id FROM friendships
+                     WHERE user_id = :user_id AND confirmed = false"
+    User.where("id IN (#{friend_ids})",
+                      friend_ids: friend_ids, user_id: id)
   end
 
   # Users who have requested to be friends
   def friend_requests
-    inverse_friendships.map { |friendship| friendship.user unless friendship.confirmed }.compact
+    friend_ids = "SELECT user_id FROM friendships
+                     WHERE friend_id = :user_id AND confirmed = false"
+    User.where("id IN (#{friend_ids})",
+                      friend_ids: friend_ids, user_id: id)
   end
 
   def confirm_friend(user)
@@ -57,9 +72,16 @@ class User < ApplicationRecord
   end
 
   def feed
-    friends_ids = "SELECT friend_id FROM friendships
-                     WHERE  user_id = :user_id"
-    Post.where("author_id IN (#{friends_ids}) OR author_id = :user_id",
-               friends_ids: friends_ids, user_id: id)
+    feed_ids = "SELECT id FROM users
+                     WHERE id = :user_id
+                UNION ALL
+                SELECT friend_id FROM friendships
+                    WHERE user_id = :user_id AND confirmed = true
+                UNION ALL
+                SELECT user_id FROM friendships
+                    WHERE friend_id = :user_id AND confirmed = true
+                "
+    Post.where("author_id IN (#{feed_ids})",
+               feed_ids: feed_ids, user_id: id)
   end
 end
