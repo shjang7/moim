@@ -16,11 +16,15 @@ class UsersController < ApplicationController
   end
 
   def index
-    @friends = Hash.new
-    @friends[:pending_friends] = current_user.pending_friends.paginate(page: params[:page])
-    @friends[:friend_requests] = current_user.friend_requests.paginate(page: params[:page])
-    @friends[:find_friends] = current_user.user_without_relate.paginate(page: params[:page])
-    @friends[:current_friends] = current_user.friends.paginate(page: params[:page])
+    @friends = {}
+    if params[:type] == 'pending_friends'
+      @friends[:pending_friends] = current_user.pending_friends.paginate(page: params[:page])
+    elsif params[:type] == 'current_friends'
+      @friends[:current_friends] = current_user.friends.paginate(page: params[:page])
+    else # default type 'find_friends'
+      @friends[:friend_requests] = current_user.friend_requests.paginate(page: params[:page])
+      @friends[:find_friends] = current_user.no_relates.paginate(page: params[:page])
+    end
     @friends
   end
 

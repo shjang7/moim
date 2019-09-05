@@ -8,7 +8,10 @@ RSpec.feature 'Layouts', type: :feature do
     double(base: I18n.t('customs.app.name'),
            login: full_title(I18n.t('customs.titles.login')),
            user_name: full_title(user.name),
-           find_friends: full_title(I18n.t('customs.titles.users_index')),
+           current_friends: full_title(I18n.t('customs.titles.current_friends',
+                                              name: user.name.possessive)),
+           pending_friends: full_title(I18n.t('customs.titles.pending_friends')),
+           find_friends: full_title(I18n.t('customs.titles.find_friends')),
            feedback: full_title(I18n.t('customs.titles.feedback')))
   end
 
@@ -45,9 +48,14 @@ RSpec.feature 'Layouts', type: :feature do
     # profile
     visit user_path(user)
     expect(page.body).to have_title(title.user_name)
-    # user list
+    # user index
     visit users_path
     expect(page.body).to have_title(title.find_friends)
+    visit users_path(type: 'pending_friends')
+    expect(page.body).to have_title(title.pending_friends)
+    visit users_path(type: 'current_friends')
+    expect(page.body).to have_title(title.current_friends)
+    # feedback
     visit feedback_path
     expect(page.body).to have_title(title.feedback)
     expect(page.body).to have_link(I18n.t('customs.author.email'),

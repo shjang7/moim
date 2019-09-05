@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get 'friendships/destroy'
   get 'feedback' => 'static_pages#feedback'
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
   },
                      skip: [:password]
   resources :users, only: %i[show index]

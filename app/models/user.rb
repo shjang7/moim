@@ -7,9 +7,10 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :post_like_brokers, dependent: :destroy
   has_many :liked_posts, through: :post_like_brokers, source: :post
-  has_many :friendships
+  has_many :friendships, dependent: :destroy
   has_many :inverse_friendships, class_name: 'Friendship',
-                                 foreign_key: 'friend_id'
+                                 foreign_key: 'friend_id',
+                                 dependent: :destroy
   scope :all_except, ->(user) { where.not(id: user) }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -29,10 +30,10 @@ class User < ApplicationRecord
                       WHERE friend_id = :user_id AND confirmed = true
                   "
     User.where("id IN (#{friend_ids})",
-                      friend_ids: friend_ids, user_id: id)
+               friend_ids: friend_ids, user_id: id)
   end
 
-  def user_without_relate
+  def no_relates
     related_ids = "SELECT id FROM users
                        WHERE id = :user_id
                    UNION ALL
@@ -42,7 +43,7 @@ class User < ApplicationRecord
                    SELECT user_id FROM friendships
                        WHERE friend_id = :user_id
                    "
-    User.where.not("id IN (#{related_ids})", related_ids: related_ids, user_id: id )
+    User.where.not("id IN (#{related_ids})", related_ids: related_ids, user_id: id)
   end
 
   # Users who have yet to confirme friend requests
@@ -50,7 +51,7 @@ class User < ApplicationRecord
     friend_ids = "SELECT friend_id FROM friendships
                      WHERE user_id = :user_id AND confirmed = false"
     User.where("id IN (#{friend_ids})",
-                      friend_ids: friend_ids, user_id: id)
+               friend_ids: friend_ids, user_id: id)
   end
 
   # Users who have requested to be friends
@@ -58,7 +59,7 @@ class User < ApplicationRecord
     friend_ids = "SELECT user_id FROM friendships
                      WHERE friend_id = :user_id AND confirmed = false"
     User.where("id IN (#{friend_ids})",
-                      friend_ids: friend_ids, user_id: id)
+               friend_ids: friend_ids, user_id: id)
   end
 
   def confirm_friend(user)

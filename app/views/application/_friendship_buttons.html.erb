@@ -1,0 +1,9 @@
+<% if current_user.friend_requests.include? user %>
+  <%= render 'friendships/accept_friend', friend: user %>
+<% elsif current_user.pending_friends.include? user %>
+  <%= render 'friendships/pending_friend' %>
+<% elsif !current_user.friend?(user) %>
+  <%= render 'friendships/request_friend', friend: user %>
+<% elsif current_user.friend?(user) %>
+  <%= render 'friendships/unfriend', friend: user %>
+<% end %>

@@ -44,9 +44,9 @@ en:
       edit_user_info: "Edit info"
       login: "Log in"
       feedback: "Feedback"
-      users_index: "Friends"
+      # users_index: "%{type}"
       pending_friends: "Pending Friends"
-      friend_requests: "Friend Requests"
+      friend_requests: "Respond to your friend request"
       find_friends: "Find Friends"
       current_friends: "%{name} friends"
     navbars:

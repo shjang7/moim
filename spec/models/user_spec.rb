@@ -82,12 +82,14 @@ RSpec.describe User, type: :model do
 
   context 'with associated writing posts' do
     let(:user) { create(:user) }
+    let(:friend) { create(:user) }
     let(:lorem) { 'Lorem ipsum' }
 
     before do
       user.writing_posts.create!(content: lorem)
       user.comments.create!(content: lorem,
                             post_id: create(:post).id)
+      user.friendships.create!(friend_id: friend.id)
     end
 
     it 'should destroy post along with user' do
@@ -100,6 +102,12 @@ RSpec.describe User, type: :model do
       expect do
         user.destroy
       end.to change(Comment, :count).by(-1)
+    end
+
+    it 'should destroy friendship along with user' do
+      expect do
+        user.destroy
+      end.to change(Friendship, :count).by(-1)
     end
   end
 end
