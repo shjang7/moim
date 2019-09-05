@@ -41,7 +41,7 @@ RSpec.feature 'FriendsRequests', type: :feature do
     expect(page.body).to have_content(
       "#{I18n.t('devise.sessions.signed_in')} Friend request : 1"
     )
-    expect(page.body).to have_link(I18n.t('customs.navbars.find_friends')+" (1)",
+    expect(page.body).to have_link(I18n.t('customs.navbars.find_friends') + ' (1)',
                                    href: users_path)
     visit users_path
     expect(page.body).to_not have_css('.find_friends', text: @jen.name)
