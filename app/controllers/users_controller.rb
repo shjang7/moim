@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @friends = Hash.new
+    @friends = {}
     @friends[:pending_friends] = current_user.pending_friends.paginate(page: params[:page])
     @friends[:friend_requests] = current_user.friend_requests.paginate(page: params[:page])
     @friends[:find_friends] = current_user.user_without_relate.paginate(page: params[:page])

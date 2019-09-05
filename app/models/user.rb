@@ -29,7 +29,7 @@ class User < ApplicationRecord
                       WHERE friend_id = :user_id AND confirmed = true
                   "
     User.where("id IN (#{friend_ids})",
-                      friend_ids: friend_ids, user_id: id)
+               friend_ids: friend_ids, user_id: id)
   end
 
   def user_without_relate
@@ -42,7 +42,7 @@ class User < ApplicationRecord
                    SELECT user_id FROM friendships
                        WHERE friend_id = :user_id
                    "
-    User.where.not("id IN (#{related_ids})", related_ids: related_ids, user_id: id )
+    User.where.not("id IN (#{related_ids})", related_ids: related_ids, user_id: id)
   end
 
   # Users who have yet to confirme friend requests
@@ -50,7 +50,7 @@ class User < ApplicationRecord
     friend_ids = "SELECT friend_id FROM friendships
                      WHERE user_id = :user_id AND confirmed = false"
     User.where("id IN (#{friend_ids})",
-                      friend_ids: friend_ids, user_id: id)
+               friend_ids: friend_ids, user_id: id)
   end
 
   # Users who have requested to be friends
@@ -58,7 +58,7 @@ class User < ApplicationRecord
     friend_ids = "SELECT user_id FROM friendships
                      WHERE friend_id = :user_id AND confirmed = false"
     User.where("id IN (#{friend_ids})",
-                      friend_ids: friend_ids, user_id: id)
+               friend_ids: friend_ids, user_id: id)
   end
 
   def confirm_friend(user)
