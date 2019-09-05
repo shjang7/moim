@@ -5,12 +5,10 @@
     <title><%= full_title(yield(:title)) %></title>
     <%= render "layouts/shim" %>
   </head>
-
   <body>
     <%= render "layouts/header" %>
     <div class="container">
       <%= render 'layouts/flash' %>
-      <%#= render 'flash', flash: flash, message: message, message_type: message_type %>
       <div class="main my-4"><%= yield %></div>
       <%= render "layouts/footer" %>
       <%= debug(params) if Rails.env.development? %>

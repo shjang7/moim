@@ -13,7 +13,8 @@
         </li>
       <% if user_signed_in? %>
         <li class="list-inline-item">
-          <%= link_to I18n.t('customs.navbars.find_friends'), users_path %>
+          <%= link_to(I18n.t("customs.navbars.find_friends")+
+            " (#{current_user.friend_requests.count})", users_path) %>
         </li>
         <li class="list-inline-item">
           <%= link_to I18n.t('customs.navbars.logout'), destroy_user_session_path,
