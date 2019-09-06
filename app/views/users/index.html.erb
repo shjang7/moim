@@ -2,7 +2,8 @@
 <section class="users list-style-none">
   <% @friends.each do |friend_type, friend_group| %>
     <% if friend_type == :friend_requests %>
-      <%= link_to 'view sent requests', users_path(type: 'pending_friends'), class: "ml-5" %>
+      <%= link_to "view sent requests (#{current_user.pending_friends.count})",
+        users_path(type: 'pending_friends'), class: "ml-5" %>
     <% end %>
     <h6 class="mt-4 h-title" id=<%= friend_type %>>
       <%= I18n.t("customs.titles.#{friend_type}",

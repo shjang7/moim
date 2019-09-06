@@ -10,6 +10,7 @@
 }
 
 body {
+  padding-top: 5rem;
   background:
     linear-gradient(0deg,$transparent-white-mid 0%, $light-warm-green 100%),
     url('grass_bg.webp') center/cover repeat-x;
@@ -57,26 +58,24 @@ textarea {
 /* header */
 
 header {
-  a {
-    color: #fff;
-    &:hover {
-      color: #fff;
-      text-decoration: none;
-    }
-  }
   ul {
     margin: 0.8rem 0.8rem 0;
   }
 }
 
 #logo {
-  float: left;
-  margin-right: 0.3rem;
   font-size: 1.7rem;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 0.25rem;
   font-weight: bold;
+}
+
+.dropdown-menu li {
+  padding: 0.5rem;
+}
+
+.friend-request-notification {
+  font-size: 0.8rem;
 }
 
 /* footer */

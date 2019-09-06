@@ -1,27 +1,31 @@
-<header class="navbar navbar-fixed-top navbar-inverse bg-success">
+<header class="bg-success fixed-top">
   <div class="container">
-    <%= link_to I18n.t('customs.app.name'), root_path, id: "logo" %>
-    <nav class="nav navbar-nav navbar-right">
-      <ul class="list-inline">
-      <% if user_signed_in? %>
-        <li class="list-inline-item">
-          <%= link_to I18n.t('customs.navbars.profile'), user_path(current_user) %>
-        </li>
-      <% end %>
-        <li class="list-inline-item">
-          <%= link_to I18n.t('customs.navbars.home'), root_path %>
-        </li>
-      <% if user_signed_in? %>
-        <li class="list-inline-item">
-          <%= link_to(I18n.t("customs.navbars.find_friends")+
-            " (#{current_user.friend_requests.count})", users_path) %>
-        </li>
-        <li class="list-inline-item">
-          <%= link_to I18n.t('customs.navbars.logout'), destroy_user_session_path,
-            method: :delete %>
-        </li>
-      <% end %>
-      </ul>
+    <nav class="navbar navbar-expand-lg navbar-light px-0 py-1">
+      <%= link_to I18n.t('customs.app.name'), root_path, id: "logo", class: "navbar-brand text-white" %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item list-inline-item">
+            <%= link_to I18n.t('customs.navbars.profile'), user_path(current_user), class: "nav-link" %>
+          </li>
+        <% end %>
+          <li class="nav-item list-inline-item">
+            <%= link_to I18n.t('customs.navbars.home'), root_path, class: "nav-link" %>
+          </li>
+        <% if user_signed_in? %>
+          <li class="nav-item list-inline-item">
+            <%= link_to I18n.t("customs.navbars.find_friends"), users_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item list-inline-item dropdown">
+            <%= render 'layouts/notification' %>
+          </li>
+          <li class="nav-item list-inline-item">
+            <%= link_to I18n.t('customs.navbars.logout'), destroy_user_session_path,
+              method: :delete, class: "nav-link" %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
     </nav>
   </div>
 </header>

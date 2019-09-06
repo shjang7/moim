@@ -11,7 +11,7 @@ $double-border-gray: 8px double #eaeaea;
 }
 
 $light-grass: #9efe649a;
-$mid-grass: #92f24f9a;
+$mid-grass: #8cef4dd9;
 
 $light-warm-green: #cff2ae;
 $green: #06ad45;
@@ -25,6 +25,37 @@ $mid-orange: #f27b4e;
 $dark-orange: #ef4321;
 
 $transparent-white-mid: #ffffff8d;
+
+.dropdown-menu {
+  background-color: $light-warm-green;
+  li:not(:last-child) {
+    border-bottom: 0.2px solid $mid-grass;
+  }
+}
+
+header {
+  border-bottom: 0.2px solid $light-warm-green;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar-light .navbar-nav {
+  .show > .nav-link,
+  .active > .nav-link,
+  .nav-link.show,
+  .nav-link.active {
+    color: #fff;
+    font-weight: bold;
+  }
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus,
+.nav-item {
+  color: #fff;
+}
 
 a {
   color: $mid-dark-green;
