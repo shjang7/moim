@@ -120,13 +120,13 @@ RSpec.describe User, type: :model do
       create_friendship[jen, douglas, false]
       create_friendship[richmond, jen, false]
       jen.writing_posts.create!(content: content)
-      @post = roy.writing_posts.create!(content: content)
+      post = roy.writing_posts.create!(content: content)
       douglas.writing_posts.create!(content: content)
       richmond.writing_posts.create!(content: content)
       denholm.writing_posts.create!(content: content)
       jen.comments.create!(content: content,
                            post_id: create(:post).id)
-      jen.post_like_brokers.create!(post: @post)
+      jen.post_like_brokers.create!(post: post)
     end
 
     it '#friends returns confirmed friends' do

@@ -7,7 +7,7 @@ class Friendship < ApplicationRecord
   validates :user, presence: true
   validates :friend, presence: true
   validate :no_pending_status, on: :create
-  validate :no_friend_status, on: :update
+  validate :no_friend_status, on: %i[create update]
 
   private
 
