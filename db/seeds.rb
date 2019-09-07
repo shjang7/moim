@@ -54,16 +54,17 @@ posts.each do |post|
 end
 
 # Friend request
-main_user = users[-16]
-request_user = users[-15]
-pending_user = users[-1]
+last_index = users.size - 1
+main_user = users[last_index - 15]
+request_user = users[last_index - 14]
+pending_user = users[last_index - 13]
 Friendship.create!(user_id: main_user.id,
                    friend_id: pending_user.id,
                    confirmed: false)
 Friendship.create!(user_id: request_user.id,
                    friend_id: main_user.id,
                    confirmed: false)
-users[-14..-4].each do |friend|
+users[(last_index - 12)..(last_index - 3)].each do |friend|
   Friendship.create!(user_id: main_user.id,
                      friend_id: friend.id,
                      confirmed: true)

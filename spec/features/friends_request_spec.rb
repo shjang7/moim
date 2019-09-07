@@ -55,7 +55,7 @@ RSpec.feature 'FriendsRequests', type: :feature do
     expect(page.body).to have_content I18n.t('customs.friendships.update')
     expect(page.body).to_not have_css('.friend_requests', text: @jen.name)
     visit user_path(@roy)
-    expect(page.body).to have_link('More', href: users_path(type: 'current_friends'))
+    expect(page.body).to have_link('More', href: users_path(type: 'current_friends', user_id: @roy.id))
     click_link 'More'
     within(:css, '.current_friends') do
       expect(page.body).to have_link(@jen.name, href: user_path(@jen))

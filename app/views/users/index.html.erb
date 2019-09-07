@@ -1,4 +1,5 @@
-<% provide(:title, I18n.t("customs.titles.#{@friends.keys.last}", name: current_user.name.possessive)) %>
+<% @user ||= current_user %>
+<% provide(:title, I18n.t("customs.titles.#{@friends.keys.last}", name: @user.name.possessive)) %>
 <div class="users">
   <% @friends.each do |friend_type, friend_group| %>
   <section class="list-style-none <%=friend_type%>" id=<%= friend_type %>>
@@ -7,8 +8,7 @@
         users_path(type: 'pending_friends'), class: "ml-5" %>
     <% end %>
     <h6 class="mt-4 h-title">
-      <%= I18n.t("customs.titles.#{friend_type}",
-        name: current_user.name.possessive) %>
+      <%= I18n.t("customs.titles.#{friend_type}", name: @user.name.possessive) %>
     </h6>
     <ol>
       <%= render friend_group %>

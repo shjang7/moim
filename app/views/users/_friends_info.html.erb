@@ -1,14 +1,14 @@
 <section class="friends-info p-3">
-  <h6 class="d-flex justify-content-between my-3">
+  <h6 class="h-title d-sm-flex justify-content-between my-3">
     <%= content_tag(:div, "Friends: #{@user.friends.count}") %>
     <%= link_to I18n.t('customs.navbars.find_friends'), users_path if current_user? @user %>
   </h6>
-  <div class="h-auto d-inline-block">
+  <div class="h-auto d-inline-block friends">
     <% @user.friends.take(9).each do |friend| %>
-      <%= link_to profile_img_for(friend), user_path(friend), class: "friends" %>
+      <%= link_to profile_img_for(friend), user_path(friend)%>
     <% end %>
   </div>
-  <div class="my-3">
-    <%= link_to "More", users_path(type: 'current_friends') %>
+  <div class="current_friends_path my-3">
+    <%= link_to "More", users_path(type: 'current_friends', user_id: @user.id) %>
   </div>
 </section>

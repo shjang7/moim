@@ -20,12 +20,12 @@ class UsersController < ApplicationController
     if params[:type] == 'pending_friends'
       @friends[:pending_friends] = current_user.pending_friends.paginate(page: params[:page])
     elsif params[:type] == 'current_friends'
-      @friends[:current_friends] = current_user.friends.paginate(page: params[:page])
+      @user = User.find_by_id(params[:user_id])
+      @friends[:current_friends] = @user.friends.paginate(page: params[:page])
     else # default type 'find_friends'
       @friends[:friend_requests] = current_user.friend_requests.paginate(page: params[:page])
       @friends[:find_friends] = current_user.recommended_friends.paginate(page: params[:page])
     end
-    @friends
   end
 
   private
