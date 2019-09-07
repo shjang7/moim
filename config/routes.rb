@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :posts, only: %i[new edit create update destroy]
   resources :comments, only: %i[create destroy]
   resources :post_like_brokers, only: %i[create destroy]
-  resources :friendships, only: %i[create destroy]
+  resources :friendships, only: %i[create update destroy]
   authenticated :user do
     root 'posts#index'
   end

@@ -1,12 +1,5 @@
-<% if current_user.friendships.find_by(friend_id: friend.id) %>
-<%# before mutual friendship building %>
-  <%= form_for(current_user.friendships.find_by(friend_id: friend.id),
-               html: { method: :delete } ) do |f| %>
-    <%= f.submit "Unfriend", class: "btn btn-unselectable" %>
-  <% end %>
-<% else %>
-  <%= form_for(friend.friendships.find_by(friend_id: current_user.id),
-               html: { method: :delete } ) do |f| %>
-    <%= f.submit "Unfriend", class: "btn btn-unselectable" %>
-  <% end %>
+<%= form_for(current_user.friendships.find_by(friend_id: friend.id) ||
+  friend.friendships.find_by(friend_id: current_user.id),
+  html: { method: :delete } ) do |f| %>
+  <%= f.submit "Unfriend", class: "btn btn-unselectable" %>
 <% end %>

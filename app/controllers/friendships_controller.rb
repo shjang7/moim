@@ -5,14 +5,20 @@ class FriendshipsController < ApplicationController
 
   def create
     friend = User.find(params[:friend_id])
-    @friendship = if params[:type] == 'accept'
-                    current_user.confirm_friend(friend)
-                  elsif params[:type] == 'request'
-                    current_user.friendships.build(friend_id: friend.id,
-                                                   confirmed: false)
-                  end
+    @friendship = current_user.friendships.build(friend_id: friend.id)
     if @friendship.save
-      flash[:notice] = I18n.t("customs.friendships.#{params[:type]}")
+      flash[:notice] = I18n.t('customs.friendships.create')
+    else
+      flash[:alert] = @friendship.errors.full_messages[0]
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
+  def update
+    user = User.find(params[:user_id])
+    @friendship = user.confirm_friend(current_user)
+    if @friendship.update(user_id: user.id)
+      flash[:notice] = I18n.t('customs.friendships.update')
     else
       flash[:alert] = @friendship.errors.full_messages[0]
     end
@@ -32,6 +38,6 @@ class FriendshipsController < ApplicationController
   private
 
   def resource_name
-    { resource: 'Friend' }
+    { resource: 'Friendship' }
   end
 end

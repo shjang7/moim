@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :inverse_friendships, class_name: 'Friendship',
                                  foreign_key: 'friend_id',
                                  dependent: :destroy
-  scope :all_except, ->(user) { where.not(id: user) }
+  # scope :all_except, ->(user) { where.not(id: user) }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -62,8 +62,8 @@ class User < ApplicationRecord
                friend_ids: friend_ids, user_id: id)
   end
 
-  def confirm_friend(user)
-    friendship = inverse_friendships.find { |friendship| friendship.user == user }
+  def confirm_friend(friend)
+    friendship = friendships.find { |friendship| friendship.friend == friend }
     friendship.confirmed = true
     friendship
   end

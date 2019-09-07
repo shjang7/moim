@@ -84,8 +84,8 @@ en:
     comments:
       placeholder: "Write a comment..."
     friendships:
-      request: "Friend requested!"
-      accept: "Friend accepted!"
+      create: "Friendship requested!"
+      update: "Friendship accepted!"
     users:
       show:
         failure: "Access to wrong user"

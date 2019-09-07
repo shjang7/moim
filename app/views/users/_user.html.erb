@@ -1,5 +1,4 @@
-<li id="user-<%= user.id %>" class="user friend-candidate
-  d-md-flex align-items-center">
+<li id="user-<%= user.id %>" class="user d-md-flex align-items-center">
   <%= content_tag(:div, profile_img_for(user)) %>
   <div class="user-info w-100 mx-3">
     <%= link_to user.name.full, user_path(user), class: "user-name" %>

@@ -28,7 +28,7 @@ RSpec.feature 'Layouts', type: :feature do
     # non signed in user cannot access any other features
     expect(page.body).to_not have_link(I18n.t('customs.navbars.profile'),
                                        href: user_path(user))
-    expect(page.body).to_not have_link(I18n.t('customs.navbars.find_friends') + ' (0)',
+    expect(page.body).to_not have_link(I18n.t('customs.navbars.find_friends'),
                                        href: users_path)
     expect(page.body).to_not have_link(I18n.t('customs.navbars.logout'),
                                        href: destroy_user_session_path)
@@ -41,7 +41,7 @@ RSpec.feature 'Layouts', type: :feature do
                                    href: user_path(user))
     expect(page.body).to have_link(I18n.t('customs.navbars.home'),
                                    href: root_path)
-    expect(page.body).to have_link(I18n.t('customs.navbars.find_friends') + ' (0)',
+    expect(page.body).to have_link(I18n.t('customs.navbars.find_friends'),
                                    href: users_path)
     expect(page.body).to have_link(I18n.t('customs.navbars.logout'),
                                    href: destroy_user_session_path)
