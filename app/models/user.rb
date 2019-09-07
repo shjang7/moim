@@ -11,7 +11,6 @@ class User < ApplicationRecord
   has_many :inverse_friendships, class_name: 'Friendship',
                                  foreign_key: 'friend_id',
                                  dependent: :destroy
-  # scope :all_except, ->(user) { where.not(id: user) }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -33,7 +32,7 @@ class User < ApplicationRecord
                friend_ids: friend_ids, user_id: id)
   end
 
-  def no_relates
+  def recommended_friends
     related_ids = "SELECT id FROM users
                        WHERE id = :user_id
                    UNION ALL
