@@ -4,9 +4,15 @@
 @import "framework/colors";
 
 .users {
+  [id*=user-] {
+    margin-top: -4rem;
+    padding-top: 4rem;
+  }
   li {
-    padding: 1rem 0;
-    border-top: $border-gray;
+    .after-scroll {
+      padding: 1rem 0 1rem;
+      border-top: $border-gray;
+    }
   }
   .disabled {
     float: left;
@@ -15,7 +21,7 @@
     margin-left: 1rem;
     float: left;
   }
-  .user {
+  .user .after-scroll {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -28,7 +34,7 @@
   }
 }
 @media only screen and (min-width: 576px) { /* small */
-  .users .user {
+  .users .user .after-scroll {
     flex-flow: row wrap;
     align-items: center;
     .user-name {
