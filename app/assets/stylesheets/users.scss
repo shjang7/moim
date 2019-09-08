@@ -8,20 +8,66 @@
     padding: 1rem 0;
     border-top: $border-gray;
   }
+  .disabled {
+    float: left;
+  }
+  .edit_friendship {
+    margin-left: 1rem;
+    float: left;
+  }
+  .user {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    .user-name {
+      margin-left: 1rem;
+    }
+    .friend-count {
+      margin-left: 1rem;
+    }
+  }
+}
+@media only screen and (min-width: 576px) { /* small */
+  .users .user {
+    flex-flow: row wrap;
+    align-items: center;
+    .user-name {
+      margin-left: 1rem;
+      display: block;
+    }
+    .friend-count {
+      margin-left: 1rem;
+    }
+    .selections {
+      margin-left: auto;
+    }
+  }
 }
 
 .profile-info {
   .btn {
     min-width: 8rem;
-    margin: 0.3rem;
-    height: 100%;
-    padding: 0.3rem;
+  }
+  .user-name {
+    margin: 1rem;
+    float: left;
+  }
+  .friend-count {
+    display: none;
+  }
+  .selections {
+    margin: 1rem;
   }
 }
-
-@media (min-width: 768px) { /* midium */
-  .profile-info .btn {
-    width: 80%;
-    margin-left: 10%;
+@media only screen and (min-width: 576px) { /* small */
+  .profile-info {
+    .user-info {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .selections {
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 }

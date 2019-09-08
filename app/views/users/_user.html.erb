@@ -1,10 +1,15 @@
-<li id="user-<%= user.id %>" class="user d-md-flex align-items-center">
-  <%= content_tag(:div, profile_img_for(user)) %>
-  <div class="user-info w-100 mx-3">
+<li id="user-<%= user.id %>" class="user">
+  <%= profile_img_for(user) %>
+  <div class="user-info">
     <%= link_to user.name.full, user_path(user), class: "user-name" %>
-    <%= content_tag(:div, "Friends: #{user.friends.count}", class: "friends") %>
+    <%= content_tag(:div, "Friends: #{user.friends.count}", class: "friend-count") %>
   </div>
-  <div class="ml-auto flex-shrink-1">
-    <%= render 'friendship_buttons', user: user %>
-  </div>
+  <div class="selections h-100">
+  <% if current_user? user %>
+    <%= link_to I18n.t('customs.buttons.edit_user_info'),
+      edit_user_registration_path, class: "btn btn-md btn-success w-50" %>
+  <% else %>
+      <%= render 'friendship_buttons', user: user %>
+  <% end %>
+</div>
 </li>

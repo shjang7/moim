@@ -8,6 +8,7 @@ RSpec.feature 'Layouts', type: :feature do
   let(:second_friend) { create(:user) }
   let(:pending_friend) { create(:user) }
   let(:request_friend) { create(:user) }
+  let(:friend_count) { 2 }
   let(:new_user) { create(:user) }
   let(:title) do
     double(base: I18n.t('customs.app.name'),
@@ -39,7 +40,7 @@ RSpec.feature 'Layouts', type: :feature do
     expect(page.body).to have_content(I18n.t('customs.buttons.facebook_login'))
     expect(page.body).to have_link(I18n.t('customs.navbars.home'), href: root_path)
     # non signed in user cannot access any other features
-    expect(page.body).to_not have_link(I18n.t('customs.navbars.profile'),
+    expect(page.body).to_not have_link(user.name.familiar,
                                        href: user_path(user))
     expect(page.body).to_not have_link(I18n.t('customs.navbars.find_friends'),
                                        href: users_path)
@@ -52,7 +53,7 @@ RSpec.feature 'Layouts', type: :feature do
     expect(page.body).to have_title(title.login)
     sign_in user
     visit root_path
-    expect(page.body).to have_link(I18n.t('customs.navbars.profile'),
+    expect(page.body).to have_link(user.name.familiar,
                                    href: user_path(user))
     expect(page.body).to have_link(I18n.t('customs.navbars.home'),
                                    href: root_path)
@@ -74,9 +75,9 @@ RSpec.feature 'Layouts', type: :feature do
     within(:css, '.friends-info .h-title') do
       expect(page.body).to have_link('Find Friends', href: users_path)
     end
-    within(:css, '.friends-info .current_friends_path') do
-      expect(page.body).to have_link('More', href: users_path(type: 'current_friends', user_id: user.id))
-      click_link 'More'
+    within(:css, '.friends-info') do
+      expect(page.body).to have_link("Friends: #{friend_count}", href: users_path(type: 'current_friends', user_id: user.id))
+      click_link "Friends: #{friend_count}"
     end
     # user's all friends
     expect(page.body).to have_title(title.current_friends)
@@ -96,8 +97,8 @@ RSpec.feature 'Layouts', type: :feature do
     within(:css, '#find_friends ol') do
       expect(page.body).to have_css('.user-name', text: new_user.name)
     end
-    expect(page.body).to have_link('view sent requests', href: users_path(type: 'pending_friends'))
-    click_link 'view sent requests'
+    expect(page.body).to have_link(I18n.t('customs.links.pending_friends'), href: users_path(type: 'pending_friends'))
+    click_link I18n.t('customs.links.pending_friends')
     expect(page.body).to have_title(title.pending_friends)
     within(:css, '#pending_friends ol') do
       expect(page.body).to have_css('.user-name', text: pending_friend.name)

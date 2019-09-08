@@ -4,13 +4,13 @@
   <% @friends.each do |friend_type, friend_group| %>
   <section class="list-style-none <%=friend_type%>" id=<%= friend_type %>>
     <% if friend_type == :friend_requests %>
-      <%= link_to "view sent requests (#{current_user.pending_friends.count})",
-        users_path(type: 'pending_friends'), class: "ml-5" %>
+      <%= link_to "#{I18n.t('customs.links.pending_friends')} (#{current_user.pending_friends.count})",
+        users_path(type: 'pending_friends'), class: "py-3" %>
     <% end %>
-    <h6 class="mt-4 h-title">
+    <h6 class="mt-4 py-2 h-title border-bottom">
       <%= I18n.t("customs.titles.#{friend_type}", name: @user.name.possessive) %>
     </h6>
-    <ol>
+    <ol class="p-0">
       <%= render friend_group %>
     </ol>
     <%= will_paginate friend_group %>

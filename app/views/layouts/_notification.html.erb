@@ -3,13 +3,13 @@
   notification
   <span class="badge badge-warning badge-pill"><%= current_user.friend_requests.count %></span>
 </a>
-<ul class="dropdown-menu mt-1 rounded-0" aria-labelledby="navbarDropdown">
+<ul class="dropdown-menu p-0 rounded-0" aria-labelledby="navbarDropdown">
   <% current_user.friend_requests.each do |user| %>
-    <li class="friend-request-notification">
-      <%= link_to users_path(type: 'find_friends', anchor: "user-#{ user.id }") do %>
-        <strong><%= user.name %></strong>
-        sent you a friend request that you haven't responded to yet
-      <% end %>
-    </li>
+    <%= link_to users_path(type: 'find_friends', anchor: "user-#{ user.id }") do %>
+      <li class="friend-request-notification py-3">
+          <strong><%= user.name %></strong>
+          sent you a friend request that you haven't responded to yet
+      </li>
+    <% end %>
   <% end %>
 </ul>

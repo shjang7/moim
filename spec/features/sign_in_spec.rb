@@ -19,8 +19,8 @@ RSpec.feature 'SignIn', type: :feature do
     # Post list partial
     expect(page.body).to have_content('Posts')
     # Access user profile
-    click_link 'Profile'
-    expect(page.body).to have_css('.profile-info .h-title', text: user.name)
+    click_link user.name.familiar
+    expect(page.body).to have_css('.profile-info', text: user.name)
     # Log out
     click_link 'Log out'
     expect(page.body).to have_content I18n.t('devise.sessions.signed_out')

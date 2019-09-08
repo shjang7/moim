@@ -11,7 +11,8 @@
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
           <li class="nav-item list-inline-item">
-            <%= link_to I18n.t('customs.navbars.profile'), user_path(current_user), class: "nav-link" %>
+            <%= profile_img_for(current_user) %>
+            <%= link_to current_user.name.familiar, user_path(current_user), class: "nav-link float-left" %>
           </li>
         <% end %>
           <li class="nav-item list-inline-item">

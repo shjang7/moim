@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.feature 'FriendsRequests', type: :feature do
+  let(:friend_count) { 1 }
   before do
     @jen = create(:user, name: 'Jen Barber')
     @roy = create(:user, name: 'Roy Trenneman')
@@ -24,9 +25,9 @@ RSpec.feature 'FriendsRequests', type: :feature do
     expect(page.body).to_not have_button I18n.t('customs.buttons.request_friend')
     expect(page.body).to_not have_css('.find_friends ol li .user-name', text: @roy.name)
     expect(page.body).to have_link(
-      'view sent requests', href: users_path(type: 'pending_friends')
+      I18n.t('customs.links.pending_friends'), href: users_path(type: 'pending_friends')
     )
-    click_link 'view sent requests'
+    click_link I18n.t('customs.links.pending_friends')
     expect(page.body).to have_css('.pending_friends ol li .user-name', text: @roy.name)
     expect(page.body).to have_css('.pending_friends',
                                   text: I18n.t('customs.buttons.pending_friend'))
@@ -55,15 +56,15 @@ RSpec.feature 'FriendsRequests', type: :feature do
     expect(page.body).to have_content I18n.t('customs.friendships.update')
     expect(page.body).to_not have_css('.friend_requests', text: @jen.name)
     visit user_path(@roy)
-    expect(page.body).to have_link('More', href: users_path(type: 'current_friends', user_id: @roy.id))
-    click_link 'More'
+    expect(page.body).to have_link("Friends: #{friend_count}", href: users_path(type: 'current_friends', user_id: @roy.id))
+    click_link "Friends: #{friend_count}"
     within(:css, '.current_friends') do
       expect(page.body).to have_link(@jen.name, href: user_path(@jen))
     end
     # delete friendship
     expect(@roy.friend?(@jen)).to eq true
     expect do
-      click_button I18n.t('customs.buttons.delete_friend')
+      click_button I18n.t('customs.buttons.cancel_friend')
     end.to change(@jen.friends, :count).by(-1)
     expect(@roy.friend?(@jen)).to eq false
   end
@@ -79,7 +80,24 @@ RSpec.feature 'FriendsRequests', type: :feature do
     expect do
       click_button I18n.t('customs.buttons.request_friend')
     end.to change(Friendship, :count).by(1)
+    # cancel request friendship
+    expect do
+      click_button I18n.t('customs.buttons.cancel_request')
+    end.to change(Friendship, :count).by(-1)
+    expect do
+      click_button I18n.t('customs.buttons.request_friend')
+    end.to change(Friendship, :count).by(1)
     expect(page.body).to_not have_button I18n.t('customs.buttons.request_friend')
     expect(page.body).to have_content I18n.t('customs.buttons.pending_friend')
+    sign_out @jen
+    sign_in @roy
+    visit user_path(@jen)
+    within(:css, '.profile-info') do
+      expect(page.body).to have_button I18n.t('customs.buttons.accept_friend')
+    end
+    # cancel accept friendship
+    expect do
+      click_button I18n.t('customs.buttons.cancel_request')
+    end.to change(Friendship, :count).by(-1)
   end
 end
