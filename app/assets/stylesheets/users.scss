@@ -8,10 +8,12 @@
     margin-top: -4rem;
     padding-top: 4rem;
   }
+  .h-title {
+    @include border-bottom; 
+  }
   li {
     .after-scroll {
-      padding: 1rem 0 1rem;
-      border-top: $border-gray;
+      @include border-top;
     }
   }
   .disabled {
@@ -33,7 +35,7 @@
     }
   }
 }
-@media only screen and (min-width: 576px) { /* small */
+@media (min-width: 576px) { /* small */
   .users .user .after-scroll {
     flex-flow: row wrap;
     align-items: center;
@@ -65,7 +67,7 @@
     margin: 1rem;
   }
 }
-@media only screen and (min-width: 576px) { /* small */
+@media (min-width: 576px) { /* small */
   .profile-info {
     .user-info {
       display: flex;

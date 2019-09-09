@@ -7,7 +7,7 @@
       <%= link_to "#{I18n.t('customs.links.pending_friends')} (#{current_user.pending_friends.count})",
         users_path(type: 'pending_friends'), class: "py-3" %>
     <% end %>
-    <h6 class="mt-4 py-2 h-title border-bottom">
+    <h6 class="mt-4 py-2 h-title">
       <%= I18n.t("customs.titles.#{friend_type}", name: @user.name.possessive) %>
     </h6>
     <ol class="p-0">

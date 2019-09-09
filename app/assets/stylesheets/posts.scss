@@ -15,7 +15,7 @@
   padding: 0;
   > li {
     padding: 1rem;
-    border-top: $double-border-gray;
+    @include border-top-double;
   }
 }
 
@@ -26,7 +26,7 @@
     display: block;
   }
   .timestamp {
-    color: $mid-dark-gray;
+    color: $brown-darken-1;
     margin-left: 6rem;
     display: block;
   }

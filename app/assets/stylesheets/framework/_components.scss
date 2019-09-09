@@ -12,7 +12,7 @@
 }
 
 #edit_user .field {
-  @include border-bottom-gray;
+  @include border-bottom;
 }
 
 .pagination {
@@ -23,21 +23,21 @@
 
 .page-item {
   .page-link {
-    color: $green;
-    background: $light-grass;
+    color: $warm-green-darken-2;
+    background: $warm-green-lighten-2;
     &:hover {
-      color: $dark-green;
-      background-color: $light-warm-green;
-      border-color: $light-warm-green;
+      color: $warm-green-darken-3;
+      background-color: $warm-green-lighten-3;
+      border-color: $warm-green-lighten-3;
     }
   }
   &.active .page-link {
-    background-color: $green;
-    border-color: $green;
+    background-color: $warm-green;
+    border-color: $warm-green;
   }
   &.disabled .page-link {
     color: white;
-    background-color: $mid-light-gray;
+    background-color: $brown-lighten-3;
   }
 }
 
