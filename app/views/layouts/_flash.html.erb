@@ -1,0 +1,13 @@
+<% flash.each do |message_type, message| %>
+  <%= content_tag(:div, message, class: "alert alert-#{message_type} mt-3") %>
+<% end %>
+
+<script>
+  $(document).ready(function(){
+    setTimeout(function(){
+      $('.alert').fadeOut("slow", function() {
+        $(this).remove();
+      })
+    }, 4000);
+  });
+</script>

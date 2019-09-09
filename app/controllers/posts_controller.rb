@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.writing_posts.build(post_params)
     if @post.save
-      flash[:notice] = I18n.t('customs.posts.create')
+      flash[:notice] = I18n.t('customs.resources.create', resource_name)
       redirect_to root_path
     else
       render :new
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      flash[:notice] = I18n.t('customs.posts.update')
+      flash[:notice] = I18n.t('customs.resources.update', resource_name)
       redirect_to root_path
     else
       render :edit
@@ -31,18 +31,17 @@ class PostsController < ApplicationController
 
   def destroy
     if @post.destroy
-      flash[:notice] = I18n.t('customs.posts.destroy.success')
+      flash[:notice] = I18n.t('customs.resources.destroy.success', resource_name)
     else
-      flash[:alert] = I18n.t('customs.posts.destroy.failure')
+      flash[:alert] = I18n.t('customs.resources.destroy.failure', resource_name)
     end
     redirect_back(fallback_location: root_path)
   end
 
   def index
     @post = current_user.writing_posts.build
-    @posts = Post.paginate(page: params[:page]) # for now, future : feed list
-    # @feed_items = current_user.feed.paginate(page: params[:page])
     @comment = current_user.comments.build
+    @posts = current_user.feed.paginate(page: params[:page])
   end
 
   private
@@ -64,5 +63,9 @@ class PostsController < ApplicationController
 
     flash[:alert] = I18n.t('customs.failures.correct_user')
     redirect_back(fallback_location: root_path)
+  end
+
+  def resource_name
+    { resource: 'Post' }
   end
 end

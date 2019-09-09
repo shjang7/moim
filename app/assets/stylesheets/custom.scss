@@ -10,10 +10,18 @@
 }
 
 body {
+  padding-top: 5rem;
   background:
-    linear-gradient(0deg,$transparent-white-mid 0%, $light-warm-green 100%),
+    linear-gradient(0deg,$white-transparent 0%, $warm-green-lighten-3 100%),
     url('grass_bg.webp') center/cover repeat-x;
   height: 100vh;
+}
+
+.list-style-none {
+  padding: 0;
+  li {
+    list-style: none;
+  }
 }
 
 .home .btn {
@@ -32,7 +40,7 @@ textarea {
 
 .h-title {
   text-align: center;
-  color: $mid-gray;
+  color: $brown;
 }
 
 .float-left {
@@ -50,40 +58,37 @@ textarea {
 /* header */
 
 header {
-  a {
-    color: #fff;
-    &:hover {
-      color: #fff;
-      text-decoration: none;
-    }
-  }
   ul {
     margin: 0.8rem 0.8rem 0;
   }
 }
 
 #logo {
-  float: left;
-  margin-right: 0.3rem;
   font-size: 1.7rem;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 0.25rem;
   font-weight: bold;
+}
+
+.dropdown-menu li {
+  padding: 0.5rem;
+}
+
+.friend-request-notification {
+  font-size: 0.8rem;
 }
 
 /* footer */
 footer {
   padding-top: 0.3rem;
-  border-top: $border-gray;
-  color: $dark-gray;
+  color: $brown-darken-3;
   small {
     float: left;
   }
   a {
-    color: $mid-dark-gray;
+    color: $brown-darken-1;
     &:hover {
-      color: $high-dark-gray;
+      color: $brown-darken-4;
     }
   }
   ul {
@@ -107,8 +112,8 @@ footer {
 }
 
 #error_explanation {
-  color: $dark-orange;
+  color: $warm-pink;
   ul {
-    color: $dark-orange;
+    color: $warm-pink;
   }
 }

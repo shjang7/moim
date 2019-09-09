@@ -44,9 +44,13 @@ en:
       edit_user_info: "Edit info"
       login: "Log in"
       feedback: "Feedback"
-      users_index: "Find Friends"
+      pending_friends: "Pending Friends"
+      friend_requests: "Respond to your friend request"
+      find_friends: "Find Friends"
+      current_friends: "%{name} friends"
+    links:
+      pending_friends: "View sent requests"
     navbars:
-      profile: "Profile"
       home: "Home"
       find_friends: "Find Friends"
       logout: "Log out"
@@ -55,6 +59,10 @@ en:
       login: "Log in"
       facebook_login: "Log in with facebook"
       request_friend: "Request friend"
+      accept_friend: "Accept friend"
+      pending_friend: "Request pending"
+      cancel_request: "Cancel request"
+      cancel_friend: "Cancel friend"
       edit_user_info: "Edit info"
       submit: "Submit"
       delete: "Delete"
@@ -64,19 +72,21 @@ en:
       feedback: "Move to Feedback?"
       email: "Send email?"
       delete: "Are you sure to delete this item?"
+      friendship: "Do you want to send a friend request?"
+      unfriend: "Do you want to close friendship?"
+    resources:
+      create: "%{resource} created!"
+      update: "%{resource} updated"
+      destroy:
+        success: "%{resource} deleted"
+        failure: "%{resource} cannot be deleted, send us feedback"
     posts:
       placeholder: "What's on your mind?"
-      create: "Post created!"
-      update: "Post updated"
-      destroy:
-        success: "Post deleted"
-        failure: "Post cannot be deleted, send us feedback"
     comments:
       placeholder: "Write a comment..."
-      create: "Comment created!"
-      destroy:
-        success: "Comment deleted"
-        failure: "Comment cannot be deleted, send us feedback"
+    friendships:
+      create: "Friendship requested!"
+      update: "Friendship accepted!"
     users:
       show:
         failure: "Access to wrong user"

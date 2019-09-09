@@ -2,60 +2,57 @@
 
 This is part of the Final Project in The Odin Project’s Ruby on Rails Curriculum. <br />
 Find it at [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project).
-Moim is a Korean word meaning "gathering".
+"Moim" is a Korean word meaning "gathering".
+
+## Function description
+
+- Home
+  * not login user: access signup / login / facebook login (future task)
+    + sign up: with full name(more than 2 words) / email / password
+    + login: with email / password
+  * login user
+    + write posts
+    + see the posts which included in user or friends
+      - like post
+      - write comments
+- Profile
+  * user info: profile picture / name
+  * friend info: friend count / 9th friend pic / all friend link('More') / 'Find Friend' link
+  * the posts which was written by the profile's user
+  * user self
+    + edit user info: name / email / password / delete account
+    + write / edit / delete post
+  * others visiting one's page
+    + able to request or accept friendship or seeing pending status
+    + 'More': show all friends
+- Find Friends
+  * (n): received friendship request count
+  * 'view sent request': pending friends, friendship requested, but wasn't accepted yet
+  * 'Respond to your friend request': friend requests, waiting acceptances for friendship
+  * 'Find Friends'
+    + for unknowns, able to request friendship
+- Log out : user log out
+- Feedback : user sends feedback to producer's email
+- Additional description
+  * profile picture
+    + if user log in with facebook, user can see facebook picture
+    + if user log in without facebook, user doesn't have picture
+      (except user email having gravatar account)
+
+## Technology
+
+- Bootstrap 4.0
+- SCSS
+- Ruby 2.6.3
+- Rails 5.2.3
 
 ## deployment
 
 https://rails-moim-suh.herokuapp.com
 
-## Function description
-
-- Home
-  * not login user : access signup / login
-  * login user
-    + writes post
-    + sees the posts which included in user or friends
-      (future task, for now, seeing all)
-- Profile
-  * user self
-    + see user info : profile picture / name
-    + edit user info : written in additional description
-    + writes post
-    + sees the posts which was written by user
-  * user visiting one's page
-    + sees one's user info : profile picture / name
-    + sees the posts which was written by one's
-- Find Friends : future task
-- Log out : user log out
-- Additional description
-  * Sign up
-    + with full name(more than 2 words) / email / password
-    + if user doesn't have gravatar
-  * Log in
-    + with email / password
-    + with facebook (future task)
-  * profile picture
-    + if user log in with facebook, user can see facebook picture
-    + if user log in without facebook, user doesn't have picture
-      (except user email having gravatar account)
-  * Edit info : included profile
-    + with name / email / password
-  * Delete account : remove account with writing posts
-  * Writing post : included profile / home
-    + with content for no limited words
-  * Seeing post : included profile / home
-    + with profile pic / name / created date / content
-    + post author can delete post
-  * Feedback : user can send us feedback through email
-
-## Technology
-
-- Ruby 2.6.3
-- Rails 5.2.3
-
 ## Getting started
 
-To get started with the app, clone the repo and then install the needed gems:
+To get started with the app, clone the repository and then install the needed gems:
 
 ```
 $ bundle install --without production

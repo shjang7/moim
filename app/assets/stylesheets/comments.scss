@@ -4,9 +4,6 @@
 @import "framework/colors";
 
 .write-comment {
-  textarea{
-    padding: 0.2rem;
-  }
   .profile-pic {
     width: 3rem;
     height: 3rem;
@@ -19,9 +16,11 @@
   list-style: none;
   padding: 0;
   > li {
-    padding: 0.2rem;
     min-height: 5rem;
-    border-top: $border-gray;
+    padding: 0.3rem;
+    &:not(:first-child) {
+      @include border-top;
+    }
   }
   .profile-pic {
     float: left;

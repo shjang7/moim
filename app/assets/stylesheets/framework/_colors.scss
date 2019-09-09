@@ -1,65 +1,100 @@
-$light-gray: #ccc;
-$mid-light-gray: #aaa;
-$mid-gray: #777;
-$mid-dark-gray: #555;
-$dark-gray: #222;
-$high-dark-gray: #111;
-$border-gray: 1px solid #eaeaea;
-$double-border-gray: 8px double #eaeaea;
-@mixin border-bottom-gray {
-  border-bottom: $border-gray;
+$brown-lighten-5: #efebe9;
+$brown-lighten-4: #d7ccc8;
+$brown-lighten-3: #bcaaa4;
+$brown-lighten-2: #a1887f;
+$brown-lighten-1: #8d6e63;
+$brown: #795548;
+$brown-darken-1: #6d4c41;
+$brown-darken-2: #5d4037;
+$brown-darken-3: #4e342e;
+$brown-darken-4: #3e2723;
+
+$warm-green-lighten-3: #c2fe9b;
+$warm-green-lighten-2: #a9f874;
+$warm-green-lighten-1: #8cef4d;
+$warm-green: #46bd31;
+$warm-green-darken-1: #1e9a17;
+$warm-green-darken-2: #128a0e;
+$warm-green-darken-3: #0b8000;
+
+$warm-pink-lighten-1: #f8aca1;
+$warm-pink: #f36a5f;
+
+$white-transparent: #ffffff96;
+
+@mixin border-top-double {
+  border-top: 4px double $brown-lighten-3;
 }
 
-$light-grass: #9efe649a;
-$mid-grass: #92f24f9a;
+@mixin border-top {
+  border-top: 1px solid $brown-lighten-3;
+}
 
-$light-warm-green: #cff2ae;
-$green: #06ad45;
-$mid-dark-green: #099000;
-$dark-green: #0b8000;
+@mixin border-bottom {
+  border-bottom: 1px solid $brown-lighten-3;
+}
 
-$light-pink: #f8aca1;
-$mid-pink: #f36a5f;
-
-$mid-orange: #f27b4e;
-$dark-orange: #ef4321;
-
-$transparent-white-mid: #ffffff8d;
-
-a {
-  color: $mid-dark-green;
-  &:hover {
-    color: $dark-green;
+.dropdown-menu {
+  background-color: $warm-green-lighten-3;
+  li {
+    @include border-bottom;
   }
 }
 
-.btn-like {
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar-light .navbar-nav {
+  .show > .nav-link,
+  .active > .nav-link,
+  .nav-link.show,
+  .nav-link.active {
+    color: #fff;
+    font-weight: bold;
+  }
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus,
+.nav-item {
+  color: #fff;
+}
+
+a {
+  color: $warm-green-darken-2;
+  &:hover {
+    color: $warm-green-darken-3;
+  }
+}
+
+.btn-selectable {
   border: 1px solid #fff;
-  background-color: $mid-dark-green;
+  background-color: $warm-green-darken-2;
   &,
   &:hover {
     color: #fff;
   }
 }
 
-.btn-unlike {
-  border: 1px solid $mid-dark-green;
+.btn-unselectable {
+  border: 1px solid $warm-green-darken-2;
   &,
   &:hover {
-    color: $mid-dark-green;
+    color: $warm-green-darken-2;
   }
 }
 
 .jumbotron {
-  background-color: $light-warm-green !important;
+  background-color: $warm-green-lighten-3 !important;
 }
 
 .alert-notice {
-  background-color: $light-grass;
-  border-color: $mid-grass;
+  background-color: $warm-green-lighten-2;
+  border-color: $warm-green-lighten-1;
 }
 
 .alert-alert {
-  background-color: $light-pink !important;
-  border-color: $mid-pink !important;
+  background-color: $warm-pink-lighten-1 !important;
+  border-color: $warm-pink !important;
 }

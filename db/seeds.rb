@@ -3,7 +3,7 @@
 unless User.find_by(first_name: 'Example', last_name: 'User')
   User.create!(
     name: 'Example User',
-    email: 'example@example.com',
+    email: 'example-0@example.com',
     password: 'foobar',
     profile_pic: 'cat-0.webp'
   )
@@ -12,20 +12,23 @@ end
 avatars = ['cat-1.webp', 'cat-2.webp', 'cat-3.webp',
            'cat-4.webp', 'cat-5.webp']
 
-5.times do |i|
+15.times do |i|
   name = Faker::FunnyName.two_word_name
+  index = i + 1
+  next if User.find_by(email: "example-#{index}@example.com")
+
   User.create!(
     name: name,
-    email: Faker::Internet.email(name: name),
-    password: Faker::Alphanumeric.alphanumeric(number: 6),
+    email: "example-#{index}@example.com",
+    password: 'foobar',
     profile_pic: avatars[i]
   )
 end
 
 # Post create
-users = User.order(:created_at)[-5..-1]
-users.each_with_index do |user, i|
-  i.times do
+users = User.order(:created_at)[-16..-1]
+users[-16..-10].each_with_index do |user, i|
+  (i + 1).times do
     user.writing_posts.create!(
       content: Faker::Lorem.paragraph(sentence_count: 10),
       created_at: Faker::Date.between(from: 50.days.ago, to: Date.today)
@@ -34,21 +37,35 @@ users.each_with_index do |user, i|
 end
 
 # Post Like
-# users = User.order(:created_at)[-5..-1]
-# user = users.first
 post = Post.first
-likers = users[-3..-1]
-likers.each { |liker| post.liker_add liker }
+users.each { |liker| post.liker_add liker }
 
 # Comment create
 posts = Post.all
 posts.each do |post|
-  users[0..-4].each do |user|
+  users[-9..-7].each do |user|
     Comment.create!(
-      content: Faker::Lorem.paragraph(sentence_count: 7),
+      content: Faker::Lorem.paragraph(sentence_count: 8),
       post_id: post.id,
       user_id: user.id,
       created_at: Faker::Date.between(from: 50.days.ago, to: Date.today)
     )
   end
+end
+
+# Friend request
+last_index = users.size - 1
+main_user = users[last_index - 15]
+request_user = users[last_index - 14]
+pending_user = users[last_index - 13]
+Friendship.create!(user_id: main_user.id,
+                   friend_id: pending_user.id,
+                   confirmed: false)
+Friendship.create!(user_id: request_user.id,
+                   friend_id: main_user.id,
+                   confirmed: false)
+users[(last_index - 12)..(last_index - 3)].each do |friend|
+  Friendship.create!(user_id: main_user.id,
+                     friend_id: friend.id,
+                     confirmed: true)
 end

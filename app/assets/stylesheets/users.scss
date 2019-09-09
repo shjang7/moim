@@ -4,54 +4,78 @@
 @import "framework/colors";
 
 .users {
-  list-style: none;
+  [id*=user-] {
+    margin-top: -4rem;
+    padding-top: 4rem;
+  }
+  .h-title {
+    @include border-bottom; 
+  }
   li {
-    padding: 1rem 0;
-    border-top: $border-gray;
+    .after-scroll {
+      @include border-top;
+    }
+  }
+  .disabled {
+    float: left;
+  }
+  .edit_friendship {
+    margin-left: 1rem;
+    float: left;
+  }
+  .user .after-scroll {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    .user-name {
+      margin-left: 1rem;
+    }
+    .friend-count {
+      margin-left: 1rem;
+    }
   }
 }
-
-.friend-candidate {
-  .friendship-request {
-    padding: 0.3rem;
+@media (min-width: 576px) { /* small */
+  .users .user .after-scroll {
+    flex-flow: row wrap;
+    align-items: center;
+    .user-name {
+      margin-left: 1rem;
+      display: block;
+    }
+    .friend-count {
+      margin-left: 1rem;
+    }
+    .selections {
+      margin-left: auto;
+    }
   }
 }
 
 .profile-info {
-  .profile-pic {
-    width: 80px;
-    height: 80px;
-    margin: 0.2rem;
-    display: block;
-  }
   .btn {
-    height: 100%;
-    margin-bottom: 2rem;
+    min-width: 8rem;
+  }
+  .user-name {
+    margin: 1rem;
+    float: left;
+  }
+  .friend-count {
+    display: none;
+  }
+  .selections {
+    margin: 1rem;
   }
 }
-
 @media (min-width: 576px) { /* small */
-  .friend-candidate {
-    .user-info{
-      width: 50%;
-      & > * {
-        width: 100%;
-      }
-    }
-    .friendship-request {
-      width: 10rem;
-    }
-  }
-}
-
-@media (min-width: 768px) { /* midium */
   .profile-info {
-    .profile-pic {
-      float: left;
+    .user-info {
+      display: flex;
+      justify-content: flex-end;
     }
-    .btn {
-      width: 80%;
-      margin-left: 10%;
+    .selections {
+      display: flex;
+      justify-content: flex-end;
     }
   }
 }

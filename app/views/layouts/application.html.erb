@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= full_title(yield(:title)) %></title>
     <%= render "layouts/rails_default" %>
+    <title><%= full_title(yield(:title)) %></title>
     <%= render "layouts/shim" %>
   </head>
-
-  <body>
+  <body class="container">
     <%= render "layouts/header" %>
-    <div class="container">
-      <% flash.each do |message_type, message| %>
-        <%= content_tag(:div, message, class: "alert alert-#{message_type} mt-3") %>
-      <% end %>
-      <div class="main my-4"><%= yield %></div>
-      <%= render "layouts/footer" %>
-      <%= debug(params) if Rails.env.development? %>
+    <div class="main">
+      <%= render 'layouts/flash' %>
+      <%= yield %>
     </div>
+    <%= render "layouts/footer" %>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>
