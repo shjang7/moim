@@ -13,17 +13,17 @@ module UsersHelper
   end
 
   # Returns the mutual friends information for the given user.
-  def mutual_friends_info(user, class_type = {})
-    case current_user.mutual_friends_with(user).count
+  def mutual_friends_info(user_one, user_two, class_type = {})
+    case user_one.mutual_friends_with(user_two).count
     when 0
       nil
     when 1
-      content_tag(:div, "#{current_user.mutual_friends_with(user).first.name} is a mutual friend",
+      content_tag(:div, "#{user_one.mutual_friends_with(user_two).first.name} is a mutual friend",
                   class_type)
     else
       content_tag(:div,
-                  "#{current_user.mutual_friends_with(user).first.name} and
-                  #{current_user.mutual_friends_with(user).count - 1} other mutual friends",
+                  "#{user_one.mutual_friends_with(user_two).first.name} and
+                  #{user_one.mutual_friends_with(user_two).count - 1} other mutual friends",
                   class_type)
     end
   end

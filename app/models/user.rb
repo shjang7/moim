@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :post_like_brokers, dependent: :destroy
   has_many :liked_posts, through: :post_like_brokers, source: :post
   has_many :friendships, dependent: :destroy
-  has_many :mm_friendships, lambda { |user|
+  has_many :any_friendships, lambda { |user|
     unscope(:where).where('user_id = :id OR friend_id = :id', id: user.id)
   }, class_name: :Friendship, dependent: :destroy
   # Include default devise modules. Others available are:
@@ -24,19 +24,19 @@ class User < ApplicationRecord
 
   def pending_friends
     User
-      .where(id: mm_friendships.where(confirmed: false).select { |f| f.user_id == id }.pluck(:friend_id))
+      .where(id: any_friendships.where(confirmed: false).select { |f| f.user_id == id }.pluck(:friend_id))
       .order_created
   end
 
   def friend_requests
     User
-      .where(id: mm_friendships.where(confirmed: false).select { |f| f.friend_id == id }.pluck(:user_id))
+      .where(id: any_friendships.where(confirmed: false).select { |f| f.friend_id == id }.pluck(:user_id))
       .order_created
   end
 
   def friends
     User
-      .where(id: mm_friendships.where(confirmed: true).map { |f| f.the_other_person(self) })
+      .where(id: any_friendships.where(confirmed: true).map { |f| f.the_other_person(self) })
       .order_created
   end
 
@@ -57,14 +57,13 @@ class User < ApplicationRecord
     Post
       .where(author_id: id)
       .or(Post
-            .where(author_id: mm_friendships.where(confirmed: true).map do |f|
+            .where(author_id: any_friendships.where(confirmed: true).map do |f|
               f.the_other_person(self)
             end))
-    # .order_created
   end
 
   def confirm_friend(friend)
-    friendship = mm_friendships.where(confirmed: false).find { |friendship| friendship.friend == friend }
+    friendship = any_friendships.where(confirmed: false).find { |friendship| friendship.friend == friend }
     friendship.confirmed = true
     friendship
   end
@@ -73,10 +72,8 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
-  # private
-
   def unknown_people
-    User.where.not(id: mm_friendships.map { |f| f.the_other_person(self) })
+    User.where.not(id: any_friendships.map { |f| f.the_other_person(self) })
         .where.not(id: id)
   end
 end

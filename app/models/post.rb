@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   has_many   :likers, through: :post_like_brokers, source: :user
 
   default_scope -> { order(created_at: :desc) }
-  
+
   validates   :content,   presence: true
   validates   :author_id, presence: true
 

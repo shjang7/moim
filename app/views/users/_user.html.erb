@@ -5,7 +5,7 @@
       <%= link_to user.name.full, user_path(user), class: "user-name" %>
       <%= content_tag(:div, "Friends: #{user.friends.count}",
         class: "friend-count not_in_profile") %>
-      <%= mutual_friends_info(user, { class: 'mutual-friend not_in_profile' } )  %>
+      <%= mutual_friends_info(current_user, user, { class: 'mutual-friend not_in_profile' } )  %>
     </div>
     <div class="selections h-100">
     <% if current_user? user %>
