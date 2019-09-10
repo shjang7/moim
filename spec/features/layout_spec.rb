@@ -79,7 +79,7 @@ RSpec.feature 'Layouts', type: :feature do
       expect(page.body).to have_link('Find Friends', href: users_path)
     end
     within(:css, '.friends-info') do
-      expect(page.body).to have_link("Friends: #{friend_count}", href: users_path(type: 'current_friends', user_id: user.id))
+      expect(page.body).to have_link("Friends: #{friend_count}", href: users_path_for_current_friends_with_user_id(user))
       click_link "Friends: #{friend_count}"
     end
     # user's all friends

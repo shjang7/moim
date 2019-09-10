@@ -41,7 +41,7 @@ RSpec.feature 'FriendsRequests', type: :feature do
     sign_in @roy
     visit root_path
     within(:css, '.dropdown-menu') do
-      expect(page.body).to have_link(@jen.name, href: users_path(anchor: "user-#{@jen.id}"))
+      expect(page.body).to have_link(@jen.name, href: users_path_with_user_id_and_page(@jen, 1))
       click_link "#{@jen.name} sent you a friend request that you haven't responded to yet"
     end
     expect(page.body).to have_css('.friend_requests', text: @jen.name)
@@ -59,7 +59,7 @@ RSpec.feature 'FriendsRequests', type: :feature do
     expect(page.body).to have_css('.alert-notice', text: I18n.t('customs.friendships.update'))
     expect(page.body).to_not have_css('.friend_requests', text: @jen.name)
     visit user_path(@roy)
-    expect(page.body).to have_link("Friends: #{after_friend_count}", href: users_path(type: 'current_friends', user_id: @roy.id))
+    expect(page.body).to have_link("Friends: #{after_friend_count}", href: users_path_for_current_friends_with_user_id(@roy))
     click_link "Friends: #{after_friend_count}"
     within(:css, '.current_friends') do
       expect(page.body).to have_link(@jen.name, href: user_path(@jen))
@@ -89,6 +89,12 @@ RSpec.feature 'FriendsRequests', type: :feature do
     expect do
       click_button I18n.t('customs.buttons.cancel_request')
     end.to change(Friendship, :count).by(-1)
+    expect(page).to have_current_path root_path
+    expect(page.body).to have_css(
+      '.alert-notice', text: I18n.t('customs.resources.destroy.success', resource: 'Friendship')
+    )
+    # request again
+    visit user_path(@roy)
     expect do
       click_button I18n.t('customs.buttons.request_friend')
     end.to change(Friendship, :count).by(1)

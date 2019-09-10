@@ -97,8 +97,7 @@ RSpec.describe User, type: :model do
     let(:include_objects?) do
       lambda do |group, objects, status|
         objects.each do |object|
-          return false if status == true && !(group.include? object)
-          return false if status == false && (group.include? object)
+          return false if status ^ (group.include? object)
         end
         true
       end
@@ -106,8 +105,7 @@ RSpec.describe User, type: :model do
     let(:include_authors?) do
       lambda do |posts, authors, status|
         posts.each do |post|
-          return false if status == true && !(authors.any? { |author| post.author.id == author.id })
-          return false if status == false && (authors.any? { |author| post.author.id == author.id })
+          return false if status ^ (authors.any? { |author| post.author.id == author.id })
         end
         true
       end

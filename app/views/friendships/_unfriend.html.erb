@@ -1,5 +1,6 @@
 <%= form_for(current_user.friendships.find_by(friend_id: friend.id) ||
   friend.friendships.find_by(friend_id: current_user.id),
   html: { method: :delete } ) do |f| %>
+  <%= hidden_field_tag :type, type %>
   <%= f.submit I18n.t("customs.buttons.#{type}"), class: "btn btn-unselectable" %>
 <% end %>

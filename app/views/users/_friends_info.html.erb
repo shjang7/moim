@@ -1,6 +1,6 @@
 <section class="friends-info p-3">
   <h6 class="h-title d-flex flex-column flex-sm-row justify-content-between">
-    <%= link_to "Friends: #{@user.friends.count}", users_path(type: 'current_friends', user_id: @user.id), class: "py-2 m-1" %>
+    <%= link_to "Friends: #{@user.friends.count}", users_path_for_current_friends_with_user_id(@user), class: "py-2 m-1" %>
     <%= link_to I18n.t('customs.navbars.find_friends'), users_path, class: "py-2 m-1" if current_user? @user %>
   </h6>
   <div class="h-auto d-inline-block friends">

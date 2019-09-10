@@ -11,4 +11,20 @@ module UsersHelper
                   end
     image_tag(profile_url, alt: user.name, class: 'profile-pic')
   end
+
+  # Returns the mutual friends information for the given user.
+  def mutual_friends_info(user, class_type = {})
+    case current_user.mutual_friends_with(user).count
+    when 0
+      nil
+    when 1
+      content_tag(:div, "#{current_user.mutual_friends_with(user).first.name} is a mutual friend",
+                  class_type)
+    else
+      content_tag(:div,
+                  "#{current_user.mutual_friends_with(user).first.name} and
+                  #{current_user.mutual_friends_with(user).count - 1} other mutual friends",
+                  class_type)
+    end
+  end
 end

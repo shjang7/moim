@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  scope :order_created, -> { order(created_at: :asc) }
+  scope :order_created, -> { order(created_at: :desc) }
   has_many :writing_posts, class_name: 'Post',
                            foreign_key: 'author_id',
                            dependent: :destroy
@@ -23,18 +23,26 @@ class User < ApplicationRecord
   validates :last_name, presence: true, length: { maximum: 30 }
 
   def pending_friends
-    User.where(id: mm_friendships.where(confirmed: false).select { |f| f.user_id == id }.pluck(:friend_id))
+    User
+      .where(id: mm_friendships.where(confirmed: false).select { |f| f.user_id == id }.pluck(:friend_id))
+      .order_created
   end
 
   def friend_requests
-    User.where(id: mm_friendships.where(confirmed: false).select { |f| f.friend_id == id }.pluck(:user_id))
+    User
+      .where(id: mm_friendships.where(confirmed: false).select { |f| f.friend_id == id }.pluck(:user_id))
+      .order_created
   end
 
   def friends
-    User.where(id: mm_friendships.where(confirmed: true).map { |f| f.the_other_person(self) })
+    User
+      .where(id: mm_friendships.where(confirmed: true).map { |f| f.the_other_person(self) })
+      .order_created
   end
 
   def mutual_friends_with(one)
+    return User.none if self == one
+
     friends.where(id: one.friends.pluck(:id))
   end
 
@@ -52,6 +60,7 @@ class User < ApplicationRecord
             .where(author_id: mm_friendships.where(confirmed: true).map do |f|
               f.the_other_person(self)
             end))
+    # .order_created
   end
 
   def confirm_friend(friend)
