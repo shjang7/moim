@@ -53,9 +53,9 @@ end
 # Friend request
 last_index = users.size - 1
 main_user = users[last_index - 15]
-asking_users = users[(last_index - 14)..(last_index-12)]
-receiving_users = users[(last_index - 11)..(last_index-8)]
-friends = users[(last_index - 7)..(last_index-5)]
+asking_users = users[(last_index - 14)..(last_index - 12)]
+receiving_users = users[(last_index - 11)..(last_index - 8)]
+friends = users[(last_index - 7)..(last_index - 5)]
 asking_users.each do |user|
   Friendship.create!(user_id: user.id,
                      friend_id: main_user.id,

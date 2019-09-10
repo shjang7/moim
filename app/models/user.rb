@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  scope :order_created, -> { order(created_at: :desc) }
+  default_scope -> { order(created_at: :desc) }
   has_many :writing_posts, class_name: 'Post',
                            foreign_key: 'author_id',
                            dependent: :destroy
@@ -25,19 +25,16 @@ class User < ApplicationRecord
   def pending_friends
     User
       .where(id: any_friendships.where(confirmed: false).select { |f| f.user_id == id }.pluck(:friend_id))
-      .order_created
   end
 
   def friend_requests
     User
       .where(id: any_friendships.where(confirmed: false).select { |f| f.friend_id == id }.pluck(:user_id))
-      .order_created
   end
 
   def friends
     User
       .where(id: any_friendships.where(confirmed: true).map { |f| f.the_other_person(self) })
-      .order_created
   end
 
   def mutual_friends_with(one)
