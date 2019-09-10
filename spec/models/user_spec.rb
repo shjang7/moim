@@ -119,6 +119,7 @@ RSpec.describe User, type: :model do
       create_friendship[jen, moris, true]
       create_friendship[jen, douglas, false]
       create_friendship[richmond, jen, false]
+      create_friendship[denholm, roy, true]
       jen.writing_posts.create!(content: content)
       post = roy.writing_posts.create!(content: content)
       douglas.writing_posts.create!(content: content)

@@ -9,12 +9,15 @@
     padding-top: 4rem;
   }
   .h-title {
-    @include border-bottom; 
+    @include border-bottom;
   }
   li {
     .after-scroll {
       @include border-top;
     }
+  }
+  .edit-info {
+    display: none;
   }
   .disabled {
     float: left;
@@ -60,7 +63,7 @@
     margin: 1rem;
     float: left;
   }
-  .friend-count {
+  .not_in_profile {
     display: none;
   }
   .selections {

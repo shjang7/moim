@@ -3,12 +3,12 @@
     <%= profile_img_for(user) %>
     <div class="user-info">
       <%= link_to user.name.full, user_path(user), class: "user-name" %>
-      <%= content_tag(:div, "Friends: #{user.friends.count}", class: "friend-count") %>
+      <%= content_tag(:div, "Friends: #{user.friends.count}", class: "friend-count not_in_profile") %>
     </div>
     <div class="selections h-100">
     <% if current_user? user %>
       <%= link_to I18n.t('customs.buttons.edit_user_info'),
-        edit_user_registration_path, class: "btn btn-md btn-success w-50" %>
+        edit_user_registration_path, class: "btn btn-md btn-success w-50 edit-info" %>
     <% else %>
         <%= render 'friendship_buttons', user: user %>
     <% end %>

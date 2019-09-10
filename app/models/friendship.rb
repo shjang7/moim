@@ -9,6 +9,10 @@ class Friendship < ApplicationRecord
   validate :no_pending_status, on: :create
   validate :no_friend_status, on: %i[create update]
 
+  def the_other_person(user)
+    user_id == user.id ? friend_id : user_id
+  end
+
   private
 
   def no_pending_status
