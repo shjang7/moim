@@ -22,9 +22,37 @@ avatars = ['cat-1.webp', 'cat-2.webp', 'cat-3.webp',
   )
 end
 
-# Post create
 users = User.order(:created_at)[-16..-1]
-users[-16..-10].each_with_index do |user, i|
+
+# Friend request
+last_index = users.size - 1
+main_user = users[last_index - 15]
+asking_users = users[(last_index - 14)..(last_index - 13)]
+receiving_users = users[(last_index - 12)..(last_index - 11)]
+friends = users[(last_index - 10)..(last_index - 6)]
+asking_users.each do |user|
+  Friendship.create!(user_id: user.id,
+                     friend_id: main_user.id,
+                     confirmed: false)
+end
+receiving_users.each do |user|
+  Friendship.create!(user_id: main_user.id,
+                     friend_id: user.id,
+                     confirmed: false)
+end
+friends.each_with_index do |user, i|
+  Friendship.create!(user_id: main_user.id,
+                     friend_id: user.id,
+                     confirmed: true)
+  next if i == last_index - i
+
+  Friendship.create!(user_id: users[last_index - i].id,
+                     friend_id: user.id,
+                     confirmed: true)
+end
+
+# Post create
+friends.each_with_index do |user, i|
   (i + 1).times do
     user.writing_posts.create!(
       content: Faker::Lorem.paragraph(sentence_count: 10),
@@ -40,7 +68,7 @@ users.each { |liker| post.liker_add liker }
 # Comment create
 posts = Post.all
 posts.each do |post|
-  users[-9..-7].each do |user|
+  friends.each do |user|
     Comment.create!(
       content: Faker::Lorem.paragraph(sentence_count: 8),
       post_id: post.id,
@@ -48,29 +76,4 @@ posts.each do |post|
       created_at: Faker::Date.between(from: 50.days.ago, to: Date.today)
     )
   end
-end
-
-# Friend request
-last_index = users.size - 1
-main_user = users[last_index - 15]
-asking_users = users[(last_index - 14)..(last_index - 12)]
-receiving_users = users[(last_index - 11)..(last_index - 8)]
-friends = users[(last_index - 7)..(last_index - 5)]
-asking_users.each do |user|
-  Friendship.create!(user_id: user.id,
-                     friend_id: main_user.id,
-                     confirmed: false)
-end
-receiving_users.each do |user|
-  Friendship.create!(user_id: main_user.id,
-                     friend_id: user.id,
-                     confirmed: false)
-end
-friends.each_with_index do |user, i|
-  Friendship.create!(user_id: main_user.id,
-                     friend_id: user.id,
-                     confirmed: true)
-  Friendship.create!(user_id: users[last_index - i - 1].id,
-                     friend_id: user.id,
-                     confirmed: true)
 end
