@@ -14,11 +14,11 @@ module ApplicationHelper
   def users_page_title(type, user)
     case type
     when :new_friends
-      provide(:title, I18n.t("customs.titles.find_friends"))
+      I18n.t('customs.titles.find_friends')
     when :pending_friends
-      provide(:title, I18n.t("customs.titles.#{type}"))
+      I18n.t("customs.titles.#{type}")
     else
-      provide(:title, I18n.t("customs.titles.#{type}", name: user.name.possessive))
+      I18n.t("customs.titles.#{type}", name: user.name.possessive)
     end
   end
 

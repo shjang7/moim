@@ -94,14 +94,22 @@ RSpec.feature 'Layouts', type: :feature do
     sign_in user
     visit users_path
     expect(page.body).to have_title(title.find_friends)
-    within(:css, '#friend_requests ol') do
+    within(:css, '#friend_requests') do
       expect(page.body).to have_css('.user-name', text: request_friend.name)
     end
-    within(:css, '#find_friends ol') do
-      expect(page.body).to_not have_css('.user-name', text: no_related_user.name)
+    within(:css, '#recommended_friends') do
       expect(page.body).to have_css('.user-name', text: recommended_user.name)
     end
-    expect(page.body).to have_link(I18n.t('customs.links.pending_friends'), href: users_path(type: 'pending_friends'))
+    within(:css, '#new_friends') do
+      expect(page.body).to have_css('.user-name', text: no_related_user.name)
+    end
+    expect(page.body).to_not have_css('#recommended_friends .user-name',
+                                      text: no_related_user.name)
+    expect(page.body).to_not have_css('#new_friends .user-name',
+                                      text: recommended_user.name)
+    # pending friends
+    expect(page.body).to have_link(I18n.t('customs.links.pending_friends'),
+                                   href: users_path(type: 'pending_friends'))
     click_link I18n.t('customs.links.pending_friends')
     expect(page.body).to have_title(title.pending_friends)
     within(:css, '#pending_friends ol') do
