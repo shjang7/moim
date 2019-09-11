@@ -15,12 +15,31 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i[facebook]
 
   has_person_name
 
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence: true, length: { maximum: 30 }
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.first_name = auth.info.name.split(" ")[0]
+      user.last_name = auth.info.name.split(" ")[1]
+      user.profile_pic = auth.info.image
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
+        user.email = data['email'] if user.email.blank?
+      end
+    end
+  end
 
   def pending_friends
     User
@@ -50,6 +69,13 @@ class User < ApplicationRecord
     User
       .where(id: unknown_people.select do |person|
                    mutual_friends_with(person).any?
+                 end.map(&:id))
+  end
+
+  def new_friends
+    User
+      .where(id: unknown_people.select do |person|
+                   mutual_friends_with(person).none?
                  end.map(&:id))
   end
 

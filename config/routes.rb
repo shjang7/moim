@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get 'feedback' => 'static_pages#feedback'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   },
                      skip: [:password]
   resources :users, only: %i[show index]

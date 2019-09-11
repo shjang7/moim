@@ -56,6 +56,7 @@ group :development, :test do
   gem 'rails-controller-testing', '~> 1.0.2'
   gem 'rspec-rails', '~> 3.8'
   gem 'simplecov', '~> 0.15.1', require: false
+  gem 'dotenv-rails'
 end
 
 group :development do

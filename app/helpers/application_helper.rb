@@ -11,6 +11,17 @@ module ApplicationHelper
     end
   end
 
+  def users_page_title(type, user)
+    case type
+    when :new_friends
+      provide(:title, I18n.t("customs.titles.find_friends"))
+    when :pending_friends
+      provide(:title, I18n.t("customs.titles.#{type}"))
+    else
+      provide(:title, I18n.t("customs.titles.#{type}", name: user.name.possessive))
+    end
+  end
+
   # Returns the full path on a per-page basis
   def users_path_with_user_id_and_page(user, index)
     users_path(anchor: "user-#{user.id}", page: index / 2 + 1)
