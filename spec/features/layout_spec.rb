@@ -9,7 +9,8 @@ RSpec.feature 'Layouts', type: :feature do
   let(:pending_friend) { create(:user) }
   let(:request_friend) { create(:user) }
   let(:friend_count) { 2 }
-  let(:new_user) { create(:user) }
+  let(:recommended_user) { create(:user) }
+  let(:no_related_user) { create(:user) }
   let(:title) do
     double(base: I18n.t('customs.app.name'),
            login: full_title(I18n.t('customs.titles.login')),
@@ -26,7 +27,9 @@ RSpec.feature 'Layouts', type: :feature do
     create(:friendship, user_id: second_friend.id, friend_id: user.id, confirmed: true)
     create(:friendship, user_id: user.id, friend_id: pending_friend.id)
     create(:friendship, user_id: request_friend.id, friend_id: user.id)
-    new_user
+    create(:friendship, user_id: recommended_user.id, friend_id: second_friend.id, confirmed: true)
+    recommended_user
+    no_related_user
   end
 
   scenario 'user in root page before login' do
@@ -76,7 +79,7 @@ RSpec.feature 'Layouts', type: :feature do
       expect(page.body).to have_link('Find Friends', href: users_path)
     end
     within(:css, '.friends-info') do
-      expect(page.body).to have_link("Friends: #{friend_count}", href: users_path(type: 'current_friends', user_id: user.id))
+      expect(page.body).to have_link("Friends: #{friend_count}", href: users_path_for_current_friends_with_user_id(user))
       click_link "Friends: #{friend_count}"
     end
     # user's all friends
@@ -95,7 +98,8 @@ RSpec.feature 'Layouts', type: :feature do
       expect(page.body).to have_css('.user-name', text: request_friend.name)
     end
     within(:css, '#find_friends ol') do
-      expect(page.body).to have_css('.user-name', text: new_user.name)
+      expect(page.body).to_not have_css('.user-name', text: no_related_user.name)
+      expect(page.body).to have_css('.user-name', text: recommended_user.name)
     end
     expect(page.body).to have_link(I18n.t('customs.links.pending_friends'), href: users_path(type: 'pending_friends'))
     click_link I18n.t('customs.links.pending_friends')

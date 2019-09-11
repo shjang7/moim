@@ -88,7 +88,15 @@ RSpec.describe User, type: :model do
     let(:douglas) { create(:user, name: 'Douglas Reynholm') }
     let(:richmond) { create(:user, name: 'Richmond Avenal') }
     let(:denholm) { create(:user, name: 'Denholm Reynholm') }
-    let(:jen_any_friendship_count) { [roy, moris, douglas, richmond].count }
+    let(:jen_any_friends) { [roy, moris, douglas, richmond] }
+    let(:jen_no_friends) { [denholm] }
+    let(:jen_any_friendship_count) { jen_any_friends.count }
+    let(:mutual_friends) do
+      [
+        double(friends: [roy, moris], mutual: jen),
+        double(friends: [jen, denholm], mutual: roy)
+      ]
+    end
     let(:create_friendship) do
       lambda do |user, friend, confirmed|
         user.friendships.create!(friend_id: friend.id, confirmed: confirmed)
@@ -97,8 +105,7 @@ RSpec.describe User, type: :model do
     let(:include_objects?) do
       lambda do |group, objects, status|
         objects.each do |object|
-          return false if status == true && !(group.include? object)
-          return false if status == false && (group.include? object)
+          return false if status ^ (group.include? object)
         end
         true
       end
@@ -106,8 +113,7 @@ RSpec.describe User, type: :model do
     let(:include_authors?) do
       lambda do |posts, authors, status|
         posts.each do |post|
-          return false if status == true && !(authors.any? { |author| post.author.id == author.id })
-          return false if status == false && (authors.any? { |author| post.author.id == author.id })
+          return false if status ^ (authors.any? { |author| post.author.id == author.id })
         end
         true
       end
@@ -119,6 +125,7 @@ RSpec.describe User, type: :model do
       create_friendship[jen, moris, true]
       create_friendship[jen, douglas, false]
       create_friendship[richmond, jen, false]
+      create_friendship[denholm, roy, true]
       jen.writing_posts.create!(content: content)
       post = roy.writing_posts.create!(content: content)
       douglas.writing_posts.create!(content: content)
@@ -129,13 +136,12 @@ RSpec.describe User, type: :model do
       jen.post_like_brokers.create!(post: post)
     end
 
-    it '#friends returns confirmed friends' do
-      expect(include_objects?[jen.friends, [roy, moris], true]).to eq true
-    end
-
-    it '#recommended_friends returns new friends' do
-      expect(include_objects?[jen.recommended_friends, [denholm], true]).to eq true
-      expect(include_objects?[jen.recommended_friends, [roy, douglas], false]).to eq true
+    it '#any_friendships returns confirmed or unconfirmed friends' do
+      expect(
+        jen.any_friendships.all? do |f|
+          (f.user_id == jen.id) ^ (f.friend_id == jen.id)
+        end
+      ).to eq true
     end
 
     it '#pending_friends returns sent friendship request friends' do
@@ -146,6 +152,26 @@ RSpec.describe User, type: :model do
     it '#friend_requests returns received friendship request friends' do
       expect(include_objects?[jen.friend_requests, [richmond], true]).to eq true
       expect(include_objects?[jen.friend_requests, [roy, douglas, denholm], false]).to eq true
+    end
+
+    it '#friends returns confirmed friends' do
+      expect(include_objects?[jen.friends, [roy, moris], true]).to eq true
+    end
+
+    it '#mutual_friends_with returns mutual friends list' do
+      mutual_friends.each do |m|
+        expect(m.friends[0].mutual_friends_with(m.friends[1])).to include m.mutual
+      end
+    end
+
+    it '#recommended_friends returns new friends' do
+      expect(include_objects?[jen.recommended_friends, [denholm], true]).to eq true
+      expect(include_objects?[jen.recommended_friends, [roy, douglas], false]).to eq true
+    end
+
+    it '#feed returns posts from user itself or friends' do
+      expect(include_authors?[jen.feed, [jen, roy, moris], true]).to eq true
+      expect(include_authors?[jen.feed, [douglas, richmond, denholm], false]).to eq true
     end
 
     it '#confirm_friend returns friendship with confirmed status' do
@@ -161,9 +187,14 @@ RSpec.describe User, type: :model do
       expect(jen.friend?(denholm)).to_not eq true
     end
 
-    it '#feed returns posts from user itself or friends' do
-      expect(include_authors?[jen.feed, [jen, roy, moris], true]).to eq true
-      expect(include_authors?[jen.feed, [douglas, richmond, denholm], false]).to eq true
+    it '#unknown_people returns not friend status people' do
+      expect(jen.unknown_people).to_not include jen
+      jen_any_friends.each do |known|
+        expect(jen.unknown_people).to_not include known
+      end
+      jen_no_friends.each do |unknown|
+        expect(jen.unknown_people).to include unknown
+      end
     end
 
     it 'should destroy post along with user' do

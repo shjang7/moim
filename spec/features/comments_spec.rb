@@ -16,6 +16,7 @@ RSpec.feature 'Comments', type: :feature do
     sign_in @jen
     visit root_path
     # create
+    expect(page.body).to have_css('.author', text: @roy.name)
     expect do
       within(:css, '#new_comment') do
         fill_in I18n.t('customs.comments.placeholder'), with: comment

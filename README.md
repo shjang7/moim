@@ -30,7 +30,7 @@ Find it at [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/f
   * 'view sent request': pending friends, friendship requested, but wasn't accepted yet
   * 'Respond to your friend request': friend requests, waiting acceptances for friendship
   * 'Find Friends'
-    + for unknowns, able to request friendship
+    + for someone who may know based on having mutual friends each other
 - Log out : user log out
 - Feedback : user sends feedback to producer's email
 - Additional description

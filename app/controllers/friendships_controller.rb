@@ -29,10 +29,12 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.find_by_id(params[:id])
     if @friendship.destroy
       flash[:notice] = I18n.t('customs.resources.destroy.success', resource_name)
+      redirect_to root_path if params[:type] == 'cancel_request'
+      redirect_back(fallback_location: root_path) unless params[:type] == 'cancel_request'
     else
       flash[:alert] = I18n.t('customs.resources.destroy.failure', resource_name)
+      redirect_back(fallback_location: root_path)
     end
-    redirect_back(fallback_location: root_path)
   end
 
   private

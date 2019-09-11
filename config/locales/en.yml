@@ -46,7 +46,7 @@ en:
       feedback: "Feedback"
       pending_friends: "Pending Friends"
       friend_requests: "Respond to your friend request"
-      find_friends: "Find Friends"
+      find_friends: "Recommended Friends"
       current_friends: "%{name} friends"
     links:
       pending_friends: "View sent requests"

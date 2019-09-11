@@ -3,48 +3,50 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "framework/colors";
 
+.selections .btn {
+  margin: 0.5rem;
+}
+
 .users {
   [id*=user-] {
     margin-top: -4rem;
     padding-top: 4rem;
   }
   .h-title {
-    @include border-bottom; 
+    @include border-bottom;
   }
   li {
     .after-scroll {
       @include border-top;
     }
   }
+  .edit-info {
+    display: none;
+  }
   .disabled {
     float: left;
   }
   .edit_friendship {
-    margin-left: 1rem;
     float: left;
   }
   .user .after-scroll {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    .user-name {
-      margin-left: 1rem;
-    }
-    .friend-count {
+    .user-name,
+    .friend-count,
+    .mutual-friend {
       margin-left: 1rem;
     }
   }
 }
+
 @media (min-width: 576px) { /* small */
   .users .user .after-scroll {
     flex-flow: row wrap;
     align-items: center;
     .user-name {
-      margin-left: 1rem;
       display: block;
-    }
-    .friend-count {
-      margin-left: 1rem;
     }
     .selections {
       margin-left: auto;
@@ -56,17 +58,18 @@
   .btn {
     min-width: 8rem;
   }
+  .user-info {
+    min-height: 6.5rem;
+  }
   .user-name {
     margin: 1rem;
     float: left;
   }
-  .friend-count {
+  .not_in_profile {
     display: none;
   }
-  .selections {
-    margin: 1rem;
-  }
 }
+
 @media (min-width: 576px) { /* small */
   .profile-info {
     .user-info {
@@ -75,6 +78,8 @@
     }
     .selections {
       display: flex;
+      flex-flow: row wrap;
+      width: 100%;
       justify-content: flex-end;
     }
   }

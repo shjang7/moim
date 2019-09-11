@@ -47,6 +47,8 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include Devise::Test::IntegrationHelpers, type: :feature
+  # config.include Devise::Test::IntegrationHelpers, type: :helper
+  # config.include Devise::Test::ControllerHelpers, type: :helper
   config.include FactoryBot::Syntax::Methods
   config.include Paperclip::Shoulda::Matchers
   config.include Rails.application.routes.url_helpers
