@@ -10,7 +10,7 @@ User.create!(
 avatars = ['cat-1.webp', 'cat-2.webp', 'cat-3.webp',
            'cat-4.webp', 'cat-5.webp']
 
-15.times do |i|
+25.times do |i|
   name = Faker::FunnyName.two_word_name
   index = i + 1
 
@@ -22,14 +22,15 @@ avatars = ['cat-1.webp', 'cat-2.webp', 'cat-3.webp',
   )
 end
 
-users = User.order(:created_at)[-16..-1]
+users = User.order(:created_at)[-26..-1]
 
 # Friend request
 last_index = users.size - 1
-main_user = users[last_index - 15]
-asking_users = users[(last_index - 14)..(last_index - 13)]
-receiving_users = users[(last_index - 12)..(last_index - 11)]
-friends = users[(last_index - 10)..(last_index - 6)]
+main_user = users[last_index - 25]
+asking_users = users[(last_index - 24)..(last_index - 23)]
+receiving_users = users[(last_index - 22)..(last_index - 21)]
+friends = users[(last_index - 20)..(last_index - 16)]
+unknown = users[(last_index - 15)..last_index]
 asking_users.each do |user|
   Friendship.create!(user_id: user.id,
                      friend_id: main_user.id,
@@ -44,11 +45,17 @@ friends.each_with_index do |user, i|
   Friendship.create!(user_id: main_user.id,
                      friend_id: user.id,
                      confirmed: true)
-  next if i == last_index - i
+  (1..(i % 2 + 1)).each do |j|
+    index = friends.size * j + i
+    Friendship.create!(user_id: unknown[index].id,
+                       friend_id: user.id,
+                       confirmed: true)
+    next if j.zero? || i + j >= friends.size
 
-  Friendship.create!(user_id: users[last_index - i].id,
-                     friend_id: user.id,
-                     confirmed: true)
+    Friendship.create!(user_id: unknown[index].id,
+                       friend_id: friends[i + j].id,
+                       confirmed: true)
+  end
 end
 
 # Post create
