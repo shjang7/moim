@@ -98,6 +98,8 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
+  private
+
   def unknown_people
     User.where.not(id: any_friendships.map { |f| f.the_other_person(self) })
         .where.not(id: id)

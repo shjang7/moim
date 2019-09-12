@@ -24,6 +24,14 @@ RSpec.describe Comment, type: :model do
     it 'is valid' do
       expect(comment).to be_valid
     end
+
+    it 'sorts descending order' do
+      comments[0...(comments.size - 1)].each_with_index do |_, i|
+        recent = comments[i].created_at
+        older = comments[i + 1].created_at
+        expect(recent - older).to be >= 0
+      end
+    end
   end
 
   context 'with invalid attributes' do
@@ -46,13 +54,17 @@ RSpec.describe Comment, type: :model do
       comment.content = ' ' * 6
       expect(comment).to_not be_valid
     end
+  end
 
-    it 'sorts descending order' do
-      comments[0...(comments.size - 1)].each_with_index do |_, i|
-        recent = comments[i].created_at
-        older = comments[i + 1].created_at
-        expect(recent - older).to be >= 0
-      end
+  context 'Associations relationships' do
+    it 'belongs to user' do
+      assc = described_class.reflect_on_association(:user)
+      expect(assc.macro).to eq :belongs_to
+    end
+
+    it 'belongs to post' do
+      assc = described_class.reflect_on_association(:post)
+      expect(assc.macro).to eq :belongs_to
     end
   end
 end

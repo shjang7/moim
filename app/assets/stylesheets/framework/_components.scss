@@ -1,6 +1,7 @@
 @import "framework/colors";
 
 .user_form {
+  color: $brown;
   & > * {
     @media (min-width: 576px) { /* small */
       text-align: center;

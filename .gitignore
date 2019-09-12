@@ -27,6 +27,3 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-
-# Ignore .env used for storing keys and access tokens
-.env

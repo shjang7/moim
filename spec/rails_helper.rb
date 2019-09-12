@@ -47,8 +47,6 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include Devise::Test::IntegrationHelpers, type: :feature
-  # config.include Devise::Test::IntegrationHelpers, type: :helper
-  # config.include Devise::Test::ControllerHelpers, type: :helper
   config.include FactoryBot::Syntax::Methods
   config.include Paperclip::Shoulda::Matchers
   config.include Rails.application.routes.url_helpers
@@ -71,3 +69,16 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(
+  provider: 'facebook',
+  uid: Faker::Number.number(digits: 6),
+  info: {
+    email: Faker::Internet.email,
+    password: Faker::Alphanumeric.alphanumeric(number: 6),
+    first_name: 'Jen',
+    last_name: 'Barber',
+    profile_pic: Faker::Avatar.image(slug: :email, size: '80x80')
+  }
+)

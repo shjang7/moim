@@ -6,7 +6,7 @@ RSpec.feature 'SignUp', type: :feature do
   let(:title) { full_title(I18n.t('customs.titles.signup')) }
   let(:valid_attributes) { attributes_for(:user) }
 
-  scenario 'user successfully signs up' do
+  scenario 'user signs up' do
     visit root_path
     expect(page).to have_link('Sign up', href: new_user_registration_path)
     click_link 'Sign up'

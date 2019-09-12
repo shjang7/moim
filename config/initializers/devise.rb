@@ -264,6 +264,7 @@ Devise.setup do |config|
                   scope: 'public_profile, email',
                   info_fields: 'email,first_name,last_name',
                   secure_image_url: true,
+                  image_size: 'large',
                   token_params: { parse: :json }
 
   # ==> Warden configuration

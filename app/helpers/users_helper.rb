@@ -7,7 +7,7 @@ module UsersHelper
                     gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
                     "https://secure.gravatar.com/avatar/#{gravatar_id}?s=80"
                   else
-                    user.profile_pic + '?type=large'
+                    user.profile_pic
                   end
     image_tag(profile_url, alt: user.name, class: 'profile-pic')
   end
