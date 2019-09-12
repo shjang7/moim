@@ -52,6 +52,9 @@ Find it at [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/f
 ## deployment
 
 https://rails-moim-suh.herokuapp.com
+default account:
+ - id: example-0@example.com
+ - password: foobar
 
 ## Getting started
 

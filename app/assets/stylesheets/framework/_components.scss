@@ -1,14 +1,27 @@
 @import "framework/colors";
 
 .user_form {
+  width: 50%;
+  min-width: 20rem;
+  padding: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $warm-green-lighten-3;
+  border: 1px solid $brown-lighten-3;
   color: $brown;
   & > * {
     @media (min-width: 576px) { /* small */
       text-align: center;
-      width: 50%;
-      margin-left: 25%;
+      margin-left: auto;
+      margin-right: auto;
     }
     padding: 0.3rem;
+  }
+  & + .links {
+    margin-bottom: 3rem;
+    > * {
+      margin: 0.3rem;
+    }
   }
 }
 
