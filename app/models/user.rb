@@ -12,8 +12,7 @@ class User < ApplicationRecord
   has_many :any_friendships, lambda { |user|
     unscope(:where).where('user_id = :id OR friend_id = :id', id: user.id)
   }, class_name: :Friendship, dependent: :destroy
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
@@ -43,19 +42,21 @@ class User < ApplicationRecord
 
   def pending_friends
     User
-      .where(id: any_friendships.where(confirmed: false).select { |f| f.user_id == id }.pluck(:friend_id))
+      .where(id: any_friendships.where(confirmed: false).where(user_id: id).pluck(:friend_id))
       .order_created
   end
 
   def friend_requests
     User
-      .where(id: any_friendships.where(confirmed: false).select { |f| f.friend_id == id }.pluck(:user_id))
+      .where(id: any_friendships.where(confirmed: false).where(friend_id: id).pluck(:user_id))
       .order_created
   end
 
   def friends
     User
-      .where(id: any_friendships.where(confirmed: true).map { |f| f.the_other_person(self) })
+      .where(id: any_friendships.where(confirmed: true).map do |friendship|
+                   friendship.the_other_person(self)
+                 end)
       .order_created
   end
 
@@ -89,7 +90,7 @@ class User < ApplicationRecord
   end
 
   def confirm_friend(friend)
-    friendship = any_friendships.where(confirmed: false).find { |friendship| friendship.friend == friend }
+    friendship = any_friendships.where(confirmed: false).find_by(friend: friend)
     friendship.confirmed = true
     friendship
   end
@@ -101,7 +102,9 @@ class User < ApplicationRecord
   private
 
   def unknown_people
-    User.where.not(id: any_friendships.map { |f| f.the_other_person(self) })
+    User.where.not(id: any_friendships.map do |friendship|
+                         friendship.the_other_person(self)
+                       end)
         .where.not(id: id)
   end
 end
