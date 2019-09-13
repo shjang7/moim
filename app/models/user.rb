@@ -12,31 +12,51 @@ class User < ApplicationRecord
   has_many :any_friendships, lambda { |user|
     unscope(:where).where('user_id = :id OR friend_id = :id', id: user.id)
   }, class_name: :Friendship, dependent: :destroy
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i[facebook]
 
   has_person_name
 
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence: true, length: { maximum: 30 }
 
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+      user.profile_pic = auth.info.image
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if (data = session['devise.facebook_data']) && session['devise.facebook_data']['extra']['raw_info']
+        user.email = data['email'] if user.email.blank?
+      end
+    end
+  end
+
   def pending_friends
     User
-      .where(id: any_friendships.where(confirmed: false).select { |f| f.user_id == id }.pluck(:friend_id))
+      .where(id: any_friendships.where(confirmed: false).where(user_id: id).pluck(:friend_id))
       .order_created
   end
 
   def friend_requests
     User
-      .where(id: any_friendships.where(confirmed: false).select { |f| f.friend_id == id }.pluck(:user_id))
+      .where(id: any_friendships.where(confirmed: false).where(friend_id: id).pluck(:user_id))
       .order_created
   end
 
   def friends
     User
-      .where(id: any_friendships.where(confirmed: true).map { |f| f.the_other_person(self) })
+      .where(id: any_friendships.where(confirmed: true).map do |friendship|
+                   friendship.the_other_person(self)
+                 end)
       .order_created
   end
 
@@ -53,6 +73,13 @@ class User < ApplicationRecord
                  end.map(&:id))
   end
 
+  def new_friends
+    User
+      .where(id: unknown_people.select do |person|
+                   mutual_friends_with(person).none?
+                 end.map(&:id))
+  end
+
   def feed
     Post
       .where(author_id: id)
@@ -63,7 +90,7 @@ class User < ApplicationRecord
   end
 
   def confirm_friend(friend)
-    friendship = any_friendships.where(confirmed: false).find { |friendship| friendship.friend == friend }
+    friendship = any_friendships.where(confirmed: false).find_by(friend: friend)
     friendship.confirmed = true
     friendship
   end
@@ -72,8 +99,12 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
+  private
+
   def unknown_people
-    User.where.not(id: any_friendships.map { |f| f.the_other_person(self) })
+    User.where.not(id: any_friendships.map do |friendship|
+                         friendship.the_other_person(self)
+                       end)
         .where.not(id: id)
   end
 end

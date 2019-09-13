@@ -37,6 +37,18 @@ RSpec.describe Friendship, type: :model do
     end
   end
 
+  context 'Associations relationships' do
+    it 'belongs to user' do
+      assc = described_class.reflect_on_association(:user)
+      expect(assc.macro).to eq :belongs_to
+    end
+
+    it 'belongs to friend' do
+      assc = described_class.reflect_on_association(:friend)
+      expect(assc.macro).to eq :belongs_to
+    end
+  end
+
   context '#no_pending_status for create' do
     it 'should be unique for pending status friendship' do
       friendship_unconfirmed.save!

@@ -9,6 +9,7 @@ RSpec.feature 'FriendsRequests', type: :feature do
     @jen = create(:user, name: 'Jen Barber')
     @roy = create(:user, name: 'Roy Trenneman')
     @moris = create(:user, name: 'Moris Mos')
+    @richmond = create(:user, name: 'Richmond Avenal')
     @post = create(:post, author_id: @roy.id)
     # mutual friend : moris
     create(:friendship, user_id: @jen.id, friend_id: @moris.id, confirmed: true)
@@ -21,14 +22,16 @@ RSpec.feature 'FriendsRequests', type: :feature do
     # request friendship
     sign_in @jen
     visit users_path
-    expect(page.body).to have_css('.find_friends ol li .user-name', text: @roy.name)
-    expect(page.body).to have_button I18n.t('customs.buttons.request_friend')
-    expect(@jen.pending_friends.count).to eq 0
-    click_button I18n.t('customs.buttons.request_friend')
-    expect(@jen.pending_friends.count).to eq 1
-    expect(page.body).to have_content I18n.t('customs.friendships.create')
-    expect(page.body).to_not have_button I18n.t('customs.buttons.request_friend')
-    expect(page.body).to_not have_css('.find_friends ol li .user-name', text: @roy.name)
+    expect(page.body).to have_css('.recommended_friends ol li .user-name', text: @roy.name)
+    expect(page.body).to have_css('.new_friends ol li .user-name', text: @richmond.name)
+    within(:css, '.recommended_friends') do
+      expect(page.body).to have_css('.recommended_friends ol li.user')
+      expect(@jen.pending_friends.count).to eq 0
+      click_button I18n.t('customs.buttons.request_friend')
+      expect(@jen.pending_friends.count).to eq 1
+      expect(page.body).to have_content I18n.t('customs.friendships.create')
+      expect(page.body).to_not have_css('.recommended_friends ol li.user')
+    end
     expect(page.body).to have_link(
       I18n.t('customs.links.pending_friends'), href: users_path(type: 'pending_friends')
     )

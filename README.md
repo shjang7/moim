@@ -7,9 +7,10 @@ Find it at [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/f
 ## Function description
 
 - Home
-  * not login user: access signup / login / facebook login (future task)
+  * not login user: access Sign-up / login / Facebook login
     + sign up: with full name(more than 2 words) / email / password
     + login: with email / password
+    + login with Facebook: login with Facebook account
   * login user
     + write posts
     + see the posts which included in user or friends
@@ -26,29 +27,34 @@ Find it at [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/f
     + able to request or accept friendship or seeing pending status
     + 'More': show all friends
 - Find Friends
-  * (n): received friendship request count
   * 'view sent request': pending friends, friendship requested, but wasn't accepted yet
   * 'Respond to your friend request': friend requests, waiting acceptances for friendship
-  * 'Find Friends'
-    + for someone who may know based on having mutual friends each other
+  * 'Recommended Friends': for someone who may know based on having mutual friends
+  * 'New Friends': for someone who doesn't know having no mutual friends
+- Notification: (n): received friendship request count
 - Log out : user log out
 - Feedback : user sends feedback to producer's email
 - Additional description
   * profile picture
-    + if user log in with facebook, user can see facebook picture
-    + if user log in without facebook, user doesn't have picture
-      (except user email having gravatar account)
+    + if user log in with Facebook, user can see Facebook picture
+    + if user log in without Facebook, user doesn't have picture
+      (except user email having Gravatar account)
 
 ## Technology
 
-- Bootstrap 4.0
-- SCSS
 - Ruby 2.6.3
 - Rails 5.2.3
+- Devise
+- OmniAuth
+- Bootstrap 4.0
+- SCSS
 
 ## deployment
 
 https://rails-moim-suh.herokuapp.com
+default account:
+ - id: example-0@example.com
+ - password: foobar
 
 ## Getting started
 

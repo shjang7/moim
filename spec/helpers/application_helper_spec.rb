@@ -16,6 +16,28 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
+  describe '#users_page_title' do
+    let(:jen) { create(:user, name: 'Jen Barber') }
+
+    it 'returns title for find friends changed from new friends' do
+      expect(
+        users_page_title(:new_friends, jen)
+      ).to eq I18n.t('customs.titles.find_friends')
+    end
+
+    it 'returns title for pending friends' do
+      expect(
+        users_page_title(:pending_friends, jen)
+      ).to eq I18n.t('customs.titles.pending_friends')
+    end
+
+    it 'returns title for user\'s current friends' do
+      expect(
+        users_page_title(:current_friends, jen)
+      ).to eq I18n.t('customs.titles.current_friends', name: jen.name.possessive)
+    end
+  end
+
   describe '#users_path_with_user_id_and_page' do
     let(:jen) { create(:user, name: 'Jen Barber') }
     let(:path) { ->(user) { "/users?page=1#user-#{user.id}" } }

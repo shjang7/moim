@@ -53,6 +53,28 @@ RSpec.describe Post, type: :model do
     end
   end
 
+  context 'Associations relationships' do
+    it 'belongs to author' do
+      assc = described_class.reflect_on_association(:author)
+      expect(assc.macro).to eq :belongs_to
+    end
+
+    it 'has many comments' do
+      assc = described_class.reflect_on_association(:comments)
+      expect(assc.macro).to eq :has_many
+    end
+
+    it 'has many post_like_brokers' do
+      assc = described_class.reflect_on_association(:post_like_brokers)
+      expect(assc.macro).to eq :has_many
+    end
+
+    it 'has many likers' do
+      assc = described_class.reflect_on_association(:likers)
+      expect(assc.macro).to eq :has_many
+    end
+  end
+
   context 'with associated post likes' do
     let(:user) { create(:user) }
     let(:post) { create(:post) }

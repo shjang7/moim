@@ -1,5 +1,5 @@
 <% @user ||= current_user %>
-<% provide(:title, I18n.t("customs.titles.#{@friends.keys.last}", name: @user.name.possessive)) %>
+<% provide(:title, users_page_title(@friends.keys.last, @user)) %>
 <div class="users">
   <% if @friends.first[0] == :friend_requests %>
     <%= link_to "#{I18n.t('customs.links.pending_friends')} (#{current_user.pending_friends.count})",
@@ -8,7 +8,7 @@
   <% @friends.each do |friend_type, friend_group| %>
   <section class="list-style-none <%=friend_type%>" id=<%= friend_type %>>
     <h6 class="mt-4 py-2 h-title">
-      <%= I18n.t("customs.titles.#{friend_type}", name: @user.name.possessive) %>
+      <%= I18n.t("customs.headers.#{friend_type}", name: @user.name.possessive) %>
     </h6>
     <ol class="p-0">
       <%= render friend_group %>

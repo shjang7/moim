@@ -23,4 +23,16 @@ RSpec.describe PostLikeBroker, type: :model do
       expect(like).to_not be_valid
     end
   end
+
+  context 'Associations relationships' do
+    it 'belongs to user' do
+      assc = described_class.reflect_on_association(:user)
+      expect(assc.macro).to eq :belongs_to
+    end
+
+    it 'belongs to post' do
+      assc = described_class.reflect_on_association(:post)
+      expect(assc.macro).to eq :belongs_to
+    end
+  end
 end

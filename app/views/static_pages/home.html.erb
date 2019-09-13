@@ -6,7 +6,6 @@
     class: "btn btn-lg btn-success" %>
   <%= link_to I18n.t('customs.buttons.login'), new_user_session_path,
     class: "btn btn-lg btn-success" %>
-  <%= link_to I18n.t('customs.buttons.facebook_login'), new_user_session_path,
+  <%= link_to I18n.t('customs.buttons.facebook_login'), user_facebook_omniauth_authorize_url,
     class: "btn btn-lg btn-success" %>
-  <%# facebook for future implementation %>
 </div>
