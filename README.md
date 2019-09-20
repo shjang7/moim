@@ -44,10 +44,12 @@ Find it at [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/f
 
 - Ruby 2.6.3
 - Rails 5.2.3
-- Devise
-- OmniAuth
+- Devise 4.7.1
+- OmniAuth 1.9.0
 - Bootstrap 4.0
-- SCSS
+- Sass 3.7.4
+- PostgreSQL 10.10
+- RSpec 3.8.0
 
 ## deployment
 
