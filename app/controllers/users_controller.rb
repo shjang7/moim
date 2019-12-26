@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i[show index]
   before_action :find_user, only: %i[show]
