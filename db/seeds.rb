@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 User.create!(
   name: 'Example User',
   email: 'example-0@example.com',

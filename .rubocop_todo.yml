@@ -92,3 +92,6 @@ Style/WordArray:
 # URISchemes: http, https
 Metrics/LineLength:
   Max: 160
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
