@@ -1,8 +1,43 @@
-# Moim
+<h1 align="center">Welcome to Moim 👋</h1>
 
-This is part of the Final Project in The Odin Project’s Ruby on Rails Curriculum. <br />
-Find it at [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project).
-"Moim" is a Korean word meaning "gathering".
+"Moim" is a Korean word meaning "gathering".<br />
+It is a social application to build online friendship.<br />
+The background image has green coloured grass, and it feels like friends sit down on the grass gathering in the relaxed afternoon.<br />
+
+This is part of the Final Project in [The Odin Project’s Ruby on Rails Curriculum](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project).
+
+This app was scheduled building with E-R diagram, user interface worflow design.
+
+### E-R diagram
+![](./docs/e-r-diagram.png)
+
+### User Interface workflow design
+
+##### First page with no login
+![](./docs/home_without_login.jpg)
+
+![](./docs/shot_home.png)
+
+##### First page for logged-in user
+![](./docs/home_with_login.jpg)
+
+![](./docs/shot_login_home.png)
+
+##### User profile page
+![](./docs/profile_with_login.jpg)
+
+![](./docs/shot_profile.png)
+
+##### Friend list page
+![](./docs/friend_list_with_login.jpg)
+
+![](./docs/shot_friends.png)
+
+#### Find friend page
+![](./docs/find_friend_with_login.jpg)
+
+![](./docs/shot_find_friends.png)
+
 
 ## Function description
 
@@ -51,10 +86,10 @@ Find it at [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/f
 - PostgreSQL 10.10
 - RSpec 3.8.0
 
-## deployment
+## Deployment
 
-https://rails-moim-suh.herokuapp.com
-default account:
+#### [Live Demo](https://rails-moim-suh.herokuapp.com)
+#### default account:
  - id: example-0@example.com
  - password: foobar
 
@@ -85,16 +120,18 @@ $ rails test
 ```
 
 If the test suite passes, you'll be ready to run the app in a local server: <br />
-When you used seed, example user info : email: "example@example.com", password: "foobar"
+When you used seed, example user info : email: "example-0@example.com", password: "foobar"
 
 ```
 $ rails server
 ```
 
-## Contributors
+## Author
 
-This is a solo project by me: [Suhyeon Jang](https://github.com/shjang7)
+👤 **Suhyeon Jang**
 
+- Github: [@shjang7](https://github.com/shjang7)
+- Linked in: [@shjang](https://www.linkedin.com/in/shjang/)
 
 ## Contributing
 
