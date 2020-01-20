@@ -1,12 +1,12 @@
 <h1 align="center">Welcome to Moim 👋</h1>
 
 "Moim" is a Korean word meaning "gathering".<br />
-It is a social application to build online friendship.<br />
+It is a social application to build an online friendship.<br />
 The background image has green coloured grass, and it feels like friends sit down on the grass gathering in the relaxed afternoon.<br />
 
 This is part of the Final Project in [The Odin Project’s Ruby on Rails Curriculum](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project).
 
-This app was scheduled building with E-R diagram, user interface worflow design.
+This app was scheduled building with E-R diagram, user interface workflow design.
 
 ### E-R diagram
 ![](./docs/e-r-diagram.png)
@@ -44,7 +44,7 @@ This app was scheduled building with E-R diagram, user interface worflow design.
 - Home
   * not login user: access Sign-up / login / Facebook login
     + sign up: with full name(more than 2 words) / email / password
-    + login: with email / password
+    + login: with email/password
     + login with Facebook: login with Facebook account
   * login user
     + write posts
@@ -52,9 +52,9 @@ This app was scheduled building with E-R diagram, user interface worflow design.
       - like post
       - write comments
 - Profile
-  * user info: profile picture / name
+  * user info: profile picture/name
   * friend info: friend count / 9th friend pic / all friend link('More') / 'Find Friend' link
-  * the posts which was written by the profile's user
+  * the posts which were written by the profile's user
   * user self
     + edit user info: name / email / password / delete account
     + write / edit / delete post
@@ -63,16 +63,16 @@ This app was scheduled building with E-R diagram, user interface worflow design.
     + 'More': show all friends
 - Find Friends
   * 'view sent request': pending friends, friendship requested, but wasn't accepted yet
-  * 'Respond to your friend request': friend requests, waiting acceptances for friendship
+  * 'Respond to your friend request': friend requests, waiting for acceptances for friendship
   * 'Recommended Friends': for someone who may know based on having mutual friends
-  * 'New Friends': for someone who doesn't know having no mutual friends
+  * 'New Friends': for someone who doesn't know with no mutual friends
 - Notification: (n): received friendship request count
 - Log out : user log out
 - Feedback : user sends feedback to producer's email
 - Additional description
   * profile picture
-    + if user log in with Facebook, user can see Facebook picture
-    + if user log in without Facebook, user doesn't have picture
+    + if a user logs in with Facebook, the user can see Facebook picture
+    + if a user logs in without Facebook, the user has no picture
       (except user email having Gravatar account)
 
 ## Technology
